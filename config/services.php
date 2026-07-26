@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'discord' => [
+        'project_inquiries_webhook' => env(
+            'DISCORD_PROJECT_407_LEADS_WEBHOOK_URL'
+        ),
+    ],
+
 ];

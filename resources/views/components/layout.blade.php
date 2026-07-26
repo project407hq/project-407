@@ -49,6 +49,9 @@
             content="{{ url()->current() }}"
         >
 
+        <link rel="icon" href="/favicon.ico">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @livewireStyles

@@ -9,11 +9,15 @@
                 class="inline-flex items-center gap-2"
             >
                 <span class="text-3xl font-extrabold tracking-[-0.05em] text-orange">
-                    407
+                    Project
                 </span>
 
                 <span class="text-2xl font-extrabold tracking-[-0.04em] text-white">
-                    DIGITAL
+                    407
+
+                    <span class="text-xl font-extrabold tracking-[-0.04em] text-orange animate-blink">
+                        _
+                    </span>
                 </span>
             </a>
 

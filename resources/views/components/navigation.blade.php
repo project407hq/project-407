@@ -19,6 +19,10 @@
 
             <span class="text-xl font-extrabold tracking-[-0.04em] text-ink">
                 407
+
+                <span class="text-xl font-extrabold tracking-[-0.04em] text-orange animate-blink">
+                    _
+                </span>
             </span>
         </a>
 

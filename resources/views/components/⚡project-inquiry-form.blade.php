@@ -32,7 +32,7 @@ new class extends Component
                 'required',
                 'in:website,software,support,not-sure',
             ],
-            'message' => ['required', 'string', 'min:20', 'max:3000'],
+            'message' => ['required', 'string', 'min:10', 'max:3000'],
             'website' => ['nullable', 'max:0'],
         ];
     }
@@ -50,7 +50,7 @@ new class extends Component
     {
         $validated = $this->validate();
 
-        ProjectInquiry::create([
+        $inquiry = ProjectInquiry::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'] ?: null,
@@ -58,6 +58,8 @@ new class extends Component
             'service' => $validated['service'],
             'message' => $validated['message'],
         ]);
+
+        $this->sendDiscordNotification($inquiry);
 
         $this->reset([
             'name',
@@ -72,13 +74,95 @@ new class extends Component
         $this->submitted = true;
     }
 
+    private function sendDiscordNotification(ProjectInquiry $inquiry): void
+    {
+        $webhookUrl = config(
+            'services.discord.project_inquiries_webhook'
+        );
+
+        if (blank($webhookUrl)) {
+            return;
+        }
+
+        $service = match ($inquiry->service) {
+            'website' => 'Website',
+            'software' => 'Custom software',
+            'support' => 'Support or improvements',
+            'not-sure' => 'Not sure yet',
+            default => ucfirst($inquiry->service),
+        };
+
+        try {
+            Http::connectTimeout(3)
+                ->timeout(5)
+                ->post($webhookUrl, [
+                    'username' => '407 Digital Leads',
+                    'allowed_mentions' => [
+                        'parse' => [],
+                    ],
+                    'embeds' => [
+                        [
+                            'title' => 'New Project Inquiry',
+                            'description' => $inquiry->message,
+                            'color' => 16022058,
+                            'fields' => [
+                                [
+                                    'name' => 'Name',
+                                    'value' => $inquiry->name,
+                                    'inline' => true,
+                                ],
+                                [
+                                    'name' => 'Service',
+                                    'value' => $service,
+                                    'inline' => true,
+                                ],
+                                [
+                                    'name' => 'Business',
+                                    'value' => $inquiry->business_name
+                                        ?: 'Not provided',
+                                    'inline' => true,
+                                ],
+                                [
+                                    'name' => 'Email',
+                                    'value' => $inquiry->email,
+                                    'inline' => true,
+                                ],
+                                [
+                                    'name' => 'Phone',
+                                    'value' => $inquiry->phone
+                                        ?: 'Not provided',
+                                    'inline' => true,
+                                ],
+                            ],
+                            'footer' => [
+                                'text' => 'Project 407 website',
+                            ],
+                            'timestamp' => now()->toIso8601String(),
+                        ],
+                    ],
+                ])
+                ->throw();
+        } catch (\Throwable $exception) {
+            report($exception);
+        }
+    }
+
     public function startAnotherInquiry(): void
     {
+        $this->reset([
+            'name',
+            'email',
+            'phone',
+            'businessName',
+            'service',
+            'message',
+            'website',
+        ]);
+
         $this->submitted = false;
     }
 };
 ?>
-
 
 <div>
     @if ($submitted)
@@ -251,7 +335,11 @@ new class extends Component
                         >
 
                         <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange/15 text-orange-dark">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'website',
+                                'bg-orange/15 text-orange-dark' => $service !== 'website',
+                            ])>
                                 01
                             </span>
 
@@ -268,7 +356,11 @@ new class extends Component
                         >
 
                         <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-navy text-white">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'software',
+                                'bg-orange/15 text-orange-dark' => $service !== 'software',
+                            ])>
                                 02
                             </span>
 
@@ -285,7 +377,11 @@ new class extends Component
                         >
 
                         <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange/15 text-orange-dark">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'support',
+                                'bg-orange/15 text-orange-dark' => $service !== 'support',
+                            ])>
                                 03
                             </span>
 
@@ -302,7 +398,11 @@ new class extends Component
                         >
 
                         <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-mist text-ink">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'not-sure',
+                                'bg-mist text-ink' => $service !== 'not-sure',
+                            ])>
                                 ?
                             </span>
 
@@ -319,7 +419,7 @@ new class extends Component
             </fieldset>
 
             {{-- Message --}}
-            <div class="mt-6">
+            <div class="mt-6 w-96">
                 <label for="message" class="form-label">
                     Tell us about your project
                     <span class="text-orange-dark">*</span>
@@ -327,8 +427,9 @@ new class extends Component
 
                 <textarea
                     id="message"
-                    wire:model.blur="message"
-                    class="form-textarea min-h-40"
+                    wire:model.live.debounce="message"
+                    maxlength="3000"
+                    class="form-textarea min-h-40 min-w-80"
                     placeholder="What does your business do? What would you like to build or improve?"
                 ></textarea>
 
@@ -352,7 +453,7 @@ new class extends Component
             <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <button
                     type="submit"
-                    class="button-primary justify-center"
+                    class="button-primary justify-center hover:cursor-pointer"
                     wire:loading.attr="disabled"
                     wire:target="submit"
                 >
