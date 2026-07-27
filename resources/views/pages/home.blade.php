@@ -19,7 +19,7 @@
 
                 {{-- Hero copy --}}
                 <div class="relative z-10">
-                    <p class="eyebrow">
+                    <p class="eyebrow text-md">
                         Websites and software for service businesses
                     </p>
 
@@ -67,72 +67,72 @@
                     </div>
 
                     <ul
-                        aria-label="Project 407 benefits"
-                        class="mt-8 grid gap-3 text-sm font-semibold text-slate sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3"
-                    >
-                        <li class="flex items-center gap-2">
-                            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange/15 text-orange-dark">
-                                <svg
-                                    aria-hidden="true"
-                                    class="h-3 w-3"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="m3 8 3 3 7-7"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
-                            </span>
+    aria-label="Project 407 benefits"
+    class="mt-8 flex flex-col gap-3 text-sm font-semibold text-slate sm:flex-row sm:flex-wrap sm:gap-x-8 lg:flex-col xl:flex-row xl:gap-x-8"
+>
+    <li class="flex items-center gap-2">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange/15 text-orange-dark">
+            <svg
+                aria-hidden="true"
+                class="h-3 w-3"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+                <path
+                    d="m3 8 3 3 7-7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        </span>
 
-                            Built to generate leads
-                        </li>
+        Built to generate leads
+    </li>
 
-                        <li class="flex items-center gap-2">
-                            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange/15 text-orange-dark">
-                                <svg
-                                    aria-hidden="true"
-                                    class="h-3 w-3"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="m3 8 3 3 7-7"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
-                            </span>
+    <li class="flex items-center gap-2">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange/15 text-orange-dark">
+            <svg
+                aria-hidden="true"
+                class="h-3 w-3"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+                <path
+                    d="m3 8 3 3 7-7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        </span>
 
-                            Mobile-first
-                        </li>
+        Mobile-first
+    </li>
 
-                        <li class="flex items-center gap-2">
-                            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange/15 text-orange-dark">
-                                <svg
-                                    aria-hidden="true"
-                                    class="h-3 w-3"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="m3 8 3 3 7-7"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
-                            </span>
+    <li class="flex items-center gap-2">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange/15 text-orange-dark">
+            <svg
+                aria-hidden="true"
+                class="h-3 w-3"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+                <path
+                    d="m3 8 3 3 7-7"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg>
+        </span>
 
-                            No agency runaround
-                        </li>
-                    </ul>
+        No agency runaround
+    </li>
+</ul>
                 </div>
 
                 {{-- Project presentation --}}
