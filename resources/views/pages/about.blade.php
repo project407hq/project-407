@@ -57,7 +57,7 @@
                 <div class="space-y-6 text-base leading-8 text-slate sm:text-lg">
                     <p>
                         Project 407 was founded by Kevin Whelan, a software
-                        engineer and the owner of 407 Haul Away, a junk removal
+                        engineer and the owner of 407 Haul Away LLC, a junk removal
                         company serving Northern Massachusetts and Southern New
                         Hampshire.
                     </p>
