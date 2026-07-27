@@ -30,6 +30,12 @@
                     experience with the firsthand reality of owning and
                     operating a local service business.
                 </p>
+
+                <p class="mt-5 max-w-3xl font-bold text-ink/70">
+                    Based in Northern Massachusetts and working with service
+                    businesses throughout Massachusetts, New Hampshire, and
+                    remotely.
+                </p>
             </div>
         </div>
     </section>

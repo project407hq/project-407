@@ -52,6 +52,11 @@
                             Share whatever you know right now. We can work
                             through the remaining details together.
                         </p>
+
+                        <p class="mt-3 text-sm font-semibold text-ink/70">
+                            You’ll work directly with Kevin from the first
+                            conversation through launch.
+                        </p>
                     </div>
 
                     <livewire:project-inquiry-form />

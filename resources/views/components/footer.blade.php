@@ -78,7 +78,7 @@
             </h2>
 
             <p class="mt-5 text-sm leading-relaxed text-white/60">
-                Tell me about your business, current website, and what you want
+                Tell us about your business, current website, and what you want
                 to improve.
             </p>
 

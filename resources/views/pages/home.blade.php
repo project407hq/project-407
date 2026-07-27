@@ -143,8 +143,12 @@
                         class="absolute -right-10 -top-8 hidden w-[82%] rotate-3 overflow-hidden rounded-panel border border-navy/10 opacity-[0.08] shadow-card sm:block"
                     >
                         <img
-                            src="{{ asset('images/work/407-haul-away/homepage-wide.png') }}"
+                            src="{{ asset('images/work/407-haul-away/homepage-wide.webp') }}"
                             alt=""
+                            width="1836"
+                            height="803"
+                            loading="lazy"
+                            decoding="async"
                             class="aspect-[2.29/1] w-full object-cover"
                         >
                     </div>
@@ -165,8 +169,12 @@
 
                         <div class="overflow-hidden rounded-[calc(var(--radius-panel)-0.75rem)] bg-mist">
                             <img
-                                src="{{ asset('images/work/407-haul-away/homepage-desktop.png') }}"
+                                src="{{ asset('images/work/407-haul-away/homepage-desktop.webp') }}"
                                 alt="The 407 Haul Away website displayed on desktop"
+                                width="1440"
+                                height="900"
+                                fetchpriority="high"
+                                decoding="async"
                                 class="aspect-[16/10] w-full object-cover object-top"
                             >
                         </div>
@@ -181,8 +189,11 @@
                             ></div>
 
                             <img
-                                src="{{ asset('images/work/407-haul-away/homepage-mobile.png') }}"
+                                src="{{ asset('images/work/407-haul-away/homepage-mobile.webp') }}"
                                 alt="The 407 Haul Away website displayed on mobile"
+                                width="780"
+                                height="1687"
+                                decoding="async"
                                 class="aspect-[390/844] w-full object-cover object-top"
                             >
                         </div>
@@ -694,10 +705,13 @@
 
                             <div class="overflow-hidden rounded-[calc(var(--radius-panel)-0.75rem)] bg-cream">
                                 <img
-                                    src="{{ asset('images/work/407-haul-away/homepage-wide.png') }}"
+                                    src="{{ asset('images/work/407-haul-away/homepage-wide.webp') }}"
                                     alt="The redesigned 407 Haul Away website"
+                                    width="1836"
+                                    height="803"
                                     class="aspect-[2.29/1] w-full object-cover object-top"
                                     loading="lazy"
+                                    decoding="async"
                                 >
                             </div>
                         </div>

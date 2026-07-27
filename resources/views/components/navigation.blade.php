@@ -1,5 +1,6 @@
 <header
     x-data="{ open: false }"
+    x-effect="document.documentElement.classList.toggle('overflow-hidden', open)"
     @keydown.escape.window="open = false"
     class="sticky top-0 z-50 border-b border-ink/10 bg-cream/95 backdrop-blur-xl"
 >
@@ -101,6 +102,7 @@
             type="button"
             class="grid h-11 w-11 place-items-center rounded-full bg-ink text-white lg:hidden"
             @click="open = !open"
+            x-ref="menuButton"
             :aria-expanded="open.toString()"
             aria-controls="mobile-navigation"
             aria-label="Toggle navigation"
@@ -142,6 +144,7 @@
     <div
         x-cloak
         x-show="open"
+        @keydown.tab="if ($event.shiftKey && $event.target === $el.querySelector('a')) { $event.preventDefault(); $refs.menuButton.focus() }"
         x-transition:enter="transition duration-200 ease-out"
         x-transition:enter-start="-translate-y-2 opacity-0"
         x-transition:enter-end="translate-y-0 opacity-100"

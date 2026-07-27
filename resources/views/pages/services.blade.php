@@ -511,6 +511,53 @@
         </div>
     </section>
 
+    {{-- Who we work best with --}}
+    <section class="border-y border-navy/10 bg-cream py-16 sm:py-20">
+        <div class="site-container">
+            <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+                <div>
+                    <p class="eyebrow">
+                        A good fit
+                    </p>
+
+                    <h2 class="section-title mt-5">
+                        Built for owner-led service businesses.
+                    </h2>
+
+                    <p class="lead mt-5">
+                        Project 407 works best with businesses that value clear
+                        communication, practical recommendations, and technology
+                        tied to a real business goal.
+                    </p>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                    @foreach ([
+                        'Contractors and home-service companies',
+                        'Businesses with outdated or DIY websites',
+                        'Companies relying too heavily on social media',
+                        'Teams managing work through spreadsheets and paperwork',
+                        'Owners who need a clearer way to generate inquiries',
+                        'Businesses ready for dependable ongoing support',
+                    ] as $fit)
+                        <div
+                            class="flex items-start gap-3 rounded-2xl border border-navy/10 bg-white p-5 font-bold text-ink"
+                        >
+                            <span
+                                aria-hidden="true"
+                                class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange/15 text-sm text-orange-dark"
+                            >
+                                ✓
+                            </span>
+
+                            {{ $fit }}
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- Choosing the right service --}}
     <section class="bg-cream py-16 sm:py-20">
         <div class="site-container">

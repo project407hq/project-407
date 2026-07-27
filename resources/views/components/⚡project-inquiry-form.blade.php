@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\ProjectInquiry;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Component;
 
 new class extends Component
@@ -48,7 +50,26 @@ new class extends Component
 
     public function submit(): void
     {
+        $this->name = trim($this->name);
+        $this->email = trim($this->email);
+        $this->phone = trim($this->phone);
+        $this->businessName = trim($this->businessName);
+        $this->message = trim($this->message);
+
         $validated = $this->validate();
+
+        $rateLimitKey = 'project-inquiry:'.request()->ip();
+
+        if (RateLimiter::tooManyAttempts($rateLimitKey, 5)) {
+            $this->addError(
+                'form',
+                'Too many inquiries have been submitted. Please wait before trying again.',
+            );
+
+            return;
+        }
+
+        RateLimiter::hit($rateLimitKey, 3600);
 
         $inquiry = ProjectInquiry::create([
             'name' => $validated['name'],
@@ -96,7 +117,7 @@ new class extends Component
             Http::connectTimeout(3)
                 ->timeout(5)
                 ->post($webhookUrl, [
-                    'username' => '407 Digital Leads',
+                    'username' => 'Project 407 Leads',
                     'allowed_mentions' => [
                         'parse' => [],
                     ],
@@ -236,13 +257,14 @@ new class extends Component
                         id="name"
                         type="text"
                         wire:model.blur="name"
-                        class="form-input"
+                        class="form-control"
+                        @error('name') aria-invalid="true" aria-describedby="name-error" @enderror
                         autocomplete="name"
                         placeholder="John Doe"
                     >
 
                     @error('name')
-                        <p class="mt-2 text-sm font-semibold text-red-700">
+                        <p id="name-error" class="form-error">
                             {{ $message }}
                         </p>
                     @enderror
@@ -259,13 +281,14 @@ new class extends Component
                         id="email"
                         type="email"
                         wire:model.blur="email"
-                        class="form-input"
+                        class="form-control"
+                        @error('email') aria-invalid="true" aria-describedby="email-error" @enderror
                         autocomplete="email"
                         placeholder="you@business.com"
                     >
 
                     @error('email')
-                        <p class="mt-2 text-sm font-semibold text-red-700">
+                        <p id="email-error" class="form-error">
                             {{ $message }}
                         </p>
                     @enderror
@@ -282,13 +305,14 @@ new class extends Component
                         id="phone"
                         type="tel"
                         wire:model.blur="phone"
-                        class="form-input"
+                        class="form-control"
+                        @error('phone') aria-invalid="true" aria-describedby="phone-error" @enderror
                         autocomplete="tel"
                         placeholder="(978) 555-0123"
                     >
 
                     @error('phone')
-                        <p class="mt-2 text-sm font-semibold text-red-700">
+                        <p id="phone-error" class="form-error">
                             {{ $message }}
                         </p>
                     @enderror
@@ -305,13 +329,14 @@ new class extends Component
                         id="businessName"
                         type="text"
                         wire:model.blur="businessName"
-                        class="form-input"
+                        class="form-control"
+                        @error('businessName') aria-invalid="true" aria-describedby="business-name-error" @enderror
                         autocomplete="organization"
                         placeholder="Your Business LLC"
                     >
 
                     @error('businessName')
-                        <p class="mt-2 text-sm font-semibold text-red-700">
+                        <p id="business-name-error" class="form-error">
                             {{ $message }}
                         </p>
                     @enderror
@@ -412,14 +437,14 @@ new class extends Component
                 </div>
 
                 @error('service')
-                    <p class="mt-2 text-sm font-semibold text-red-700">
+                    <p id="service-error" class="form-error">
                         {{ $message }}
                     </p>
                 @enderror
             </fieldset>
 
             {{-- Message --}}
-            <div class="mt-6 w-96">
+            <div class="mt-6">
                 <label for="message" class="form-label">
                     Tell us about your project
                     <span class="text-orange-dark">*</span>
@@ -429,13 +454,14 @@ new class extends Component
                     id="message"
                     wire:model.live.debounce="message"
                     maxlength="3000"
-                    class="form-textarea min-h-40 min-w-80"
+                    class="form-control min-h-40 resize-y"
+                    @error('message') aria-invalid="true" aria-describedby="message-error" @enderror
                     placeholder="What does your business do? What would you like to build or improve?"
                 ></textarea>
 
                 <div class="mt-2 flex items-start justify-between gap-4">
                     @error('message')
-                        <p class="text-sm font-semibold text-red-700">
+                        <p id="message-error" class="text-sm font-semibold text-red-700">
                             {{ $message }}
                         </p>
                     @else
@@ -449,6 +475,12 @@ new class extends Component
                     </span>
                 </div>
             </div>
+
+            @error('form')
+                <p class="form-error mt-6" role="alert">
+                    {{ $message }}
+                </p>
+            @enderror
 
             <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <button

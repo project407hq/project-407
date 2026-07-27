@@ -3,6 +3,35 @@
     'description' => 'Websites and practical software for contractors and local service businesses.',
 ])
 
+@php
+    $canonicalUrl = url()->current();
+    $socialImageUrl = asset('project407-social.png');
+    $shouldIndex = app()->environment('production');
+    $organizationSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'ProfessionalService',
+        'name' => 'Project 407',
+        'url' => config('app.url'),
+        'logo' => asset('project407-favicon-512.png'),
+        'image' => $socialImageUrl,
+        'description' => 'Lead-generating websites and practical software for contractors and local service businesses.',
+        'founder' => [
+            '@type' => 'Person',
+            'name' => 'Kevin Whelan',
+        ],
+        'areaServed' => [
+            [
+                '@type' => 'State',
+                'name' => 'Massachusetts',
+            ],
+            [
+                '@type' => 'State',
+                'name' => 'New Hampshire',
+            ],
+        ],
+    ];
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -21,12 +50,12 @@
 
         <meta
             name="robots"
-            content="index, follow"
+            content="{{ $shouldIndex ? 'index, follow' : 'noindex, nofollow' }}"
         >
 
         <link
             rel="canonical"
-            href="{{ url()->current() }}"
+            href="{{ $canonicalUrl }}"
         >
 
         <meta
@@ -46,11 +75,29 @@
 
         <meta
             property="og:url"
-            content="{{ url()->current() }}"
+            content="{{ $canonicalUrl }}"
         >
+
+        <meta property="og:site_name" content="Project 407">
+        <meta property="og:image" content="{{ $socialImageUrl }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta
+            property="og:image:alt"
+            content="Project 407 — websites and software for service businesses"
+        >
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $title }}">
+        <meta name="twitter:description" content="{{ $description }}">
+        <meta name="twitter:image" content="{{ $socialImageUrl }}">
 
         <link rel="icon" href="/favicon.ico">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <script type="application/ld+json">
+            {!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+        </script>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 

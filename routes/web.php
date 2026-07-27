@@ -21,3 +21,27 @@ Route::view('/contact', 'pages.contact')
 
 Route::view('/privacy', 'pages.privacy')
     ->name('privacy');
+
+Route::get('/sitemap.xml', function () {
+    $urls = [
+        route('home'),
+        route('services'),
+        route('work.index'),
+        route('work.407-haul-away'),
+        route('about'),
+        route('contact'),
+    ];
+
+    return response()
+        ->view('sitemap', ['urls' => $urls])
+        ->header('Content-Type', 'application/xml');
+})->name('sitemap');
+
+Route::get('/robots.txt', function () {
+    $contents = app()->environment('production')
+        ? "User-agent: *\nDisallow:\n\nSitemap: ".route('sitemap')."\n"
+        : "User-agent: *\nDisallow: /\n";
+
+    return response($contents, 200)
+        ->header('Content-Type', 'text/plain');
+});
