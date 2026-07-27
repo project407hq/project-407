@@ -111,6 +111,7 @@
                 gtag('js', new Date());
                 gtag('config', '{{ config('services.google_analytics.id') }}');
             </script>
+        @endif
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
