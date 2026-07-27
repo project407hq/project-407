@@ -99,6 +99,19 @@
             {!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
         </script>
 
+        @if(config('services.google_analytics.id'))
+            <script
+                async
+                src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google_analytics.id') }}"
+            ></script>
+
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '{{ config('services.google_analytics.id') }}');
+            </script>
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @livewireStyles
