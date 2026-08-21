@@ -140,8 +140,11 @@
 
                     <div class="overflow-hidden rounded-[calc(var(--radius-panel)-0.75rem)]">
                         <img
-                            src="{{ asset('images/work/407-haul-away/homepage-wide.png') }}"
+                            src="{{ asset('images/work/407-haul-away/homepage-wide.webp') }}"
                             alt="The redesigned 407 Haul Away homepage"
+                            width="1836"
+                            height="803"
+                            decoding="async"
                             class="aspect-[2.29/1] w-full object-cover object-top"
                         >
                     </div>
@@ -436,8 +439,10 @@
 
                     <div class="overflow-hidden rounded-panel border border-white/15 bg-white p-2 shadow-card sm:p-3">
                         <img
-                            src="{{ asset('images/work/407-haul-away/homepage-desktop.png') }}"
+                            src="{{ asset('images/work/407-haul-away/homepage-desktop.webp') }}"
                             alt="Desktop version of the redesigned 407 Haul Away website"
+                            width="1440"
+                            height="900"
                             class="aspect-[16/10] w-full object-cover object-top"
                             loading="lazy"
                         >
@@ -457,8 +462,10 @@
                             ></div>
 
                             <img
-                                src="{{ asset('images/work/407-haul-away/homepage-mobile.png') }}"
+                                src="{{ asset('images/work/407-haul-away/homepage-mobile.webp') }}"
                                 alt="Mobile version of the redesigned 407 Haul Away website"
+                                width="780"
+                                height="1687"
                                 class="aspect-[390/844] w-full object-cover object-top"
                                 loading="lazy"
                             >

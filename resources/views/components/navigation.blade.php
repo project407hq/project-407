@@ -31,6 +31,7 @@
         <div class="hidden items-center gap-1 lg:flex">
             <a
                 href="{{ route('services') }}"
+                @if(request()->routeIs('services')) aria-current="page" @endif
                 @class([
                     'rounded-full px-4 py-2 text-sm font-bold transition',
                     'bg-ink text-white' => request()->routeIs('services'),
@@ -42,6 +43,7 @@
 
             <a
                 href="{{ route('work.index') }}"
+                @if(request()->routeIs('work.*')) aria-current="page" @endif
                 @class([
                     'rounded-full px-4 py-2 text-sm font-bold transition',
                     'bg-ink text-white' => request()->routeIs('work.*'),
@@ -53,6 +55,7 @@
 
             <a
                 href="{{ route('about') }}"
+                @if(request()->routeIs('about')) aria-current="page" @endif
                 @class([
                     'rounded-full px-4 py-2 text-sm font-bold transition',
                     'bg-ink text-white' => request()->routeIs('about'),
@@ -64,6 +67,7 @@
 
             <a
                 href="{{ route('contact') }}"
+                @if(request()->routeIs('contact')) aria-current="page" @endif
                 @class([
                     'rounded-full px-4 py-2 text-sm font-bold transition',
                     'bg-ink text-white' => request()->routeIs('contact'),
@@ -144,7 +148,17 @@
     <div
         x-cloak
         x-show="open"
-        @keydown.tab="if ($event.shiftKey && $event.target === $el.querySelector('a')) { $event.preventDefault(); $refs.menuButton.focus() }"
+        @keydown.tab="
+            const links = [...$el.querySelectorAll('a')];
+
+            if ($event.shiftKey && $event.target === links[0]) {
+                $event.preventDefault();
+                links[links.length - 1].focus();
+            } else if (! $event.shiftKey && $event.target === links[links.length - 1]) {
+                $event.preventDefault();
+                links[0].focus();
+            }
+        "
         x-transition:enter="transition duration-200 ease-out"
         x-transition:enter-start="-translate-y-2 opacity-0"
         x-transition:enter-end="translate-y-0 opacity-100"
@@ -157,6 +171,7 @@
         <div class="site-container space-y-2 py-5">
             <a
                 href="{{ route('services') }}"
+                @if(request()->routeIs('services')) aria-current="page" @endif
                 @class([
                     'block rounded-xl px-4 py-3 font-bold',
                     'bg-ink text-white' => request()->routeIs('services'),
@@ -169,6 +184,7 @@
 
             <a
                 href="{{ route('work.index') }}"
+                @if(request()->routeIs('work.*')) aria-current="page" @endif
                 @class([
                     'block rounded-xl px-4 py-3 font-bold',
                     'bg-ink text-white' => request()->routeIs('work.*'),
@@ -181,6 +197,7 @@
 
             <a
                 href="{{ route('about') }}"
+                @if(request()->routeIs('about')) aria-current="page" @endif
                 @class([
                     'block rounded-xl px-4 py-3 font-bold',
                     'bg-ink text-white' => request()->routeIs('about'),
@@ -193,6 +210,7 @@
 
             <a
                 href="{{ route('contact') }}"
+                @if(request()->routeIs('contact')) aria-current="page" @endif
                 @class([
                     'block rounded-xl px-4 py-3 font-bold',
                     'bg-ink text-white' => request()->routeIs('contact'),

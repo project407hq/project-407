@@ -300,6 +300,11 @@
                                 <span class="mt-0.5 text-orange">✓</span>
                                 Any timeline you have in mind
                             </li>
+
+                            <li class="flex items-start gap-3">
+                                <span class="mt-0.5 text-orange">✓</span>
+                                A budget range, if you already have one
+                            </li>
                         </ul>
                     </div>
 

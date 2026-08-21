@@ -89,8 +89,12 @@
                 >
                     <div class="overflow-hidden rounded-[calc(var(--radius-panel)-0.75rem)]">
                         <img
-                            src="{{ asset('images/work/407-haul-away/homepage-wide.png') }}"
+                            src="{{ asset('images/work/407-haul-away/homepage-wide.webp') }}"
                             alt="The redesigned 407 Haul Away website"
+                            width="1836"
+                            height="803"
+                            loading="lazy"
+                            decoding="async"
                             class="aspect-[2.29/1] w-full object-cover object-top transition duration-500 group-hover:scale-[1.015]"
                         >
                     </div>
@@ -301,7 +305,7 @@
         </div>
     </section>
 
-    {{-- Portfolio note --}}
+    {{-- Portfolio context --}}
     <section class="border-y border-navy/10 bg-white">
         <div class="site-container py-10 sm:py-12">
             <div class="grid items-center gap-6 lg:grid-cols-[auto_1fr] lg:gap-8">
@@ -323,13 +327,14 @@
 
                 <div>
                     <h2 class="text-xl font-extrabold text-ink">
-                        More work is on the way.
+                        One complete project, shown in depth.
                     </h2>
 
                     <p class="mt-2 max-w-3xl leading-7 text-slate">
-                        Project 407 is building a focused portfolio of practical
-                        websites and software for local service businesses.
-                        Future projects will be added here as they launch.
+                        Project 407 is a new studio, so this portfolio is intentionally
+                        straightforward. The case study above documents the strategy,
+                        messaging, design, and development behind a real operating
+                        service business—not a speculative concept.
                     </p>
                 </div>
             </div>
