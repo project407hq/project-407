@@ -1216,7 +1216,6 @@ body:has(.finder-home) { background: var(--finder-bg); }
 .ember-nav__menu > p { color: rgba(243,241,236,.55); line-height: 1.6; }
 
 .ember-home { background: #1b1b1a; color: #f3f1ec; }
-body:has(.ember-home) > footer { display: none; }
 body:has(.ember-home) { background: #1b1b1a; }
 .ember-hero { position: relative; min-height: 100svh; overflow: hidden; padding: 10rem 3.5rem 5rem; }
 .ember-hero__orbit { position: absolute; top: -24rem; right: -4rem; width: 68rem; height: 68rem; border: 1px solid rgba(243,241,236,.12); border-radius: 50%; }
