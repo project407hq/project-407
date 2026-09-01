@@ -63,9 +63,10 @@
 .ember-founder__signal header,.ember-founder__signal footer { display:flex; justify-content:space-between; gap:1rem; font-size:.78rem; font-weight:700; letter-spacing:.12em; }
 .ember-founder__signal header { padding-bottom:1.25rem; border-bottom:1px solid rgba(243,241,236,.22); color:#ff3f46; }
 .ember-founder__signal footer { padding-top:1.25rem; border-top:1px solid rgba(243,241,236,.22); color:rgba(243,241,236,.55); }
-.ember-founder__initials { display:grid; grid-template-columns:1fr 1fr; margin-inline:-3.2rem; font-family:var(--font-display); font-size:clamp(10rem,22vw,23rem); font-weight:700; letter-spacing:-.08em; line-height:.68; }
+.ember-founder__initials { display:flex; align-items:center; justify-content:center; gap:0; margin-inline:0; font-family:var(--font-display); font-size:clamp(9rem,17vw,18rem); font-weight:700; letter-spacing:-.1em; line-height:.72; }
 .ember-founder__initials span:first-child { color:#ff3f46; }
 .ember-founder__initials span:last-child { color:transparent; -webkit-text-stroke:1px rgba(243,241,236,.5); }
+.ember-founder__initials span + span { margin-left:-.04em; }
 .ember-founder__connection { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1.25rem; padding:1.25rem 0; border-block:1px solid rgba(243,241,236,.22); font-size:.75rem; letter-spacing:.1em; }
 .ember-founder__connection strong:last-child { text-align:right; }
 .ember-founder__connection i { color:#ff3f46; font-size:1.5rem; font-style:normal; }
@@ -88,7 +89,7 @@
 @media (max-width:800px) {
     .ember-founder,.studio-founder-proof { grid-template-columns:1fr; }
     .ember-founder__signal { min-height:32rem; padding:1.25rem; }
-    .ember-founder__initials { margin-inline:-1rem; font-size:clamp(9rem,48vw,16rem); }
+    .ember-founder__initials { font-size:clamp(7.5rem,38vw,12rem); }
     .ember-founder__story { padding:5rem 1.25rem; }
     .studio-founder-proof__photo { width:min(100%,22rem); height:32rem; margin-inline:auto; }
 }
