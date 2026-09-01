@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396">
+    <rect width="1584" height="396" fill="#f3f1ec"/>
+    <circle cx="1540" cy="12" r="235" fill="#ff3f46" opacity=".12"/>
+    <circle cx="92" cy="430" r="245" fill="#1b1b1a" opacity=".10"/>
+
+    <rect x="430" y="38" width="1108" height="320" rx="34" fill="#1b1b1a"/>
+
+    <text x="500" y="118" fill="#ff3f46" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800" letter-spacing="-1.5">
+        PROJECT<tspan fill="#ffffff">407_</tspan>
+    </text>
+
+    <text x="500" y="200" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="800" letter-spacing="-2">
+        Websites and software built
+    </text>
+    <text x="500" y="255" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="800" letter-spacing="-2">
+        to move business forward.
+    </text>
+
+    <text x="500" y="313" fill="#b9b7b1" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600">
+        project-407.com
+    </text>
+</svg>

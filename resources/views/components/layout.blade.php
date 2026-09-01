@@ -1,33 +1,20 @@
 @props([
     'title' => 'Project 407',
-    'description' => 'Websites and practical software for contractors and local service businesses.',
+    'description' => 'Websites, custom software, and business automation for growing companies.',
+    'index' => true,
 ])
 
 @php
     $canonicalUrl = url()->current();
     $socialImageUrl = asset('project407-social.png');
-    $shouldIndex = app()->environment('production');
-    $organizationSchema = [
+    $shouldIndex = app()->environment('production') && $index;
+    $siteUrl = rtrim(config('app.url'), '/');
+    $structuredData = [
         '@context' => 'https://schema.org',
-        '@type' => 'ProfessionalService',
-        'name' => 'Project 407',
-        'url' => config('app.url'),
-        'logo' => asset('project407-favicon-512.png'),
-        'image' => $socialImageUrl,
-        'description' => 'Lead-generating websites and practical software for contractors and local service businesses.',
-        'founder' => [
-            '@type' => 'Person',
-            'name' => 'Kevin Whelan',
-        ],
-        'areaServed' => [
-            [
-                '@type' => 'State',
-                'name' => 'Massachusetts',
-            ],
-            [
-                '@type' => 'State',
-                'name' => 'New Hampshire',
-            ],
+        '@graph' => [
+            ['@type' => 'WebSite', '@id' => $siteUrl.'/#website', 'url' => $siteUrl, 'name' => 'Project 407', 'description' => 'Website design, custom software development, automation, and integrations for growing businesses.', 'publisher' => ['@id' => $siteUrl.'/#business']],
+            ['@type' => 'ProfessionalService', '@id' => $siteUrl.'/#business', 'name' => 'Project 407', 'url' => $siteUrl, 'logo' => asset('project407-favicon-512.png'), 'image' => $socialImageUrl, 'email' => 'kevin@project-407.com', 'telephone' => '+1-978-877-9784', 'description' => 'Independent software studio building business websites, custom web applications, internal tools, automations, APIs, and integrations.', 'founder' => ['@id' => $siteUrl.'/#kevin-whelan'], 'areaServed' => [['@type' => 'State', 'name' => 'Massachusetts'], ['@type' => 'State', 'name' => 'New Hampshire'], ['@type' => 'Country', 'name' => 'United States']], 'serviceType' => ['Business Website Design and Development', 'Custom Software Development', 'Web Application Development', 'Internal Tool Development', 'Business Automation', 'API and Software Integrations']],
+            ['@type' => 'Person', '@id' => $siteUrl.'/#kevin-whelan', 'name' => 'Kevin Whelan', 'url' => $siteUrl.'/about', 'sameAs' => ['https://www.linkedin.com/in/kpwhelan'], 'jobTitle' => 'Senior Full Stack Engineer', 'worksFor' => ['@id' => $siteUrl.'/#business'], 'knowsAbout' => ['Laravel', 'PHP', 'Vue', 'React', 'TypeScript', 'AWS', 'API development', 'Custom software development', 'Website development']],
         ],
     ];
 @endphp
@@ -84,7 +71,7 @@
         <meta property="og:image:height" content="630">
         <meta
             property="og:image:alt"
-            content="Project 407 — websites and software for service businesses"
+            content="Project 407 — websites and custom software for growing businesses"
         >
 
         <meta name="twitter:card" content="summary_large_image">
@@ -96,7 +83,7 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         <script type="application/ld+json">
-            {!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+            {!! json_encode($structuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
         </script>
 
         @if(config('services.google_analytics.id'))

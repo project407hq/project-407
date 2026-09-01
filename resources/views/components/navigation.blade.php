@@ -1,233 +1,41 @@
 <header
-    x-data="{ open: false }"
+    x-data="{ open: false, scrolled: window.scrollY > 16 }"
     x-effect="document.documentElement.classList.toggle('overflow-hidden', open)"
+    @scroll.window="scrolled = window.scrollY > 16"
     @keydown.escape.window="open = false"
-    class="sticky top-0 z-50 border-b border-ink/10 bg-cream/95 backdrop-blur-xl"
+    :class="{ 'is-scrolled': scrolled && ! open }"
+    class="ember-nav"
 >
-    <nav
-        class="site-container flex h-20 items-center justify-between gap-6"
-        aria-label="Main navigation"
-    >
-        {{-- Logo --}}
-        <a
-            href="{{ route('home') }}"
-            class="flex shrink-0 items-center gap-2"
-            aria-label="Project 407 home"
-        >
-            <span class="text-2xl font-extrabold tracking-[-0.05em] text-orange">
-                PROJECT
-            </span>
+    <a href="{{ route('home') }}" class="ember-nav__logo" aria-label="Project 407 home">
+        <strong>PROJECT</strong>
+        <span>407<i aria-hidden="true">_</i></span>
+    </a>
 
-            <span class="text-xl font-extrabold tracking-[-0.04em] text-ink">
-                407
-
-                <span class="text-xl font-extrabold tracking-[-0.04em] text-orange animate-blink">
-                    _
-                </span>
-            </span>
-        </a>
-
-        {{-- Desktop links --}}
-        <div class="hidden items-center gap-1 lg:flex">
-            <a
-                href="{{ route('services') }}"
-                @if(request()->routeIs('services')) aria-current="page" @endif
-                @class([
-                    'rounded-full px-4 py-2 text-sm font-bold transition',
-                    'bg-ink text-white' => request()->routeIs('services'),
-                    'text-ink/65 hover:bg-ink/5 hover:text-ink' => ! request()->routeIs('services'),
-                ])
-            >
-                Services
-            </a>
-
-            <a
-                href="{{ route('work.index') }}"
-                @if(request()->routeIs('work.*')) aria-current="page" @endif
-                @class([
-                    'rounded-full px-4 py-2 text-sm font-bold transition',
-                    'bg-ink text-white' => request()->routeIs('work.*'),
-                    'text-ink/65 hover:bg-ink/5 hover:text-ink' => ! request()->routeIs('work.*'),
-                ])
-            >
-                Our Work
-            </a>
-
-            <a
-                href="{{ route('about') }}"
-                @if(request()->routeIs('about')) aria-current="page" @endif
-                @class([
-                    'rounded-full px-4 py-2 text-sm font-bold transition',
-                    'bg-ink text-white' => request()->routeIs('about'),
-                    'text-ink/65 hover:bg-ink/5 hover:text-ink' => ! request()->routeIs('about'),
-                ])
-            >
-                About
-            </a>
-
-            <a
-                href="{{ route('contact') }}"
-                @if(request()->routeIs('contact')) aria-current="page" @endif
-                @class([
-                    'rounded-full px-4 py-2 text-sm font-bold transition',
-                    'bg-ink text-white' => request()->routeIs('contact'),
-                    'text-ink/65 hover:bg-ink/5 hover:text-ink' => ! request()->routeIs('contact'),
-                ])
-            >
-                Contact
-            </a>
-        </div>
-
-        {{-- Desktop CTA --}}
-        <a
-            href="{{ route('contact') }}"
-            class="button-primary hidden lg:inline-flex"
-        >
-            Start a Project
-
-            <svg
-                aria-hidden="true"
-                class="h-4 w-4"
-                viewBox="0 0 20 20"
-                fill="none"
-            >
-                <path
-                    d="M4 10h12M11 5l5 5-5 5"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </svg>
-        </a>
-
-        {{-- Mobile button --}}
-        <button
-            type="button"
-            class="grid h-11 w-11 place-items-center rounded-full bg-ink text-white lg:hidden"
-            @click="open = !open"
-            x-ref="menuButton"
-            :aria-expanded="open.toString()"
-            aria-controls="mobile-navigation"
-            aria-label="Toggle navigation"
-        >
-            <svg
-                x-show="! open"
-                aria-hidden="true"
-                class="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="none"
-            >
-                <path
-                    d="M4 7h16M4 12h16M4 17h16"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                />
-            </svg>
-
-            <svg
-                x-cloak
-                x-show="open"
-                aria-hidden="true"
-                class="h-5 w-5"
-                viewBox="0 0 24 24"
-                fill="none"
-            >
-                <path
-                    d="M6 6l12 12M18 6L6 18"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                />
-            </svg>
+    <div class="ember-nav__actions">
+        <a href="{{ route('contact') }}">ASK OR START</a>
+        <button type="button" @click="open = ! open" :aria-expanded="open.toString()" aria-controls="main-menu" aria-label="Toggle navigation">
+            <span></span><span></span>
         </button>
-    </nav>
+    </div>
 
-    {{-- Mobile menu --}}
     <div
         x-cloak
         x-show="open"
-        @keydown.tab="
-            const links = [...$el.querySelectorAll('a')];
-
-            if ($event.shiftKey && $event.target === links[0]) {
-                $event.preventDefault();
-                links[links.length - 1].focus();
-            } else if (! $event.shiftKey && $event.target === links[links.length - 1]) {
-                $event.preventDefault();
-                links[0].focus();
-            }
-        "
-        x-transition:enter="transition duration-200 ease-out"
-        x-transition:enter-start="-translate-y-2 opacity-0"
-        x-transition:enter-end="translate-y-0 opacity-100"
-        x-transition:leave="transition duration-150 ease-in"
-        x-transition:leave-start="translate-y-0 opacity-100"
-        x-transition:leave-end="-translate-y-2 opacity-0"
-        id="mobile-navigation"
-        class="border-t border-ink/10 bg-cream lg:hidden"
+        id="main-menu"
+        class="ember-nav__menu"
+        x-transition:enter="transition duration-300 ease-out"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition duration-200 ease-in"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
     >
-        <div class="site-container space-y-2 py-5">
-            <a
-                href="{{ route('services') }}"
-                @if(request()->routeIs('services')) aria-current="page" @endif
-                @class([
-                    'block rounded-xl px-4 py-3 font-bold',
-                    'bg-ink text-white' => request()->routeIs('services'),
-                    'text-ink hover:bg-ink/5' => ! request()->routeIs('services'),
-                ])
-                @click="open = false"
-            >
-                Services
-            </a>
-
-            <a
-                href="{{ route('work.index') }}"
-                @if(request()->routeIs('work.*')) aria-current="page" @endif
-                @class([
-                    'block rounded-xl px-4 py-3 font-bold',
-                    'bg-ink text-white' => request()->routeIs('work.*'),
-                    'text-ink hover:bg-ink/5' => ! request()->routeIs('work.*'),
-                ])
-                @click="open = false"
-            >
-                Our Work
-            </a>
-
-            <a
-                href="{{ route('about') }}"
-                @if(request()->routeIs('about')) aria-current="page" @endif
-                @class([
-                    'block rounded-xl px-4 py-3 font-bold',
-                    'bg-ink text-white' => request()->routeIs('about'),
-                    'text-ink hover:bg-ink/5' => ! request()->routeIs('about'),
-                ])
-                @click="open = false"
-            >
-                About
-            </a>
-
-            <a
-                href="{{ route('contact') }}"
-                @if(request()->routeIs('contact')) aria-current="page" @endif
-                @class([
-                    'block rounded-xl px-4 py-3 font-bold',
-                    'bg-ink text-white' => request()->routeIs('contact'),
-                    'text-ink hover:bg-ink/5' => ! request()->routeIs('contact'),
-                ])
-                @click="open = false"
-            >
-                Contact
-            </a>
-
-            <a
-                href="{{ route('contact') }}"
-                class="button-primary mt-4 w-full"
-                @click="open = false"
-            >
-                Start a Project
-            </a>
-        </div>
+        <nav aria-label="Main navigation">
+            <a href="{{ route('work.index') }}" @click="open = false"><span>01</span>Work</a>
+            <a href="{{ route('services') }}" @click="open = false"><span>02</span>Services</a>
+            <a href="{{ route('about') }}" @click="open = false"><span>03</span>About</a>
+            <a href="{{ route('contact') }}" @click="open = false"><span>04</span>Contact</a>
+        </nav>
+        <p>Have a project, a rough idea, or just a question? Kevin would be glad to hear it.</p>
     </div>
 </header>

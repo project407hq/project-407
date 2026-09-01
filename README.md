@@ -1,6 +1,6 @@
 # Project 407
 
-The marketing website for Project 407, a web and software studio serving contractors and local service businesses.
+The marketing website for Project 407, a web and custom software studio serving growing and owner-led businesses.
 
 ## Requirements
 

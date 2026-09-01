@@ -39,6 +39,19 @@ test('a valid project inquiry is stored', function () {
         ->service->toBe('website');
 });
 
+test('a visitor can reach out with a question without having a project brief', function () {
+    Livewire::test('project-inquiry-form')
+        ->set('name', 'Morgan Lee')
+        ->set('email', 'morgan@example.com')
+        ->set('service', 'question')
+        ->set('message', 'Could you help me understand whether my current process needs custom software?')
+        ->call('submit')
+        ->assertHasNoErrors()
+        ->assertSet('submitted', true);
+
+    expect(ProjectInquiry::sole()->service)->toBe('question');
+});
+
 test('required inquiry fields are validated', function (string $field) {
     Livewire::test('project-inquiry-form')
         ->call('submit')
