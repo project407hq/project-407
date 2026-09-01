@@ -7,6 +7,15 @@ Route::view('/', 'pages.home')->name('home');
 Route::view('/services', 'pages.services')
     ->name('services');
 
+Route::view('/services/business-websites', 'pages.services.business-websites')
+    ->name('services.business-websites');
+
+Route::view('/services/custom-software', 'pages.services.custom-software')
+    ->name('services.custom-software');
+
+Route::view('/services/automation-integrations', 'pages.services.automation-integrations')
+    ->name('services.automation-integrations');
+
 Route::view('/work', 'pages.work.index')
     ->name('work.index');
 
@@ -26,6 +35,9 @@ Route::get('/sitemap.xml', function () {
     $urls = [
         route('home'),
         route('services'),
+        route('services.business-websites'),
+        route('services.custom-software'),
+        route('services.automation-integrations'),
         route('work.index'),
         route('work.407-haul-away'),
         route('about'),

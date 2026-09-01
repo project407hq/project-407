@@ -18,7 +18,8 @@ class ProjectInquiryNotifier
         $service = match ($inquiry->service) {
             'website' => 'Website',
             'software' => 'Custom software',
-            'support' => 'Support or improvements',
+            'support' => 'Automation, integrations, or support',
+            'question' => 'General question',
             'not-sure' => 'Not sure yet',
             default => ucfirst($inquiry->service),
         };

@@ -33,7 +33,7 @@ new class extends Component
             'businessName' => ['nullable', 'string', 'max:150'],
             'service' => [
                 'required',
-                'in:website,software,support,not-sure',
+                'in:website,software,support,question,not-sure',
             ],
             'message' => ['required', 'string', 'min:10', 'max:3000'],
             'website' => ['nullable', 'max:0'],
@@ -43,8 +43,8 @@ new class extends Component
     protected function messages(): array
     {
         return [
-            'service.required' => 'Please select the service you are interested in.',
-            'message.min' => 'Please tell us a little more about your project.',
+            'service.required' => 'Please select what best describes your message.',
+            'message.min' => 'Please share a little more so Kevin can respond helpfully.',
             'website.max' => 'Unable to submit this form.',
         ];
     }
@@ -117,7 +117,7 @@ new class extends Component
             class="rounded-panel border border-orange/20 bg-orange/10 p-7 sm:p-9"
             role="status"
         >
-            <span class="flex h-14 w-14 items-center justify-center rounded-full bg-orange text-ink">
+            <span class="flex h-14 w-14 items-center justify-center rounded-full bg-orange text-white">
                 <svg
                     aria-hidden="true"
                     class="h-7 w-7"
@@ -139,8 +139,8 @@ new class extends Component
             </h2>
 
             <p class="mt-3 max-w-xl leading-7 text-slate">
-                Thanks for reaching out. I’ll review the details and get back
-                to you to discuss the project and the best next step.
+                Thanks for reaching out. Kevin will review your message and
+                respond within one business day.
             </p>
 
             <button
@@ -272,7 +272,7 @@ new class extends Component
             {{-- Service --}}
             <fieldset class="mt-6">
                 <legend class="form-label">
-                    What can we help with?
+                    What brings you here?
                     <span class="text-orange-dark">*</span>
                 </legend>
 
@@ -336,7 +336,28 @@ new class extends Component
                                 03
                             </span>
 
-                            Support or improvements
+                            Automation, integrations, or support
+                        </span>
+                    </label>
+
+                    <label class="cursor-pointer">
+                        <input
+                            type="radio"
+                            wire:model="service"
+                            value="question"
+                            class="peer sr-only"
+                        >
+
+                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'question',
+                                'bg-orange/15 text-orange-dark' => $service !== 'question',
+                            ])>
+                                ?
+                            </span>
+
+                            I just have a question
                         </span>
                     </label>
 
@@ -357,7 +378,7 @@ new class extends Component
                                 ?
                             </span>
 
-                            I’m not sure yet
+                            I have an idea, but I’m not sure what I need
                         </span>
                     </label>
                 </div>
@@ -372,7 +393,7 @@ new class extends Component
             {{-- Message --}}
             <div class="mt-6">
                 <label for="message" class="form-label">
-                    Tell us about your project
+                    Your message
                     <span class="text-orange-dark">*</span>
                 </label>
 
