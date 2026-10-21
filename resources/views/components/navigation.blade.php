@@ -12,7 +12,7 @@
     </a>
 
     <div class="ember-nav__actions">
-        <a href="{{ route('contact') }}">ASK OR START</a>
+        <a href="{{ route('contact') }}">LET’S CONNECT</a>
         <button type="button" @click="open = ! open" :aria-expanded="open.toString()" aria-controls="main-menu" aria-label="Toggle navigation">
             <span></span><span></span>
         </button>
@@ -36,6 +36,6 @@
             <a href="{{ route('about') }}" @click="open = false"><span>03</span>About</a>
             <a href="{{ route('contact') }}" @click="open = false"><span>04</span>Contact</a>
         </nav>
-        <p>Have a project, a rough idea, or just a question? Kevin would be glad to hear it.</p>
+        <p>Websites, apps, collaborations, and career conversations. Reach Kevin directly.</p>
     </div>
 </header>

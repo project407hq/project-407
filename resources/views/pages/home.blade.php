@@ -1,17 +1,17 @@
 <x-layout
-    title="Website Design & Custom Software in MA & NH | Project 407"
-    description="Project 407 designs business websites, custom software, internal tools, automations, and integrations for companies in Massachusetts, New Hampshire, and across the United States."
+    title="Kevin Whelan | Websites, Apps & Technology | Project 407"
+    description="Explore Kevin Whelan’s work and connect about business websites, custom apps, collaborations, and employment opportunities."
 >
-    <main class="ember-home">
+    <div class="ember-home">
         <section class="ember-hero">
             <div class="ember-hero__orbit" aria-hidden="true"></div>
             <div class="ember-hero__monogram" aria-hidden="true">407</div>
 
             <div class="ember-hero__content">
-                <p>KEVIN WHELAN’S INDEPENDENT SOFTWARE STUDIO</p>
-                <h1>Websites and software<br>built to move business<br><em>forward.</em></h1>
+                <p>KEVIN WHELAN · PROJECT 407</p>
+                <h1>Technology leadership.<br>Hands-on building.<br><em>Business impact.</em></h1>
                 <div class="ember-hero__summary">
-                    <p>Project 407 is Kevin Whelan’s independent studio - designing business websites, custom software, automations, and integrations for companies in Massachusetts, New Hampshire, and beyond.</p>
+                    <p>I’m Kevin Whelan, the engineer and builder behind Project 407. This is where you can explore my work and reach me about websites, apps, business collaborations, and career opportunities.</p>
                     <a href="{{ route('about') }}">MEET KEVIN <span aria-hidden="true">＋</span></a>
                 </div>
             </div>
@@ -23,24 +23,10 @@
             <header>
                 <div>
                     <p>SELECTED WORK</p>
-                    <h2>Proof, not promises.</h2>
+                    <h2>From idea to working software.</h2>
                 </div>
-                <p>Real client work and clearly identified Project 407 products.</p>
+                <p>Independent product development, backed by hands-on engineering experience.</p>
             </header>
-
-            <article class="ember-project ember-project--showcase">
-                <figure class="ember-product ember-product--actual ember-product--site">
-                    <a href="{{ route('work.407-haul-away') }}" aria-label="View the 407 Haul Away website case study">
-                        <img src="{{ asset('images/work/407-haul-away/homepage-wide.webp') }}" alt="Actual 407 Haul Away website homepage" width="1836" height="803" loading="lazy" decoding="async">
-                    </a>
-                    <figcaption><span>LIVE CLIENT WEBSITE</span><a href="{{ route('work.407-haul-away') }}">VIEW CASE STUDY ↗</a></figcaption>
-                </figure>
-                <div class="ember-project__caption">
-                    <span>01 / CLIENT WEBSITE</span>
-                    <h3>407 Haul Away</h3>
-                    <p>Clearer positioning. Stronger credibility. An easier path to a quote.</p>
-                </div>
-            </article>
 
             <article class="ember-project ember-project--showcase">
                 <figure class="ember-product ember-product--actual">
@@ -50,7 +36,7 @@
                     <figcaption><span>ACTUAL SAYDEE PRODUCT INTERFACE</span><a href="https://getsaydee.com/" target="_blank" rel="noreferrer">VIEW LIVE PRODUCT ↗</a></figcaption>
                 </figure>
                 <div class="ember-project__caption">
-                    <span>02 / PROJECT 407 PRODUCT</span>
+                    <span>01 / INDEPENDENT PRODUCT</span>
                     <h3>Saydee</h3>
                     <p>A live early-access customer system designed, built, and operated by Kevin.</p>
                 </div>
@@ -60,11 +46,11 @@
         <section class="ember-capabilities">
             <div>
                 <p>WHAT PROJECT 407 BUILDS</p>
-                <h2>One partner from the first question to the finished product.</h2>
+                <h2>Have something worth building? Let’s talk.</h2>
             </div>
             <ol>
                 <li><span>01</span><strong>Web strategy &amp; design</strong><p>Clarify the story, build trust, and create a direct path to action.</p></li>
-                <li><span>02</span><strong>Custom software</strong><p>Replace awkward processes with a focused system built around the work.</p></li>
+                <li><span>02</span><strong>Custom software</strong><p>Build useful apps that handle routine work and bring people in for decisions and exceptions.</p></li>
                 <li><span>03</span><strong>Automation &amp; support</strong><p>Connect tools, remove repetition, and keep improving after launch.</p></li>
             </ol>
             <a href="{{ route('services') }}">VIEW SERVICES <span aria-hidden="true">＋</span></a>
@@ -92,8 +78,8 @@
             </div>
             <div class="ember-founder__story">
                 <p>THE PERSON BEHIND PROJECT 407</p>
-                <h2>A studio relationship.<br>A direct collaborator.</h2>
-                <p class="ember-founder__lead">Project 407 is Kevin Whelan’s independent software studio. You work directly with the senior full-stack engineer designing and building your project—without agency overhead or layers of handoffs.</p>
+                <h2>A technology leader.<br>A hands-on builder.</h2>
+                <p class="ember-founder__lead">My background brings together technology leadership, full-stack engineering, and production software delivery. Project 407 remains my independent home for selected projects, product work, and professional conversations. We’ll discuss fit, scope, and availability before making commitments.</p>
                 <div class="ember-founder__facts"><span>LARAVEL · PHP · APIS</span><span>VUE · REACT · TYPESCRIPT</span><span>AWS · DEPLOYMENT · INTEGRATIONS</span></div>
                 <blockquote>“Kevin quickly established himself as a dependable and thoughtful engineer who consistently delivered meaningful results.”</blockquote>
                 <cite>MICHAEL MEYER III · FORMER ENGINEERING MANAGER, TRADER INTERACTIVE</cite>
@@ -102,9 +88,9 @@
         </section>
 
         <section class="ember-cta">
-            <p>A PROJECT, AN IDEA, OR A QUESTION</p>
-            <h2>You don’t need to have<br>it all figured out.</h2>
+            <p>PROJECTS · COLLABORATIONS · CAREER OPPORTUNITIES</p>
+            <h2>A useful connection<br>starts with a conversation.</h2>
             <a href="{{ route('contact') }}">TALK DIRECTLY WITH KEVIN <span aria-hidden="true">↗</span></a>
         </section>
-    </main>
+    </div>
 </x-layout>

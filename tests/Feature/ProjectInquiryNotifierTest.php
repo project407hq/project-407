@@ -43,3 +43,21 @@ test('no Discord request is sent when the webhook is not configured', function (
 
     Http::assertNothingSent();
 });
+
+test('professional opportunity notifications have readable labels', function (string $service, string $label) {
+    config()->set('services.discord.project_inquiries_webhook', 'https://discord.example.com/webhook');
+    Http::fake();
+
+    app(ProjectInquiryNotifier::class)->sendToDiscord(new ProjectInquiry([
+        'name' => 'Morgan Lee',
+        'email' => 'morgan@example.com',
+        'service' => $service,
+        'message' => 'We would like to discuss an opportunity with you.',
+    ]));
+
+    Http::assertSent(fn (Request $request): bool => $request['embeds'][0]['fields'][1]['value'] === $label);
+})->with([
+    ['advisory', 'Technical advisory or fractional CTO'],
+    ['employment', 'Employment or leadership opportunity'],
+    ['collaboration', 'Business collaboration'],
+]);

@@ -12,14 +12,14 @@ it('renders every indexable marketing page with canonical metadata', function (s
         ->assertSee('rel="canonical"', false)
         ->assertSee('application/ld+json', false);
 })->with([
-    ['home', 'Website Design & Custom Software'],
+    ['home', 'Kevin Whelan | Websites, Apps & Technology'],
     ['services', 'Business Websites, Custom Software & Automation'],
     ['services.business-websites', 'Business Website Design & Development'],
     ['services.custom-software', 'Custom Software & Web Application Development'],
     ['services.automation-integrations', 'Business Automation & Software Integrations'],
     ['work.index', 'Website Design & Software Development Portfolio'],
-    ['about', 'Kevin Whelan, Software Engineer'],
-    ['contact', 'Start a Website or Custom Software Project'],
+    ['about', 'Kevin Whelan, Engineer & Technology Leader'],
+    ['contact', 'Contact Kevin Whelan | Projects & Opportunities'],
 ]);
 
 it('lists the service landing pages in the sitemap', function () {

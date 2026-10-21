@@ -94,3 +94,18 @@ test('project inquiries are rate limited', function () {
 
     expect(ProjectInquiry::count())->toBe(0);
 });
+
+test('professional opportunities are stored without requiring a business name', function (string $service) {
+    Livewire::test('project-inquiry-form')
+        ->set('name', 'Morgan Lee')
+        ->set('email', 'morgan@example.com')
+        ->set('service', $service)
+        ->set('message', 'We would like to discuss an opportunity and your availability.')
+        ->call('submit')
+        ->assertHasNoErrors()
+        ->assertSet('submitted', true);
+
+    expect(ProjectInquiry::sole())
+        ->service->toBe($service)
+        ->business_name->toBeNull();
+})->with(['employment', 'collaboration', 'advisory']);

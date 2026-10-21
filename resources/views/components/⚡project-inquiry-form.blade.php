@@ -33,7 +33,7 @@ new class extends Component
             'businessName' => ['nullable', 'string', 'max:150'],
             'service' => [
                 'required',
-                'in:website,software,support,question,not-sure',
+                'in:website,software,support,advisory,employment,collaboration,question,not-sure',
             ],
             'message' => ['required', 'string', 'min:10', 'max:3000'],
             'website' => ['nullable', 'max:0'],
@@ -140,7 +140,7 @@ new class extends Component
 
             <p class="mt-3 max-w-xl leading-7 text-slate">
                 Thanks for reaching out. Kevin will review your message and
-                respond within one business day.
+                respond as availability allows.
             </p>
 
             <button
@@ -247,7 +247,7 @@ new class extends Component
                 {{-- Business --}}
                 <div>
                     <label for="businessName" class="form-label">
-                        Business name
+                        Business or organization
                         <span class="font-normal text-slate">(optional)</span>
                     </label>
 
@@ -315,7 +315,7 @@ new class extends Component
                                 02
                             </span>
 
-                            Custom software
+                            Custom software or app
                         </span>
                     </label>
 
@@ -381,6 +381,69 @@ new class extends Component
                             I have an idea, but I’m not sure what I need
                         </span>
                     </label>
+                    <label class="cursor-pointer">
+                        <input
+                            type="radio"
+                            wire:model="service"
+                            value="employment"
+                            class="peer sr-only"
+                        >
+
+                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'employment',
+                                'bg-orange/15 text-orange-dark' => $service !== 'employment',
+                            ])>
+                                04
+                            </span>
+
+                            Employment or leadership opportunity
+                        </span>
+                    </label>
+
+                    <label class="cursor-pointer">
+                        <input
+                            type="radio"
+                            wire:model="service"
+                            value="collaboration"
+                            class="peer sr-only"
+                        >
+
+                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'collaboration',
+                                'bg-orange/15 text-orange-dark' => $service !== 'collaboration',
+                            ])>
+                                05
+                            </span>
+
+                            Business collaboration
+                        </span>
+                    </label>
+
+                    <label class="cursor-pointer">
+                        <input
+                            type="radio"
+                            wire:model="service"
+                            value="advisory"
+                            class="peer sr-only"
+                        >
+
+                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'advisory',
+                                'bg-orange/15 text-orange-dark' => $service !== 'advisory',
+                            ])>
+                                06
+                            </span>
+
+                            Technical advisory or fractional CTO
+                        </span>
+                    </label>
+
                 </div>
 
                 @error('service')
@@ -403,7 +466,7 @@ new class extends Component
                     maxlength="3000"
                     class="form-control min-h-40 resize-y"
                     @error('message') aria-invalid="true" aria-describedby="message-error" @enderror
-                    placeholder="What does your business do? What would you like to build or improve?"
+                    placeholder="Tell Kevin about your project, collaboration, or employment opportunity. Include relevant timing and links."
                 ></textarea>
 
                 <div class="mt-2 flex items-start justify-between gap-4">
@@ -437,7 +500,7 @@ new class extends Component
                     wire:target="submit"
                 >
                     <span wire:loading.remove wire:target="submit">
-                        Send Project Inquiry
+                        Send Message
                     </span>
 
                     <span wire:loading wire:target="submit">
