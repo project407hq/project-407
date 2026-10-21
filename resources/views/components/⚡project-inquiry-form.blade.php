@@ -140,7 +140,7 @@ new class extends Component
 
             <p class="mt-3 max-w-xl leading-7 text-slate">
                 Thanks for reaching out. Kevin will review your message and
-                respond as availability allows.
+                follow up using the email address you provided.
             </p>
 
             <button
@@ -281,27 +281,6 @@ new class extends Component
                         <input
                             type="radio"
                             wire:model="service"
-                            value="website"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'website',
-                                'bg-orange/15 text-orange-dark' => $service !== 'website',
-                            ])>
-                                01
-                            </span>
-
-                            A new or redesigned website
-                        </span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
                             value="software"
                             class="peer sr-only"
                         >
@@ -312,10 +291,31 @@ new class extends Component
                                 'bg-navy text-white' => $service === 'software',
                                 'bg-orange/15 text-orange-dark' => $service !== 'software',
                             ])>
+                                01
+                            </span>
+
+                            Custom software or application
+                        </span>
+                    </label>
+
+                    <label class="cursor-pointer">
+                        <input
+                            type="radio"
+                            wire:model="service"
+                            value="advisory"
+                            class="peer sr-only"
+                        >
+
+                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
+                            <span @class([
+                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
+                                'bg-navy text-white' => $service === 'advisory',
+                                'bg-orange/15 text-orange-dark' => $service !== 'advisory',
+                            ])>
                                 02
                             </span>
 
-                            Custom software or app
+                            Fractional CTO or engineering leadership
                         </span>
                     </label>
 
@@ -336,28 +336,7 @@ new class extends Component
                                 03
                             </span>
 
-                            Automation, integrations, or support
-                        </span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
-                            value="question"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'question',
-                                'bg-orange/15 text-orange-dark' => $service !== 'question',
-                            ])>
-                                ?
-                            </span>
-
-                            I just have a question
+                            Existing software or AI prototype review
                         </span>
                     </label>
 
@@ -373,77 +352,14 @@ new class extends Component
                             <span @class([
                                 'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
                                 'bg-navy text-white' => $service === 'not-sure',
-                                'bg-mist text-ink' => $service !== 'not-sure',
-                            ])>
-                                ?
-                            </span>
-
-                            I have an idea, but I’m not sure what I need
-                        </span>
-                    </label>
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
-                            value="employment"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'employment',
-                                'bg-orange/15 text-orange-dark' => $service !== 'employment',
+                                'bg-orange/15 text-orange-dark' => $service !== 'not-sure',
                             ])>
                                 04
                             </span>
 
-                            Employment or leadership opportunity
+                            Help figuring out the next step
                         </span>
                     </label>
-
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
-                            value="collaboration"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'collaboration',
-                                'bg-orange/15 text-orange-dark' => $service !== 'collaboration',
-                            ])>
-                                05
-                            </span>
-
-                            Business collaboration
-                        </span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
-                            value="advisory"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'advisory',
-                                'bg-orange/15 text-orange-dark' => $service !== 'advisory',
-                            ])>
-                                06
-                            </span>
-
-                            Technical advisory or fractional CTO
-                        </span>
-                    </label>
-
                 </div>
 
                 @error('service')
@@ -466,7 +382,7 @@ new class extends Component
                     maxlength="3000"
                     class="form-control min-h-40 resize-y"
                     @error('message') aria-invalid="true" aria-describedby="message-error" @enderror
-                    placeholder="Tell Kevin about your project, collaboration, or employment opportunity. Include relevant timing and links."
+                    placeholder="What would you like your software or team to achieve? Share your idea, current challenges, relevant links, and timing."
                 ></textarea>
 
                 <div class="mt-2 flex items-start justify-between gap-4">

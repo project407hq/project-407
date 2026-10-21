@@ -18,8 +18,8 @@ class ProjectInquiryNotifier
         $service = match ($inquiry->service) {
             'website' => 'Website',
             'software' => 'Custom software',
-            'support' => 'Automation, integrations, or support',
-            'advisory' => 'Technical advisory or fractional CTO',
+            'support' => 'Existing software, AI prototype, or integration support',
+            'advisory' => 'Fractional CTO or engineering leadership',
             'employment' => 'Employment or leadership opportunity',
             'collaboration' => 'Business collaboration',
             'question' => 'General question',

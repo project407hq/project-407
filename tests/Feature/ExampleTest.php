@@ -5,8 +5,10 @@ test('public pages return successful responses', function (string $routeName) {
 })->with([
     'home',
     'services',
-    'work.index',
-    'work.407-haul-away',
+    'approach',
+    'services.custom-software',
+    'services.fractional-cto',
+    'services.automation-integrations',
     'about',
     'contact',
     'privacy',

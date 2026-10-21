@@ -31,11 +31,11 @@
         x-transition:leave-end="opacity-0"
     >
         <nav aria-label="Main navigation">
-            <a href="{{ route('work.index') }}" @click="open = false"><span>01</span>Work</a>
+            <a href="{{ route('approach') }}" @click="open = false"><span>01</span>Approach</a>
             <a href="{{ route('services') }}" @click="open = false"><span>02</span>Services</a>
             <a href="{{ route('about') }}" @click="open = false"><span>03</span>About</a>
             <a href="{{ route('contact') }}" @click="open = false"><span>04</span>Contact</a>
         </nav>
-        <p>Websites, apps, collaborations, and career conversations. Reach Kevin directly.</p>
+        <p>Have a software idea or need technical leadership? Reach Kevin directly.</p>
     </div>
 </header>

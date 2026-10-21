@@ -17,7 +17,7 @@
 
         <section class="studio-section studio-section--muted">
             <div class="studio-split">
-                <div><p class="studio-kicker">WHAT PROJECT 407 CAN BUILD</p><h2 class="studio-heading">A focused scope around the result you need.</h2></div>
+                <div><p class="studio-kicker">WHAT THE ENGAGEMENT CAN INCLUDE</p><h2 class="studio-heading">A focused scope around the result you need.</h2></div>
                 <div class="service-page-grid">@foreach($deliverables as $deliverable)<article><span>＋</span><h3>{{ $deliverable[0] }}</h3><p>{{ $deliverable[1] }}</p></article>@endforeach</div>
             </div>
         </section>

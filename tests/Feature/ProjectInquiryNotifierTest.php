@@ -57,7 +57,7 @@ test('professional opportunity notifications have readable labels', function (st
 
     Http::assertSent(fn (Request $request): bool => $request['embeds'][0]['fields'][1]['value'] === $label);
 })->with([
-    ['advisory', 'Technical advisory or fractional CTO'],
+    ['advisory', 'Fractional CTO or engineering leadership'],
     ['employment', 'Employment or leadership opportunity'],
     ['collaboration', 'Business collaboration'],
 ]);

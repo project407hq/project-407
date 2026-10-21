@@ -1,19 +1,19 @@
 @props([
     'title' => 'Project 407',
-    'description' => 'Websites, custom software, and business automation for growing companies.',
+    'description' => 'Custom software and fractional CTO leadership with AI-assisted delivery and human accountability.',
     'index' => true,
 ])
 
 @php
     $canonicalUrl = url()->current();
-    $socialImageUrl = asset('project407-social.png');
+    $socialImageUrl = asset('project407-social-v2.png');
     $shouldIndex = app()->environment('production') && $index;
     $siteUrl = rtrim(config('app.url'), '/');
     $structuredData = [
         '@context' => 'https://schema.org',
         '@graph' => [
-            ['@type' => 'WebSite', '@id' => $siteUrl.'/#website', 'url' => $siteUrl, 'name' => 'Project 407', 'description' => 'Website design, custom software development, automation, and integrations for growing businesses.', 'publisher' => ['@id' => $siteUrl.'/#business']],
-            ['@type' => 'ProfessionalService', '@id' => $siteUrl.'/#business', 'name' => 'Project 407', 'url' => $siteUrl, 'logo' => asset('project407-favicon-512.png'), 'image' => $socialImageUrl, 'email' => 'kevin@project-407.com', 'telephone' => '+1-978-877-9784', 'description' => 'Independent software studio building business websites, custom web applications, internal tools, automations, APIs, and integrations.', 'founder' => ['@id' => $siteUrl.'/#kevin-whelan'], 'areaServed' => [['@type' => 'State', 'name' => 'Massachusetts'], ['@type' => 'State', 'name' => 'New Hampshire'], ['@type' => 'Country', 'name' => 'United States']], 'serviceType' => ['Business Website Design and Development', 'Custom Software Development', 'Web Application Development', 'Internal Tool Development', 'Business Automation', 'API and Software Integrations']],
+            ['@type' => 'WebSite', '@id' => $siteUrl.'/#website', 'url' => $siteUrl, 'name' => 'Project 407', 'description' => 'Custom software development and fractional CTO leadership for growing businesses.', 'publisher' => ['@id' => $siteUrl.'/#business']],
+            ['@type' => 'ProfessionalService', '@id' => $siteUrl.'/#business', 'name' => 'Project 407', 'url' => $siteUrl, 'logo' => asset('project407-favicon-512.png'), 'image' => $socialImageUrl, 'email' => 'kevin@project-407.com', 'telephone' => '+1-978-877-9784', 'description' => 'Independent custom software development, fractional CTO leadership, and engineering advisory from Kevin Whelan.', 'founder' => ['@id' => $siteUrl.'/#kevin-whelan'], 'areaServed' => [['@type' => 'State', 'name' => 'Massachusetts'], ['@type' => 'State', 'name' => 'New Hampshire'], ['@type' => 'Country', 'name' => 'United States']], 'serviceType' => ['Fractional CTO', 'Engineering Leadership', 'Technical Advisory', 'Custom Software Development', 'Web Application Development', 'Internal Tool Development', 'Business Automation', 'API and Software Integrations']],
             ['@type' => 'Person', '@id' => $siteUrl.'/#kevin-whelan', 'name' => 'Kevin Whelan', 'url' => $siteUrl.'/about', 'sameAs' => ['https://www.linkedin.com/in/kpwhelan'], 'jobTitle' => 'Software Engineer & Technology Leader', 'knowsAbout' => ['Laravel', 'PHP', 'Vue', 'React', 'TypeScript', 'AWS', 'API development', 'Custom software development', 'Website development']],
         ],
     ];
@@ -71,7 +71,7 @@
         <meta property="og:image:height" content="630">
         <meta
             property="og:image:alt"
-            content="Project 407 — websites and custom software for growing businesses"
+            content="Project 407 — custom software and fractional CTO leadership"
         >
 
         <meta name="twitter:card" content="summary_large_image">

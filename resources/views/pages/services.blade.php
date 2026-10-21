@@ -1,69 +1,30 @@
-<x-layout title="Business Websites, Custom Software & Automation | Project 407" description="Website design, custom software development, automation, integrations, and fractional CTO advisory for growing businesses in Massachusetts, New Hampshire, and beyond.">
+<x-layout title="Custom Software & Fractional CTO Services | Project 407" description="Custom software development, fractional CTO leadership, and engineering guidance. Practical outcomes, AI-assisted delivery, and direct accountability from Kevin Whelan.">
     <div class="studio-page">
         <section class="studio-intro">
-            <div class="studio-intro__line"><span>WEBSITES · SOFTWARE · AUTOMATION</span><span>BUILT DIRECTLY WITH KEVIN</span></div>
-            <h1>Digital tools that help businesses <em>grow and run better.</em></h1>
-            <div class="studio-intro__foot"><a href="#services-overview">SEE WHAT PROJECT 407 BUILDS ↓</a><p>Kevin considers selected independent website, app, and automation projects through Project 407. Every engagement starts with a conversation about fit, scope, and availability.</p></div>
-        </section>
-        <div class="studio-marquee" aria-hidden="true"><p>Win more customers — simplify the work — connect the systems — support the next stage — </p></div>
-        <section id="services-overview" class="studio-section studio-systems" aria-labelledby="systems-title">
-            <div class="studio-systems__head"><div><p class="studio-kicker">THREE WAYS PROJECT 407 CAN HELP</p><h2 id="systems-title" class="studio-heading">Start with what needs to improve.</h2></div><p>You do not need to know the technical solution. Tell Kevin where customers hesitate, where your team loses time, or where your current tools fall short.</p></div>
-            <div class="studio-systems__grid">
-                <article class="studio-system-card"><div class="studio-browser"><span></span><span></span><span></span><div class="studio-browser__hero"><i></i><i></i><b>REQUEST A QUOTE →</b></div></div><footer><span>01 / BUSINESS WEBSITES</span><strong>Turn more visitors into qualified inquiries.</strong><a href="{{ route('services.business-websites') }}">EXPLORE WEBSITE SERVICES ↗</a></footer></article>
-                <article class="studio-system-card studio-system-card--dark"><div class="studio-dashboard"><div><span>OPEN LEADS</span><strong>12</strong></div><div><span>FOLLOW-UPS</span><strong>04</strong></div><ol><li>Sarah Mitchell <b>TODAY</b></li><li>Mike Thompson <b>WAITING</b></li><li>Jessica Rivera <b>NEXT</b></li></ol></div><footer><span>02 / CUSTOM SOFTWARE</span><strong>Let software handle routine work so your team can focus.</strong><a href="{{ route('services.custom-software') }}">EXPLORE SOFTWARE SERVICES ↗</a></footer></article>
-                <article class="studio-system-card studio-system-card--red"><div class="studio-flow-map"><span>INQUIRY</span><i>→</i><span>QUALIFY</span><i>→</i><span>FOLLOW UP</span><i>→</i><span>WON</span></div><footer><span>03 / AUTOMATION + INTEGRATIONS</span><strong>Move information without repetitive manual steps.</strong><a href="{{ route('services.automation-integrations') }}">EXPLORE AUTOMATION SERVICES ↗</a></footer></article>
-            </div>
+            <div class="studio-intro__line"><span>CUSTOM SOFTWARE · FRACTIONAL CTO</span><span>WORK DIRECTLY WITH KEVIN</span></div>
+            <h1>The right build.<br>The right <em>direction.</em></h1>
+            <div class="studio-intro__foot"><a href="#capabilities">EXPLORE THE SERVICES ↓</a><p>A software idea needs a path to production. A growing company needs someone who can guide the technical decisions. Project 407 can help with either, or bring the two together.</p></div>
         </section>
         <section id="capabilities" class="studio-section"><div class="studio-split">
-            <div><p class="studio-kicker">SELECTED INDEPENDENT ENGAGEMENTS</p><h2 class="studio-heading">Websites, apps, and useful automation.</h2></div>
+            <div><p class="studio-kicker">01 / CUSTOM SOFTWARE</p><h2 class="studio-heading">Turn a useful idea into software people can rely on.</h2><p class="studio-lead">Customer applications, internal systems, and integrations built around a business result. Start with a problem, a rough idea, an existing application, or an AI-generated prototype.</p><a class="button-secondary mt-7" href="{{ route('services.custom-software') }}">Explore custom software ↗</a><p class="mt-5"><a class="underline" href="{{ route('services.automation-integrations') }}">Need to connect existing systems? Explore integrations ↗</a></p></div>
             <ol class="studio-list">
-                <li><span>01</span><strong>Website strategy, design, and development</strong><span>CUSTOMER-FACING</span><p>For businesses with an outdated site, unclear message, weak credibility, or too few inquiries. Project 407 can handle structure, messaging, responsive design, development, forms, analytics, launch, and ongoing improvements.</p></li>
-                <li><span>02</span><strong>Custom web applications and internal tools</strong><span>TEAM-FACING</span><p>For businesses relying on spreadsheets, disconnected tools, or a process that commercial software does not fit. Kevin builds dashboards, portals, workflow systems, customer tools, APIs, and focused operational software.</p></li>
-                <li><span>03</span><strong>Automation, integrations, and ongoing support</strong><span>SYSTEM-FACING</span><p>For teams re-entering information, missing handoffs, or fighting tools that do not communicate. Project 407 connects systems, automates appropriate steps, maintains what it builds, and improves the work as the business changes.</p></li>
+                <li><span>01</span><strong>Define the first useful version</strong><p>Leave discovery with a defined scope, the key user workflows, and a first release plan tied to the problem you want to solve.</p></li>
+                <li><span>02</span><strong>Build and connect the system</strong><p>Design the experience, implement the application, and connect existing tools. Automate routine work and make exceptions clear.</p></li>
+                <li><span>03</span><strong>Prepare for the real world</strong><p>Review permissions, validate important behavior, and plan deployment, monitoring, recovery, and maintenance around the risks of the application.</p></li>
             </ol>
         </div></section>
         <section id="technical-leadership" class="studio-section studio-section--muted"><div class="studio-split">
-            <div><p class="studio-kicker">TECHNICAL ADVISORY + FRACTIONAL CTO</p><h2 class="studio-heading">Technical direction for the next stage.</h2><p class="studio-lead">Technical strategy and fractional technology leadership for growing businesses that need experienced guidance without a full-time executive hire.</p></div>
-            <div><ol class="studio-list">
-                <li><span>01</span><strong>Set priorities and a practical roadmap</strong><p>Turn business goals into a focused technology plan, with clear tradeoffs and a realistic sequence of work.</p></li>
-                <li><span>02</span><strong>Make confident technical decisions</strong><p>Get an experienced perspective on architecture, build-versus-buy choices, vendors, and the systems your business depends on.</p></li>
-                <li><span>03</span><strong>Support the people delivering the work</strong><p>Help founders and engineering teams align on scope, delivery, technical standards, and hiring needs.</p></li>
-            </ol><p class="studio-lead mt-8">Available for selected advisory and fractional CTO engagements. Scope, level of involvement, and availability are agreed before work begins.</p><a class="button-secondary mt-7" href="{{ route('contact') }}">Discuss technical leadership ↗</a></div>
-        </div></section>
-        <section class="studio-section studio-section--dark"><div class="studio-split">
-            <div><p class="studio-kicker">NOT SURE WHAT YOU NEED?</p><h2 class="studio-heading">Describe the problem. Kevin will help define the project.</h2></div>
-            <div><p class="studio-lead">You do not need a feature list or technical specification. A useful first conversation can start with any of these situations.</p><div class="studio-proof">
-                <article><span>01</span><h3>“Our website doesn’t represent us anymore.”</h3><p>Project 407 can clarify the message and rebuild the customer experience.</p></article>
-                <article><span>02</span><h3>“This process takes too much manual work.”</h3><p>Kevin can map the workflow and determine whether software or automation is the right answer.</p></article>
-                <article><span>03</span><h3>“Our tools don’t work well together.”</h3><p>Project 407 can connect the right systems or replace the part creating the friction.</p></article>
-            </div></div>
-        </div></section>
-        <section class="studio-section studio-section--muted"><div class="studio-split">
-            <div><p class="studio-kicker">HOW THE WORK HAPPENS</p><h2 class="studio-heading">Direct, thoughtful, and built in the open.</h2></div>
+            <div><p class="studio-kicker">02 / FRACTIONAL CTO + ENGINEERING LEADERSHIP</p><h2 class="studio-heading">Make the next technology decision with confidence.</h2><p class="studio-lead">For founders and businesses that need experienced technical direction without a full-time executive hire. Advisory work can address a specific decision; fractional leadership provides an agreed ongoing level of involvement.</p><a class="button-secondary mt-7" href="{{ route('services.fractional-cto') }}">Explore fractional CTO leadership ↗</a></div>
             <ol class="studio-list">
-                <li><span>01</span><strong>Find the real problem</strong><p>Kevin confirms fit and availability, then clarifies the audience, workflow, and result before deciding what to build.</p></li>
-                <li><span>02</span><strong>Make the direction tangible</strong><p>You see the structure and experience early enough to shape it—not after every decision is locked.</p></li>
-                <li><span>03</span><strong>Build, test, and refine</strong><p>Kevin turns the approved direction into a responsive, reliable product and sharpens the details that make it feel complete.</p></li>
-                <li><span>04</span><strong>Launch with a next move</strong><p>Every launch includes a clear handoff and a practical plan for support or continued improvement.</p></li>
+                <li><span>01</span><strong>Set priorities and a realistic roadmap</strong><p>Get a written, prioritized roadmap that connects business goals to technical work, with a realistic sequence your team can support.</p></li>
+                <li><span>02</span><strong>Evaluate architecture, vendors, and AI</strong><p>Get a technical assessment with recommendations, risks, and build-versus-buy tradeoffs, including where AI can add value.</p></li>
+                <li><span>03</span><strong>Support the team delivering the work</strong><p>Align scope, engineering practices, hiring needs, and delivery expectations. Give the people doing the work clear direction.</p></li>
             </ol>
         </div></section>
-        <section id="responsible-build" class="studio-section studio-responsibility">
-            <header><p class="studio-kicker">RESPONSIBLE BY DEFAULT</p><h2 class="studio-heading">Fast where it helps. Careful where it matters.</h2><p class="studio-lead">The tools keep changing. The responsibility for understanding the problem, protecting the business, and delivering dependable work does not.</p></header>
-            <div class="studio-responsibility__grid">
-                <article>
-                    <span>01 / SECURITY + RELIABILITY</span>
-                    <h3>Designed as part of the system—not bolted on at the end.</h3>
-                    <p>Every project is different, but the baseline is consistent: limited access, protected secrets, appropriate authentication and authorization, maintained dependencies, validation, logging, backups where needed, and a deployment plan that can be supported.</p>
-                    <ul><li>Access scoped to the people and systems that need it</li><li>Sensitive configuration kept out of the codebase</li><li>Testing, monitoring, and recovery considered before launch</li><li>Clear ownership and a maintainable handoff</li></ul>
-                </article>
-                <article class="studio-responsibility__ai">
-                    <span>02 / AI WITH ACCOUNTABILITY</span>
-                    <h3>AI can accelerate the work. It cannot own the outcome.</h3>
-                    <p>Project 407 embraces AI for research, exploration, prototypes, tests, documentation, and repetitive implementation when it creates real leverage. It does not replace business context, architecture, review, privacy decisions, or the judgment required to ship something people can trust.</p>
-                    <blockquote>“You are not paying for someone to type every line by hand. You are paying for sound judgment, accountable delivery, and software that works in the real world.”</blockquote>
-                </article>
-            </div>
-        </section>
-        <section class="ember-cta"><p>A QUESTION IS ENOUGH TO START</p><h2>Bring Kevin the problem.<br>Shape the answer together.</h2><a href="{{ route('contact') }}">ASK KEVIN ABOUT IT <span>↗</span></a></section>
+        <section id="responsible-build" class="studio-section studio-section--dark"><div class="studio-split">
+            <div><p class="studio-kicker">DELIVERABLES + WORKING AGREEMENT</p><h2 class="studio-heading">Know what you’re getting.</h2></div>
+            <div><p class="studio-lead">The deliverable depends on the engagement: an application release, an assessment of existing software, a written technology roadmap, or ongoing engineering direction. Each has an agreed scope and a clear next step.</p><p class="studio-lead mt-8">Before work begins, agree on how to assess the result, who is responsible for what, the fees, and availability. Any ongoing support or leadership involvement is defined as part of that agreement.</p><a class="button-secondary mt-7" href="{{ route('approach') }}">See the approach ↗</a></div>
+        </div></section>
+        <section class="ember-cta"><p>AN IDEA, A PROTOTYPE, OR A TECHNICAL CROSSROADS</p><h2>Start with what<br>you want to improve.</h2><a href="{{ route('contact') }}">TALK WITH KEVIN <span>↗</span></a></section>
     </div>
 </x-layout>
