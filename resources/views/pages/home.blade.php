@@ -11,7 +11,7 @@
                 <p>CUSTOM SOFTWARE · FRACTIONAL CTO</p>
                 <h1>Powerful tools.<br>Human judgment.<br><em>Useful software.</em></h1>
                 <div class="ember-hero__summary">
-                    <p>I’m Kevin Whelan. I help businesses turn software ideas into dependable systems and make confident technology decisions. Hands-on engineering and fractional CTO leadership, with AI as a powerful part of the toolkit.</p>
+                    <p>I’m Kevin Whelan. I provide custom software development and fractional CTO leadership, helping businesses turn ideas into dependable systems and make confident technology decisions. Hands-on engineering and fractional CTO leadership, with AI as a powerful part of the toolkit.</p>
                     <a href="{{ route('contact') }}">LET’S TALK <span aria-hidden="true">＋</span></a>
                 </div>
             </div>
@@ -55,8 +55,8 @@
                 <h2>Build the software.<br>Lead the decisions.</h2>
             </div>
             <ol>
-                <li><span>01</span><strong>Custom software</strong><p>A defined scope, a working application, tested integrations, and a plan for deployment and maintenance. Start with an idea, existing software, or an AI prototype.</p></li>
-                <li><span>02</span><strong>Fractional CTO &amp; engineering leadership</strong><p>A prioritized roadmap, technical assessments, and ongoing guidance for the people delivering the work. Get experienced direction without a full-time executive hire.</p></li>
+                <li><span>01</span><strong><a href="{{ route('services.custom-software') }}">Custom software development</a></strong><p>A defined scope, a working application, tested integrations, and a plan for deployment and maintenance. Start with an idea, existing software, or an AI prototype.</p></li>
+                <li><span>02</span><strong><a href="{{ route('services.fractional-cto') }}">Fractional CTO &amp; engineering leadership</a></strong><p>A prioritized roadmap, technical assessments, and ongoing guidance for the people delivering the work. Get experienced direction without a full-time executive hire.</p></li>
             </ol>
             <a href="{{ route('services') }}">VIEW SERVICES <span aria-hidden="true">＋</span></a>
         </section>

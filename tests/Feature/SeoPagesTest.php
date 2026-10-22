@@ -64,3 +64,51 @@ it('uses an existing social preview asset for the current positioning', function
 
     expect(is_file(public_path('project407-social-v2.png')))->toBeTrue();
 });
+
+it('serves crawler guidance through Laravel without a static file overriding it', function () {
+    expect(is_file(public_path('robots.txt')))->toBeFalse();
+
+    $this->app->instance('env', 'production');
+
+    $this->get('/robots.txt')
+        ->assertOk()
+        ->assertHeader('Content-Type', 'text/plain; charset=utf-8')
+        ->assertSee("User-agent: *\nDisallow:\n", false)
+        ->assertSee('Sitemap: '.route('sitemap'), false);
+});
+
+it('blocks crawling and indexing outside production', function () {
+    $this->get('/robots.txt')->assertOk()->assertSee('Disallow: /', false);
+    $this->get(route('home'))->assertOk()->assertSee('noindex, nofollow');
+});
+
+it('allows production marketing pages to be indexed with a clean canonical URL', function () {
+    $this->app->instance('env', 'production');
+
+    $this->get(route('services.fractional-cto').'?utm_source=linkedin')
+        ->assertOk()
+        ->assertSee('index, follow')
+        ->assertSee('href="'.route('services.fractional-cto').'"', false)
+        ->assertDontSee('utm_source');
+});
+
+it('describes service pages with connected service and breadcrumb structured data', function (string $routeName, string $serviceName) {
+    $response = $this->get(route($routeName))->assertOk();
+
+    preg_match('/<script type="application\/ld\+json">\s*(.*?)\s*<\/script>/s', $response->getContent(), $matches);
+    $data = json_decode($matches[1], true, flags: JSON_THROW_ON_ERROR);
+    $nodes = collect($data['@graph'])->keyBy('@type');
+
+    expect($nodes['Service']['name'])->toBe($serviceName)
+        ->and($nodes['Service']['url'])->toBe(route($routeName))
+        ->and($nodes['Service']['provider']['@id'])->toBe($nodes['Organization']['@id'])
+        ->and($nodes['Organization']['sameAs'])->toContain('https://www.linkedin.com/company/project407/')
+        ->and($nodes['WebPage']['mainEntity']['@id'])->toBe($nodes['Service']['@id'])
+        ->and($nodes['WebPage']['breadcrumb']['@id'])->toBe($nodes['BreadcrumbList']['@id'])
+        ->and($nodes['BreadcrumbList']['itemListElement'])->toHaveCount(3)
+        ->and($nodes['BreadcrumbList']['itemListElement'][2]['item'])->toBe(route($routeName));
+})->with([
+    ['services.custom-software', 'Custom Software & Web Application Development'],
+    ['services.fractional-cto', 'Fractional CTO & Engineering Leadership'],
+    ['services.automation-integrations', 'Business Automation & Software Integrations'],
+]);
