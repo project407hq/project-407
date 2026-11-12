@@ -18,6 +18,10 @@ it('renders every indexable marketing page with canonical metadata', function (s
     ['services.custom-software', 'Custom Software & Web Application Development'],
     ['services.automation-integrations', 'Business Automation & Software Integrations'],
     ['approach', 'AI & Human Engineering Judgment'],
+    ['products.index', 'Products Built by Project 407'],
+    ['products.saydee', 'Saydee | Built by Project 407'],
+    ['products.daysie', 'Daysie | Built by Project 407'],
+    ['products.maeve', 'Maeve | Built by Project 407'],
     ['about', 'Kevin Whelan, Engineer & Technology Leader'],
     ['contact', 'Contact Kevin Whelan | Software & Fractional CTO'],
 ]);
@@ -27,6 +31,10 @@ it('lists the service landing pages in the sitemap', function () {
         ->assertOk()
         ->assertSee(route('services.fractional-cto'))
         ->assertSee(route('approach'))
+        ->assertSee(route('products.index'))
+        ->assertSee(route('products.saydee'))
+        ->assertSee(route('products.daysie'))
+        ->assertSee(route('products.maeve'))
         ->assertDontSee(route('work.407-haul-away'))
         ->assertDontSee(route('services.business-websites'))
         ->assertSee(route('services.custom-software'))
@@ -47,15 +55,41 @@ it('redirects retired portfolio and website pages to the current positioning', f
     ['services.business-websites', 'services.custom-software'],
 ]);
 
-it('presents the two service paths without the old portfolio or employer affiliation', function (string $routeName) {
+it('keeps the two service paths without retired client work or employer affiliation', function (string $routeName) {
     $this->get(route($routeName))
         ->assertSuccessful()
         ->assertSee('Custom software', false)
         ->assertSee('fractional', false)
-        ->assertDontSee('Saydee')
         ->assertDontSee('407 Haul Away')
         ->assertDontSee('MAGCOM');
 })->with(['home', 'services', 'approach', 'about', 'contact']);
+
+it('connects visitors to independently built products with honest availability', function () {
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSeeText('BUILT BY PROJECT 407')
+        ->assertSeeText('Available')
+        ->assertSeeText('In development')
+        ->assertSeeText('Early access')
+        ->assertSee(route('products.saydee'))
+        ->assertSee(route('products.daysie'))
+        ->assertSee(route('products.maeve'))
+        ->assertSee(route('contact'));
+
+    $this->get(route('products.daysie'))
+        ->assertOk()
+        ->assertSeeText('End-to-end assistant scheduling remains in development.')
+        ->assertSeeText('DEVELOPMENT BUILD');
+
+    $this->get(route('products.maeve'))
+        ->assertOk()
+        ->assertSeeText('Access is by invitation')
+        ->assertSee('https://letmaeve.com');
+
+    $this->get(route('products.saydee'))
+        ->assertOk()
+        ->assertSee('https://getsaydee.com');
+});
 
 it('uses an existing social preview asset for the current positioning', function () {
     $this->get(route('home'))

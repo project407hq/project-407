@@ -1,3 +1,11 @@
+import { registerAnalyticsTracking } from './analytics';
+
+registerAnalyticsTracking(document, (eventName, parameters) => {
+    if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, parameters);
+    }
+});
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (! prefersReducedMotion && 'IntersectionObserver' in window) {

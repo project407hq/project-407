@@ -4,8 +4,8 @@
         <p>Custom software and fractional CTO leadership. AI embraced. Human judgment and accountability. Work directly with Kevin Whelan.</p>
     </div>
     <div class="studio-footer__links">
-        <nav aria-label="Footer navigation"><a href="{{ route('approach') }}">Approach</a><a href="{{ route('services') }}">Services</a><a href="{{ route('services.custom-software') }}">Custom software</a><a href="{{ route('services.fractional-cto') }}">Fractional CTO</a><a href="{{ route('about') }}">About</a><a href="{{ route('contact') }}">Contact</a></nav>
-        <a class="studio-footer__start" href="{{ route('contact') }}">START A CONVERSATION <span>↗</span></a>
+        <nav aria-label="Footer navigation"><a href="{{ route('approach') }}">Approach</a><a href="{{ route('services') }}">Services</a><a href="{{ route('services.custom-software') }}">Custom software</a><a href="{{ route('services.fractional-cto') }}">Fractional CTO</a><a href="{{ route('services.automation-integrations') }}">Automation &amp; integrations</a><a href="{{ route('products.index') }}">Products</a><a href="{{ route('about') }}">About</a><a href="{{ route('contact') }}">Contact</a></nav>
+        <a class="studio-footer__start" href="{{ route('contact') }}#inquiry">START A CONVERSATION <span>↗</span></a>
     </div>
     <div class="studio-footer__bottom"><span>© {{ now()->year }} PROJECT 407</span><span>MA · NH · REMOTE</span><a href="{{ route('privacy') }}">PRIVACY</a></div>
 </footer>

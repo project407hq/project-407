@@ -1,6 +1,6 @@
 <x-layout
     title="Custom Software & Fractional CTO | Project 407"
-    description="Custom software and fractional CTO leadership from Kevin Whelan. AI embraced, engineering judgment applied, and business outcomes kept in focus."
+    description="Custom software development and fractional CTO leadership from Kevin Whelan. Based in Massachusetts, serving New Hampshire and businesses across the US."
 >
     <div class="ember-home">
         <section class="ember-hero">
@@ -8,11 +8,11 @@
             <div class="ember-hero__monogram" aria-hidden="true">407</div>
 
             <div class="ember-hero__content">
-                <p>CUSTOM SOFTWARE · FRACTIONAL CTO</p>
-                <h1>Powerful tools.<br>Human judgment.<br><em>Useful software.</em></h1>
+                <p>MASSACHUSETTS · NEW HAMPSHIRE · REMOTE</p>
+                <h1>Custom software<br>development.<br><em>Fractional CTO leadership.</em></h1>
                 <div class="ember-hero__summary">
-                    <p>I’m Kevin Whelan. I provide custom software development and fractional CTO leadership, helping businesses turn ideas into dependable systems and make confident technology decisions. Hands-on engineering and fractional CTO leadership, with AI as a powerful part of the toolkit.</p>
-                    <a href="{{ route('contact') }}">LET’S TALK <span aria-hidden="true">＋</span></a>
+                    <p>I’m Kevin Whelan. I build applications, connect business systems, and help founders make technology decisions. Based in Dunstable, Massachusetts, serving MA, NH, and remote clients across the US. AI moves the work forward; an engineer owns the outcome.</p>
+                    <a href="{{ route('contact') }}#inquiry">LET’S TALK <span aria-hidden="true">＋</span></a>
                 </div>
             </div>
 
@@ -55,11 +55,13 @@
                 <h2>Build the software.<br>Lead the decisions.</h2>
             </div>
             <ol>
-                <li><span>01</span><strong><a href="{{ route('services.custom-software') }}">Custom software development</a></strong><p>A defined scope, a working application, tested integrations, and a plan for deployment and maintenance. Start with an idea, existing software, or an AI prototype.</p></li>
+                <li><span>01</span><strong><a href="{{ route('services.custom-software') }}">Custom software development</a></strong><p>A defined scope, a working application, tested integrations, and a plan for deployment and maintenance. Start with an idea, existing software, or an AI prototype. For connected tools and recurring handoffs, explore <a href="{{ route('services.automation-integrations') }}">business automation and API integrations</a>.</p></li>
                 <li><span>02</span><strong><a href="{{ route('services.fractional-cto') }}">Fractional CTO &amp; engineering leadership</a></strong><p>A prioritized roadmap, technical assessments, and ongoing guidance for the people delivering the work. Get experienced direction without a full-time executive hire.</p></li>
             </ol>
             <a href="{{ route('services') }}">VIEW SERVICES <span aria-hidden="true">＋</span></a>
         </section>
+
+        <x-product-showcase />
 
         <section class="studio-trust" aria-labelledby="trust-title">
             <header>
@@ -77,7 +79,7 @@
         <section class="ember-cta">
             <p>HAVE A SOFTWARE IDEA OR NEED TECHNICAL LEADERSHIP?</p>
             <h2>Tell me what you’re<br>trying to accomplish.</h2>
-            <a href="{{ route('contact') }}">TALK DIRECTLY WITH KEVIN <span aria-hidden="true">↗</span></a>
+            <a href="{{ route('contact') }}#inquiry">TALK DIRECTLY WITH KEVIN <span aria-hidden="true">↗</span></a>
         </section>
     </div>
 </x-layout>

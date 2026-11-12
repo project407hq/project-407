@@ -21,6 +21,14 @@ Route::view('/services/automation-integrations', 'pages.services.automation-inte
 
 Route::view('/approach', 'pages.work.index')->name('approach');
 
+Route::view('/products', 'pages.products')->name('products.index');
+
+Route::view('/products/saydee', 'pages.products.saydee')->name('products.saydee');
+
+Route::view('/products/daysie', 'pages.products.daysie')->name('products.daysie');
+
+Route::view('/products/maeve', 'pages.products.maeve')->name('products.maeve');
+
 Route::redirect('/work', '/approach', 301)->name('work.index');
 
 Route::redirect('/work/407-haul-away', '/approach', 301)->name('work.407-haul-away');
@@ -42,6 +50,10 @@ Route::get('/sitemap.xml', function () {
         route('services.automation-integrations'),
         route('services.fractional-cto'),
         route('approach'),
+        route('products.index'),
+        route('products.saydee'),
+        route('products.daysie'),
+        route('products.maeve'),
         route('about'),
         route('contact'),
     ];

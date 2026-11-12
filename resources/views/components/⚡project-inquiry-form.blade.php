@@ -51,6 +51,10 @@ new class extends Component
 
     public function submit(): void
     {
+        if ($this->submitted) {
+            return;
+        }
+
         $this->name = trim($this->name);
         $this->email = trim($this->email);
         $this->phone = trim($this->phone);
@@ -92,6 +96,8 @@ new class extends Component
         ]);
 
         $this->submitted = true;
+
+        $this->dispatch('project-inquiry-submitted', service: $inquiry->service);
     }
 
     public function startAnotherInquiry(): void

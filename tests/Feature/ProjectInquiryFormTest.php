@@ -28,7 +28,8 @@ test('a valid project inquiry is stored', function () {
         ->set('message', 'We need a website that generates better local leads.')
         ->call('submit')
         ->assertHasNoErrors()
-        ->assertSet('submitted', true);
+        ->assertSet('submitted', true)
+        ->assertDispatched('project-inquiry-submitted', service: 'website');
 
     $inquiry = ProjectInquiry::sole();
 
@@ -55,7 +56,8 @@ test('a visitor can reach out with a question without having a project brief', f
 test('required inquiry fields are validated', function (string $field) {
     Livewire::test('project-inquiry-form')
         ->call('submit')
-        ->assertHasErrors($field);
+        ->assertHasErrors($field)
+        ->assertNotDispatched('project-inquiry-submitted');
 })->with([
     'name',
     'email',
@@ -71,7 +73,8 @@ test('the honeypot rejects automated submissions', function () {
         ->set('message', 'This message is long enough to pass validation.')
         ->set('website', 'https://spam.example.com')
         ->call('submit')
-        ->assertHasErrors(['website' => ['max']]);
+        ->assertHasErrors(['website' => ['max']])
+        ->assertNotDispatched('project-inquiry-submitted');
 
     expect(ProjectInquiry::count())->toBe(0);
 });
@@ -90,7 +93,8 @@ test('project inquiries are rate limited', function () {
         ->set('message', 'We need a website that generates better local leads.')
         ->call('submit')
         ->assertHasErrors('form')
-        ->assertSet('submitted', false);
+        ->assertSet('submitted', false)
+        ->assertNotDispatched('project-inquiry-submitted');
 
     expect(ProjectInquiry::count())->toBe(0);
 });
@@ -117,4 +121,18 @@ test('the contact form offers the current software and leadership inquiry paths'
         ->assertSee('Fractional CTO or engineering leadership')
         ->assertSee('Existing software or AI prototype review')
         ->assertSee('Help figuring out the next step');
+});
+
+test('a repeated submit does not store or track another inquiry', function () {
+    $component = Livewire::test('project-inquiry-form')
+        ->set('name', 'Morgan Lee')
+        ->set('email', 'morgan@example.com')
+        ->set('service', 'software')
+        ->set('message', 'We would like help with an existing application.')
+        ->call('submit')
+        ->assertDispatched('project-inquiry-submitted', service: 'software');
+
+    $component->call('submit')->assertNotDispatched('project-inquiry-submitted');
+
+    expect(ProjectInquiry::count())->toBe(1);
 });

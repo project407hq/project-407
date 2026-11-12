@@ -25,6 +25,6 @@
             <div><p class="studio-kicker">DELIVERABLES + WORKING AGREEMENT</p><h2 class="studio-heading">Know what you’re getting.</h2></div>
             <div><p class="studio-lead">The deliverable depends on the engagement: an application release, an assessment of existing software, a written technology roadmap, or ongoing engineering direction. Each has an agreed scope and a clear next step.</p><p class="studio-lead mt-8">Before work begins, agree on how to assess the result, who is responsible for what, the fees, and availability. Any ongoing support or leadership involvement is defined as part of that agreement.</p><a class="button-secondary mt-7" href="{{ route('approach') }}">See the approach ↗</a></div>
         </div></section>
-        <section class="ember-cta"><p>AN IDEA, A PROTOTYPE, OR A TECHNICAL CROSSROADS</p><h2>Start with what<br>you want to improve.</h2><a href="{{ route('contact') }}">TALK WITH KEVIN <span>↗</span></a></section>
+        <section class="ember-cta"><p>AN IDEA, A PROTOTYPE, OR A TECHNICAL CROSSROADS</p><h2>Start with what<br>you want to improve.</h2><a href="{{ route('contact') }}#inquiry">TALK WITH KEVIN <span>↗</span></a></section>
     </div>
 </x-layout>
