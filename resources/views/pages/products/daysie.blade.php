@@ -10,6 +10,6 @@
         ['title' => 'Respect private context', 'description' => 'Checking availability across accounts must preserve the boundaries between them. A private appointment should not become information shared with another organization.'],
         ['title' => 'Handle changing availability', 'description' => 'A calendar check is a snapshot. Stale information, disconnected accounts, and conflicting events need clear states before anything is created.'],
     ]"
-    relevance="Daysie shows the questions behind software that connects multiple accounts: permissions, identity, privacy, and information that can change between review and action. Kevin brings that same care to integrations and mobile workflows for your business."
+    relevance="Daysie shows the questions behind software that connects multiple accounts: permissions, identity, privacy, and information that can change between review and action. I bring that same care to integrations and mobile workflows for your business."
     availability="Daysie is in development. The desktop web preview and mobile screenshots show the development build with sample accounts and calendar events."
 />

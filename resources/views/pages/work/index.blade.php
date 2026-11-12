@@ -20,6 +20,6 @@
             </ol>
         </div></section>
         <section class="studio-section"><div class="studio-split"><div><p class="studio-kicker">LESS WORK FOR PEOPLE</p><h2 class="studio-heading">Let software handle the routine.</h2></div><div><p class="studio-lead">The aim is to remove unnecessary tasks, decisions, and handoffs. Use existing systems and channels wherever practical. Keep people involved for approvals, judgment, and exceptions, with clear controls and a way to review what happened.</p><p class="studio-lead mt-8">For a customer-facing product, that means an experience that helps people accomplish something. For an internal system, it can mean fewer logins, fewer status checks, and a useful notification only when someone needs to act.</p></div></div></section>
-        <section class="ember-cta"><p>STARTED WITH AI? STILL AT THE IDEA STAGE?</p><h2>Bring what you have.<br>Let’s find the next step.</h2><a href="{{ route('contact') }}">TALK WITH KEVIN <span>↗</span></a></section>
+        <section class="ember-cta"><p>STARTED WITH AI? STILL AT THE IDEA STAGE?</p><h2>Bring what you have.<br>Let’s find the next step.</h2><a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT <span>↗</span></a></section>
     </div>
 </x-layout>

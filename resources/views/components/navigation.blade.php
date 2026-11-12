@@ -12,7 +12,7 @@
     </a>
 
     <div class="ember-nav__actions">
-        <a href="{{ route('contact') }}#inquiry">LET’S CONNECT</a>
+        <a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT</a>
         <button type="button" @click="open = ! open" :aria-expanded="open.toString()" aria-controls="main-menu" aria-label="Toggle navigation">
             <span></span><span></span>
         </button>

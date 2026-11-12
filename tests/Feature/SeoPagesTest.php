@@ -12,8 +12,8 @@ it('renders every indexable marketing page with canonical metadata', function (s
         ->assertSee('rel="canonical"', false)
         ->assertSee('application/ld+json', false);
 })->with([
-    ['home', 'Custom Software & Fractional CTO'],
-    ['services', 'Custom Software & Fractional CTO Services'],
+    ['home', 'Custom Software Development & Integrations'],
+    ['services', 'Custom Software Development & Integrations | Services'],
     ['services.fractional-cto', 'Fractional CTO & Engineering Leadership'],
     ['services.custom-software', 'Custom Software & Web Application Development'],
     ['services.automation-integrations', 'Business Automation & Software Integrations'],
@@ -23,7 +23,7 @@ it('renders every indexable marketing page with canonical metadata', function (s
     ['products.daysie', 'Daysie | Built by Project 407'],
     ['products.maeve', 'Maeve | Built by Project 407'],
     ['about', 'Kevin Whelan, Engineer & Technology Leader'],
-    ['contact', 'Contact Kevin Whelan | Software & Fractional CTO'],
+    ['contact', 'Contact Kevin Whelan | Software Projects'],
 ]);
 
 it('lists the service landing pages in the sitemap', function () {
@@ -55,7 +55,7 @@ it('redirects retired portfolio and website pages to the current positioning', f
     ['services.business-websites', 'services.custom-software'],
 ]);
 
-it('keeps the two service paths without retired client work or employer affiliation', function (string $routeName) {
+it('keeps software projects and advisory available without retired client work or employer affiliation', function (string $routeName) {
     $this->get(route($routeName))
         ->assertSuccessful()
         ->assertSee('Custom software', false)
@@ -74,7 +74,9 @@ it('connects visitors to independently built products with honest availability',
         ->assertSee(route('products.saydee'))
         ->assertSee(route('products.daysie'))
         ->assertSee(route('products.maeve'))
-        ->assertSee(route('contact'));
+        ->assertSee(route('contact'))
+        ->assertDontSee('class="featured-build__steps"', false)
+        ->assertDontSee('https://getsaydee.com');
 
     $this->get(route('products.daysie'))
         ->assertOk()
@@ -88,7 +90,29 @@ it('connects visitors to independently built products with honest availability',
 
     $this->get(route('products.saydee'))
         ->assertOk()
+        ->assertSee('class="featured-build__steps"', false)
+        ->assertSeeText('Demo AI, email, and accounting actions are simulated or disabled.')
         ->assertSee('https://getsaydee.com');
+});
+
+it('connects the project entry points to their existing service sections', function () {
+    foreach (['home', 'services'] as $routeName) {
+        $this->get(route($routeName))
+            ->assertOk()
+            ->assertSee(route('services.custom-software').'#build-an-application', false)
+            ->assertSee(route('services.custom-software').'#improve-existing-software', false)
+            ->assertSee(route('services.automation-integrations'), false)
+            ->assertSee(route('contact').'#inquiry', false);
+    }
+
+    $this->get(route('services.custom-software'))
+        ->assertOk()
+        ->assertSee('id="build-an-application"', false)
+        ->assertSee('id="improve-existing-software"', false);
+
+    $this->get(route('products.saydee'))
+        ->assertOk()
+        ->assertSee('id="saydee-walkthrough"', false);
 });
 
 it('uses an existing social preview asset for the current positioning', function () {

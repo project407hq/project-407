@@ -27,6 +27,8 @@
             <x-product-visual :product="$product" />
         </section>
 
+        {{ $walkthrough ?? '' }}
+
         <section class="studio-section studio-section--muted" aria-labelledby="engineering-heading">
             <div class="studio-split">
                 <div><p class="studio-kicker">ENGINEERING DECISIONS</p><h2 id="engineering-heading" class="studio-heading">What needs care.</h2></div>
@@ -55,6 +57,6 @@
             </div>
         </section>
 
-        <section class="ember-cta"><p>HAVE A WORKFLOW OR PRODUCT IDEA?</p><h2>Let’s put your<br>software to work.</h2><a href="{{ route('contact') }}#inquiry">TALK DIRECTLY WITH KEVIN <span aria-hidden="true">↗</span></a></section>
+        <section class="ember-cta"><p>HAVE A WORKFLOW OR PRODUCT IDEA?</p><h2>Let’s put your<br>software to work.</h2><a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT <span aria-hidden="true">↗</span></a></section>
     </div>
 </x-layout>

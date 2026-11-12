@@ -1,6 +1,6 @@
 @props([
     'title' => 'Project 407',
-    'description' => 'Custom software and fractional CTO leadership with AI-assisted delivery and human accountability.',
+    'description' => 'Custom software development, application improvements, and API integrations. Work directly with Kevin Whelan.',
     'index' => true,
     'serviceName' => null,
     'breadcrumbs' => [],
@@ -14,7 +14,7 @@
     $structuredData = [
         '@context' => 'https://schema.org',
         '@graph' => [
-            ['@type' => 'WebSite', '@id' => $siteUrl.'/#website', 'url' => $siteUrl, 'name' => 'Project 407', 'description' => 'Custom software development and fractional CTO leadership for growing businesses.', 'publisher' => ['@id' => $siteUrl.'/#business']],
+            ['@type' => 'WebSite', '@id' => $siteUrl.'/#website', 'url' => $siteUrl, 'name' => 'Project 407', 'description' => 'Custom software development, application improvements, and integrations for growing businesses.', 'publisher' => ['@id' => $siteUrl.'/#business']],
             ['@type' => 'Organization', '@id' => $siteUrl.'/#business', 'name' => 'Project 407', 'url' => $siteUrl, 'logo' => asset('project407-favicon-512.png'), 'image' => $socialImageUrl, 'email' => 'kevin@project-407.com', 'telephone' => '+1-978-877-9784', 'description' => 'Independent custom software development, fractional CTO leadership, and engineering advisory from Kevin Whelan.', 'founder' => ['@id' => $siteUrl.'/#kevin-whelan'], 'areaServed' => [['@type' => 'State', 'name' => 'Massachusetts'], ['@type' => 'State', 'name' => 'New Hampshire'], ['@type' => 'Country', 'name' => 'United States']], 'sameAs' => ['https://www.linkedin.com/company/project407/'], 'knowsAbout' => ['Fractional CTO', 'Engineering Leadership', 'Technical Advisory', 'Custom Software Development', 'Web Application Development', 'Internal Tool Development', 'Business Automation', 'API and Software Integrations']],
             ['@type' => 'Person', '@id' => $siteUrl.'/#kevin-whelan', 'name' => 'Kevin Whelan', 'url' => $siteUrl.'/about', 'sameAs' => ['https://www.linkedin.com/in/kpwhelan'], 'jobTitle' => 'Software Engineer & Technology Leader', 'knowsAbout' => ['Laravel', 'PHP', 'Vue', 'React', 'TypeScript', 'AWS', 'API development', 'Custom software development', 'Website development']],
         ],

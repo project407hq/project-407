@@ -2,9 +2,9 @@
     <header class="studio-products__intro">
         <div>
             <p class="studio-kicker">BUILT BY PROJECT 407</p>
-            <h2 id="products-heading">Our own products.<br>Practical engineering.</h2>
+            <h2 id="products-heading">Products I’m building.<br>Work you can explore.</h2>
         </div>
-        <p>Saydee, Daysie, and Maeve are Kevin’s own products. Each tackles a different piece of routine work, with the same attention to integrations, human judgment, and what happens after launch.</p>
+        <p>Saydee, Daysie, and Maeve are my own products at different stages of development. Explore the screens and the decisions behind each build to see how I approach connected systems and routine work.</p>
     </header>
 
     <div class="studio-products__grid">
@@ -36,5 +36,5 @@
         </article>
     </div>
 
-    <div class="studio-products__foot"><p>Have a workflow that needs this kind of thinking?</p><a href="{{ route('contact') }}#inquiry">TALK WITH KEVIN <span aria-hidden="true">↗</span></a></div>
+    <div class="studio-products__foot"><p>Have a workflow that needs this kind of thinking?</p><a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT <span aria-hidden="true">↗</span></a></div>
 </section>

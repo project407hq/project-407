@@ -1,6 +1,6 @@
 <x-layout
-    title="Custom Software & Fractional CTO | Project 407"
-    description="Custom software development and fractional CTO leadership from Kevin Whelan. Based in Massachusetts, serving New Hampshire and businesses across the US."
+    title="Custom Software Development & Integrations | Project 407"
+    description="Build an application, improve existing software, or connect your business systems. Work directly with Kevin Whelan in Massachusetts, New Hampshire, and remotely."
 >
     <div class="ember-home">
         <section class="ember-hero">
@@ -9,15 +9,24 @@
 
             <div class="ember-hero__content">
                 <p>MASSACHUSETTS · NEW HAMPSHIRE · REMOTE</p>
-                <h1>Custom software<br>development.<br><em>Fractional CTO leadership.</em></h1>
+                <h1>Custom software<br>for the work your<br><em>business needs done.</em></h1>
                 <div class="ember-hero__summary">
-                    <p>I’m Kevin Whelan. I build applications, connect business systems, and help founders make technology decisions. Based in Dunstable, Massachusetts, serving MA, NH, and remote clients across the US. AI moves the work forward; an engineer owns the outcome.</p>
-                    <a href="{{ route('contact') }}#inquiry">LET’S TALK <span aria-hidden="true">＋</span></a>
+                    <p>I’m Kevin Whelan. I build web applications, improve existing software, and connect business systems to reduce manual work. You work directly with me, from deciding what to build through launch.</p>
+                    <a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
 
             <div class="ember-hero__scroll" aria-hidden="true"><span></span> SCROLL</div>
         </section>
+
+        <x-project-starting-points />
+
+        <figure class="project-recommendation">
+            <div><p class="studio-kicker">CORPORATE ENGINEERING EXPERIENCE</p><blockquote>“He contributed to platform initiatives that helped drive roughly a 20% reduction in OpEx, working across teams to improve how our services were built, deployed, and maintained.”</blockquote></div>
+            <figcaption>MICHAEL MEYER III<span>Former Engineering Manager,<br>Trader Interactive</span></figcaption>
+        </figure>
+
+        <x-saydee-walkthrough :compact="true" :show-other-products="true" />
 
         <section class="ember-founder">
             <div class="ember-founder__signal" aria-label="A direct working relationship between your business and Kevin Whelan">
@@ -28,11 +37,9 @@
             </div>
             <div class="ember-founder__story">
                 <p>CORPORATE EXPERIENCE · DIRECT COLLABORATION</p>
-                <h2>A technology leader.<br>A hands-on builder.</h2>
-                <p class="ember-founder__lead">My corporate engineering experience includes production software, APIs, integrations, AWS, and cross-team platform work to improve how services are built, deployed, and maintained. I bring that experience to your application, your existing systems, or the decisions your engineering team needs to make.</p>
+                <h2>A hands-on builder.<br>A technology partner.</h2>
+                <p class="ember-founder__lead">You work with the person writing the code and making the technical decisions. My background includes production software, integrations, and cross-team platform work. I bring that experience to building your application and keeping it running after launch.</p>
                 <div class="ember-founder__facts"><span>LARAVEL · PHP · APIS</span><span>VUE · REACT · TYPESCRIPT</span><span>AWS · DEPLOYMENT · INTEGRATIONS</span></div>
-                <blockquote>“He contributed to platform initiatives that helped drive roughly a 20% reduction in OpEx, working across teams to improve how our services were built, deployed, and maintained.”</blockquote>
-                <cite>MICHAEL MEYER III · FORMER ENGINEERING MANAGER, TRADER INTERACTIVE</cite>
                 <a href="{{ route('about') }}">MEET KEVIN <span aria-hidden="true">↗</span></a>
             </div>
         </section>
@@ -40,7 +47,7 @@
         <section class="studio-section">
             <div class="studio-split">
                 <div><p class="studio-kicker">START WITH THE VALUE</p><h2 class="studio-heading">What should get better for your business?</h2></div>
-                <div><p class="studio-lead">A product your customers need. Hours returned to your team. A clearer plan for what to build next. The goal is a useful change in how your business works, with software and leadership shaped around that result.</p><p class="studio-lead mt-8">Software should perform the work, not create another place for humans to work. Wherever practical, routine steps happen automatically, information moves through the systems you already use, and people step in for judgment and exceptions.</p></div>
+                <div><p class="studio-lead">Give customers a way to use your service online. Stop copying the same information between tools. Get an existing application ready for its next release. Start with the change you need in your business.</p><p class="studio-lead mt-8">Software should perform the work, not create another place for humans to work. Wherever practical, I build around the systems you already use, automate routine steps, and leave people in control of approvals and exceptions.</p></div>
             </div>
             <div class="studio-proof">
                 <article><span>01 / CAPACITY</span><h3>Less routine work.</h3><p>Reduce re-entry, manual checks, and handoffs so your team has time for work that needs them.</p></article>
@@ -49,19 +56,14 @@
             </div>
         </section>
 
-        <section class="ember-capabilities">
-            <div>
-                <p>TWO WAYS TO WORK TOGETHER</p>
-                <h2>Build the software.<br>Lead the decisions.</h2>
-            </div>
-            <ol>
-                <li><span>01</span><strong><a href="{{ route('services.custom-software') }}">Custom software development</a></strong><p>A defined scope, a working application, tested integrations, and a plan for deployment and maintenance. Start with an idea, existing software, or an AI prototype. For connected tools and recurring handoffs, explore <a href="{{ route('services.automation-integrations') }}">business automation and API integrations</a>.</p></li>
-                <li><span>02</span><strong><a href="{{ route('services.fractional-cto') }}">Fractional CTO &amp; engineering leadership</a></strong><p>A prioritized roadmap, technical assessments, and ongoing guidance for the people delivering the work. Get experienced direction without a full-time executive hire.</p></li>
-            </ol>
-            <a href="{{ route('services') }}">VIEW SERVICES <span aria-hidden="true">＋</span></a>
-        </section>
+        <x-project-start />
 
-        <x-product-showcase />
+        <section class="studio-section studio-advisory">
+            <div class="studio-split">
+                <div><p class="studio-kicker">ALSO AVAILABLE / FRACTIONAL CTO</p><h2 class="studio-heading">Know what to build next.<br>Give your team a clear direction.</h2></div>
+                <div><p class="studio-lead">If technology decisions keep landing on you, I can help evaluate a vendor, review an application, or turn competing priorities into a plan your team can deliver. Start with one decision or bring me in for ongoing fractional CTO support.</p><a class="studio-advisory__link" href="{{ route('services.fractional-cto') }}">EXPLORE FRACTIONAL CTO SUPPORT <span aria-hidden="true">↗</span></a></div>
+            </div>
+        </section>
 
         <section class="studio-trust" aria-labelledby="trust-title">
             <header>
@@ -69,17 +71,17 @@
                 <h2 id="trust-title">AI moves the work forward. An engineer owns the outcome.</h2>
             </header>
             <div class="studio-trust__grid">
-                <article><span>01 / EMBRACE THE TOOLS</span><h3>Explore and build with AI.</h3><p>AI is a phenomenal tool for exploring ideas, prototyping, and accelerating implementation. Bring your idea, your existing code, or something you have already built with AI.</p></article>
-                <article><span>02 / APPLY EXPERIENCE</span><h3>Look beyond the demo.</h3><p>Software has to handle permissions, sensitive data, integrations, failures, and changing requirements. Kevin reviews the architecture and code, tests important behavior, and plans for operation after launch.</p></article>
-                <article><span>03 / STAY ACCOUNTABLE</span><h3>Keep a human in the loop.</h3><p>You get clear recommendations, a defined scope, and an explanation of what has been tested and what still needs attention. Kevin stays your direct contact through the engagement.</p></article>
+                <article><span>01 / EMBRACE THE TOOLS</span><h3>Bring what you have.</h3><p>An idea, existing code, or an AI-built prototype can be a starting point. I use AI to help explore and build, then review the work against what your application needs to do.</p></article>
+                <article><span>02 / APPLY EXPERIENCE</span><h3>Look beyond the demo.</h3><p>I check who can access the data, what happens when a connection fails, and how changes reach your users. Testing and a plan for running the software are part of the build.</p></article>
+                <article><span>03 / STAY ACCOUNTABLE</span><h3>Know where the project stands.</h3><p>You see working progress and get a clear account of what has been tested and what needs attention. I stay your direct contact through the work.</p></article>
             </div>
             <a href="{{ route('approach') }}">WHY AN EXPERIENCED ENGINEER STILL MATTERS <span aria-hidden="true">↗</span></a>
         </section>
 
         <section class="ember-cta">
-            <p>HAVE A SOFTWARE IDEA OR NEED TECHNICAL LEADERSHIP?</p>
+            <p>HAVE SOFTWARE THAT NEEDS TO GET BUILT OR IMPROVED?</p>
             <h2>Tell me what you’re<br>trying to accomplish.</h2>
-            <a href="{{ route('contact') }}#inquiry">TALK DIRECTLY WITH KEVIN <span aria-hidden="true">↗</span></a>
+            <a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT <span aria-hidden="true">↗</span></a>
         </section>
     </div>
 </x-layout>

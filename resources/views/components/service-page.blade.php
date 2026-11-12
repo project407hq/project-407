@@ -33,7 +33,7 @@
                     <div><p class="studio-kicker">POSSIBLE STARTING POINTS</p><h2 id="examples-heading" class="studio-heading">What an engagement can look like.</h2><p class="service-examples__note">These are examples of scope we can discuss. The right starting point depends on your systems, priorities, and budget.</p></div>
                     <div class="service-page-grid">
                         @foreach ($engagements as $engagement)
-                            <article><h3>{{ $engagement['title'] }}</h3><p>{{ $engagement['description'] }}</p><p><strong>You receive:</strong> {{ $engagement['deliverable'] }}</p></article>
+                            <article @if (isset($engagement['id'])) id="{{ $engagement['id'] }}" @endif><h3>{{ $engagement['title'] }}</h3><p>{{ $engagement['description'] }}</p><p><strong>You receive:</strong> {{ $engagement['deliverable'] }}</p></article>
                         @endforeach
                     </div>
                 </div>
@@ -82,6 +82,6 @@
             </div></section>
         @endif
 
-        <section class="ember-cta"><p>TALK THROUGH YOUR NEXT STEP</p><h2>You don’t need a brief<br>to start a conversation.</h2><a href="{{ route('contact') }}#inquiry">ASK KEVIN ABOUT IT <span>↗</span></a></section>
+        <section class="ember-cta"><p>TALK THROUGH YOUR NEXT STEP</p><h2>You don’t need a brief<br>to start a conversation.</h2><a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT <span>↗</span></a></section>
     </div>
 </x-layout>
