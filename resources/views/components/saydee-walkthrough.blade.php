@@ -40,6 +40,6 @@
         <p class="featured-build__demo"><a href="https://getsaydee.com">Visit Saydee to try its sample demo ↗</a>. Demo AI, email, and accounting actions are simulated or disabled.</p>
     @endunless
     @if ($showOtherProducts)
-        <div class="featured-build__other"><p>More products I’m building</p><nav aria-label="More product builds"><a href="{{ route('products.daysie') }}">Daysie · In development ↗</a><a href="{{ route('products.maeve') }}">Maeve · Early access ↗</a><a href="{{ route('products.index') }}">All products ↗</a></nav></div>
+        <div class="featured-build__other"><p>More products I’m building</p><nav aria-label="More product builds"><a href="{{ route('products.daysie') }}">Daysie · In development ↗</a><a href="{{ route('products.maeve') }}">Maeve · Early access ↗</a><a href="{{ route('products.remi') }}">Remi · In development ↗</a><a href="{{ route('products.index') }}">All products ↗</a></nav></div>
     @endif
 </section>

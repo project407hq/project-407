@@ -1,4 +1,4 @@
-<x-layout title="Saydee, Daysie & Maeve | Products Built by Project 407" description="Explore Kevin Whelan’s own software products: Saydee, Daysie, and Maeve. Practical examples of connected workflows, thoughtful automation, and hands-on engineering.">
+<x-layout title="Saydee, Daysie, Maeve & Remi | Products Built by Project 407" description="Explore Kevin Whelan’s own software products: Saydee, Daysie, Maeve, and Remi. Practical examples of connected workflows, thoughtful automation, and hands-on engineering.">
     <div class="studio-page">
         <section class="studio-intro">
             <div class="studio-intro__line"><span>PRODUCTS / PROJECT 407</span><span>INDEPENDENTLY BUILT BY KEVIN</span></div>

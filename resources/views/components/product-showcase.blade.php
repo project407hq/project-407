@@ -4,7 +4,7 @@
             <p class="studio-kicker">BUILT BY PROJECT 407</p>
             <h2 id="products-heading">Products I’m building.<br>Work you can explore.</h2>
         </div>
-        <p>Saydee, Daysie, and Maeve are my own products at different stages of development. Explore the screens and the decisions behind each build to see how I approach connected systems and routine work.</p>
+        <p>Saydee, Daysie, Maeve, and Remi are my own products at different stages of development. Explore the screens and the decisions behind each build to see how I approach connected systems and routine work.</p>
     </header>
 
     <div class="studio-products__grid">
@@ -33,6 +33,15 @@
             <p>Prepare and manage follow-up on overdue invoices. Review messages, track customer replies, and see when a situation needs your attention.</p>
             <p class="studio-product__craft">Background workflows · Message review · Payment context</p>
             <a class="studio-product__link" href="{{ route('products.maeve') }}">EXPLORE MAEVE <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="studio-product">
+            <a class="studio-product__visual-link" href="{{ route('products.remi') }}" aria-label="Explore the Remi project"><x-product-visual product="remi" /></a>
+            <div class="studio-product__meta"><span>04 / PEOPLE &amp; CONNECTIONS</span><span class="studio-product__status">In development</span></div>
+            <h3>Remi</h3>
+            <p>Meet someone once. Find them when it matters. Share a card, keep a private memory, and find people again from the details you remember.</p>
+            <p class="studio-product__craft">Card exchange · Private context · Grounded recall</p>
+            <a class="studio-product__link" href="{{ route('products.remi') }}">EXPLORE REMI <span aria-hidden="true">↗</span></a>
         </article>
     </div>
 

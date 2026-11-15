@@ -1295,12 +1295,13 @@ body:has(.ember-home) { background: #1b1b1a; }
 }
 
 .studio-products__intro > p { max-width: 33rem; color: #605f5a; line-height: 1.75; }
-.studio-products__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.studio-products__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem 2rem; }
 .studio-product { display: flex; min-width: 0; flex-direction: column; }
 .studio-product__visual-link { display: block; color: inherit; text-decoration: none; }
 .studio-product-visual { position: relative; aspect-ratio: 4 / 3; margin: 0; overflow: hidden; border: 1px solid rgba(27,27,26,.15); background: #eee5dc; }
 .studio-product-visual--daysie { background: #e6edfc; }
 .studio-product-visual--maeve { background: #ebe6f6; }
+.studio-product-visual--remi { background: #e4efea; }
 .studio-product-visual__devices { position: absolute; inset: 0 0 2rem; }
 .studio-product-visual__desktop { position: absolute; top: 10%; left: 5%; width: 82%; overflow: hidden; border: 1px solid #b9bdc6; border-radius: .4rem; background: #fff; box-shadow: 0 .7rem 1.5rem rgba(27,27,26,.12); }
 .studio-product-visual__browser { display: flex; height: clamp(.8rem, 1.5vw, 1.5rem); align-items: center; gap: .2rem; padding: 0 .5rem; background: #f7f8fa; color: #525b69; }

@@ -29,6 +29,8 @@ Route::view('/products/daysie', 'pages.products.daysie')->name('products.daysie'
 
 Route::view('/products/maeve', 'pages.products.maeve')->name('products.maeve');
 
+Route::view('/products/remi', 'pages.products.remi')->name('products.remi');
+
 Route::redirect('/work', '/approach', 301)->name('work.index');
 
 Route::redirect('/work/407-haul-away', '/approach', 301)->name('work.407-haul-away');
@@ -54,6 +56,7 @@ Route::get('/sitemap.xml', function () {
         route('products.saydee'),
         route('products.daysie'),
         route('products.maeve'),
+        route('products.remi'),
         route('about'),
         route('contact'),
     ];

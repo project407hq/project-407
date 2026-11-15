@@ -22,6 +22,7 @@ it('renders every indexable marketing page with canonical metadata', function (s
     ['products.saydee', 'Saydee | Built by Project 407'],
     ['products.daysie', 'Daysie | Built by Project 407'],
     ['products.maeve', 'Maeve | Built by Project 407'],
+    ['products.remi', 'Remi | Built by Project 407'],
     ['about', 'Kevin Whelan, Engineer & Technology Leader'],
     ['contact', 'Contact Kevin Whelan | Software Projects'],
 ]);
@@ -35,6 +36,7 @@ it('lists the service landing pages in the sitemap', function () {
         ->assertSee(route('products.saydee'))
         ->assertSee(route('products.daysie'))
         ->assertSee(route('products.maeve'))
+        ->assertSee(route('products.remi'))
         ->assertDontSee(route('work.407-haul-away'))
         ->assertDontSee(route('services.business-websites'))
         ->assertSee(route('services.custom-software'))
@@ -74,6 +76,7 @@ it('connects visitors to independently built products with honest availability',
         ->assertSee(route('products.saydee'))
         ->assertSee(route('products.daysie'))
         ->assertSee(route('products.maeve'))
+        ->assertSee(route('products.remi'))
         ->assertSee(route('contact'))
         ->assertDontSee('class="featured-build__steps"', false)
         ->assertDontSee('https://getsaydee.com');
@@ -87,6 +90,14 @@ it('connects visitors to independently built products with honest availability',
         ->assertOk()
         ->assertSeeText('Access is by invitation')
         ->assertSee('https://letmaeve.com');
+
+    $this->get(route('products.remi'))
+        ->assertOk()
+        ->assertSeeText('In development')
+        ->assertSeeText('PUBLIC CARD ON DESKTOP')
+        ->assertSeeText('without creating an account or installing the app')
+        ->assertSee(asset('images/work/remi/desktop.webp'))
+        ->assertSee(asset('images/work/remi/mobile.webp'));
 
     $this->get(route('products.saydee'))
         ->assertOk()
