@@ -1,17 +1,17 @@
 <x-product-story
     product="saydee"
     name="Saydee"
-    status="Available"
-    summary="Saydee turns customer requests into details and suggested next steps for review, then keeps the customer, quote, and job connected."
+    status="Available on web"
+    summary="Get customer requests out of your head and give each one a clear next step. Saydee keeps the details, quotes, and follow-through together, with you in control."
     problem="A request can arrive as a conversation, a pasted message, or a screenshot. The details still need checking, a quote needs preparing, and accepted work needs to carry forward into a job."
-    solution="Saydee prepares request details for review before saving. Customers, quotes, and jobs stay connected. For quotes sent through Saydee, the owner reviews reminder emails and chooses their timing. An optional QuickBooks Online connection lets the owner create an unsent invoice for review and sending in QuickBooks."
+    solution="Speak a request, paste a message, add a screenshot, or forward a selected email. Review the details Saydee prepares, then choose the next useful step. Keep a reminder, prepare a quote, or carry accepted work into a job. Customer details stay together as the work moves forward, and you choose the wording and timing of quote reminders."
     :considerations="[
-        ['title' => 'Review before saving', 'description' => 'Voice, text, and screenshots can leave room for interpretation. Prepared details need an explicit review step so the person responsible can correct them.'],
-        ['title' => 'Carry context forward', 'description' => 'A customer request, quote, and job are related parts of the same work. Connected records keep that relationship visible as the work changes.'],
-        ['title' => 'Make actions explicit', 'description' => 'A prepared reminder is different from a sent email. An unsent accounting invoice is different from a payment. The interface needs to make each state clear.'],
+        ['title' => 'Start with what you have', 'description' => 'A quick voice note, customer message, or screenshot is enough to begin. Check the details and correct anything that needs your judgment.'],
+        ['title' => 'Choose the next useful step', 'description' => 'Sometimes you need a reminder. Sometimes you need a quote and a job. Use the parts that help with the work in front of you.'],
+        ['title' => 'Stay in control', 'description' => 'Review what the customer will see and decide what happens next. Keep the conversation and the work connected as things change.'],
     ]"
     relevance="If your team re-enters information as work moves between steps, Saydee is an example of the kind of connected workflow I can help design and build. Start with the handoff that costs your team the most attention."
-    availability="Saydee has a public product site with a trial and a sample demo. Visit it for current features and access details."
+    availability="Try Saydee in your browser, or explore its sample demo before creating an account."
     product-url="https://getsaydee.com"
 >
     <x-slot:walkthrough>

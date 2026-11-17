@@ -8,7 +8,6 @@
         'maeve' => 'invoice follow-up queue with a draft ready for review',
         'remi' => 'contact cards and saved connections',
     };
-    $isDevelopmentBuild = in_array($product, ['daysie', 'remi'], true);
 @endphp
 
 <figure class="studio-product-visual studio-product-visual--{{ $product }}">
@@ -38,5 +37,5 @@
             </div>
         </div>
     </div>
-    <figcaption>{{ $isDevelopmentBuild ? 'DEVELOPMENT BUILD' : 'DESKTOP & MOBILE' }} · SAMPLE DATA</figcaption>
+    <figcaption>DESKTOP &amp; MOBILE · SAMPLE DATA</figcaption>
 </figure>

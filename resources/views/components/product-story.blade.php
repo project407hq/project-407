@@ -31,7 +31,7 @@
 
         <section class="studio-section studio-section--muted" aria-labelledby="engineering-heading">
             <div class="studio-split">
-                <div><p class="studio-kicker">ENGINEERING DECISIONS</p><h2 id="engineering-heading" class="studio-heading">What needs care.</h2></div>
+                <div><p class="studio-kicker">THE EVERYDAY DETAILS</p><h2 id="engineering-heading" class="studio-heading">What makes it useful.</h2></div>
                 <ol class="studio-list">
                     @foreach ($considerations as $consideration)
                         <li><span>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><strong>{{ $consideration['title'] }}</strong><p>{{ $consideration['description'] }}</p></li>
@@ -45,7 +45,7 @@
                 <div><p class="studio-kicker">FOR YOUR BUSINESS</p><h2 class="studio-heading">Bring that thinking to your software.</h2></div>
                 <div class="studio-product-story__context">
                     <p class="studio-lead">{{ $relevance }}</p>
-                    <p>Explore <a href="{{ route('services.custom-software') }}">custom software development</a> for an application build, <a href="{{ route('services.automation-integrations') }}">business automation and API integrations</a> for connected workflows, or <a href="{{ route('services.fractional-cto') }}">fractional CTO leadership</a> for technical direction.</p>
+                    <p>For your own business, I can help <a href="{{ route('services.custom-software') }}">build an application</a>, <a href="{{ route('services.automation-integrations') }}">connect the tools your team uses</a>, or <a href="{{ route('services.fractional-cto') }}">plan your next move</a>.</p>
                     <div class="studio-product-story__availability">
                         <span class="studio-product__status">{{ $status }}</span><p>{{ $availability }}</p>
                         @if ($productUrl)

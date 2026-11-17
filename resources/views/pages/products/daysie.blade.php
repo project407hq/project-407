@@ -2,14 +2,14 @@
     product="daysie"
     name="Daysie"
     status="In development"
-    summary="Daysie is being built to coordinate email and calendars across multiple accounts, preserve the boundaries between them, and bring people the decisions that need their attention."
+    summary="A little less to think about. Daysie brings your Google and Outlook inboxes and calendars together and helps with the replies, meetings, and follow-ups that need you."
     problem="One person can work across business, consulting, and personal accounts. Checking availability, choosing the correct identity, and keeping each context private makes even a simple meeting request more involved."
-    solution="The current build includes Google multi-account onboarding, synced mail and agenda views, and reviewed reply and calendar actions. The broader direction is to carry commitments across email and calendar, using the right identity and user-approved rules. End-to-end assistant scheduling remains in development."
+    solution="See your day across accounts, catch up on what needs a reply, and review a prepared response before it goes out. Daysie helps with meeting requests and follow-ups while keeping work, personal, and business accounts distinct. You can see which account is acting and decide what happens next."
     :considerations="[
-        ['title' => 'Use the right identity', 'description' => 'The sender and calendar need to be clear before an action is approved. When the intended account is ambiguous, the product needs to ask.'],
-        ['title' => 'Respect private context', 'description' => 'Checking availability across accounts must preserve the boundaries between them. A private appointment should not become information shared with another organization.'],
-        ['title' => 'Handle changing availability', 'description' => 'A calendar check is a snapshot. Stale information, disconnected accounts, and conflicting events need clear states before anything is created.'],
+        ['title' => 'Keep your worlds separate', 'description' => 'Work from the right email address and calendar. Personal plans and another business’s details stay in their own context.'],
+        ['title' => 'Bring the decision to you', 'description' => 'Review the reply or meeting action with the important details already together. Spend your attention on the choice that needs you.'],
+        ['title' => 'Make room for your day', 'description' => 'Keep track of outstanding replies, meeting requests, and follow-ups in one place, with a clearer view of what needs attention next.'],
     ]"
-    relevance="Daysie shows the questions behind software that connects multiple accounts: permissions, identity, privacy, and information that can change between review and action. I bring that same care to integrations and mobile workflows for your business."
-    availability="Daysie is in development. The desktop web preview and mobile screenshots show the development build with sample accounts and calendar events."
+    relevance="Daysie reflects a simple aim: give people less routine coordination to manage. I bring that same thinking to software that connects your business tools and helps your team get on with their day."
+    availability="Daysie is in development. Get in touch with Kevin to learn more about the project."
 />

@@ -83,8 +83,9 @@ it('connects visitors to independently built products with honest availability',
 
     $this->get(route('products.daysie'))
         ->assertOk()
-        ->assertSeeText('End-to-end assistant scheduling remains in development.')
-        ->assertSeeText('DEVELOPMENT BUILD');
+        ->assertSeeText('Google and Outlook')
+        ->assertSeeText('review a prepared response before it goes out')
+        ->assertSeeText('SAMPLE DATA');
 
     $this->get(route('products.maeve'))
         ->assertOk()
@@ -93,7 +94,8 @@ it('connects visitors to independently built products with honest availability',
 
     $this->get(route('products.remi'))
         ->assertOk()
-        ->assertSeeText('In development')
+        ->assertSeeText('Waitlist open')
+        ->assertSee('https://shareremi.com/#waitlist')
         ->assertSeeText('PUBLIC CARD ON DESKTOP')
         ->assertSeeText('without creating an account or installing the app')
         ->assertSee(asset('images/work/remi/desktop.webp'))

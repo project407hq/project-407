@@ -2,7 +2,7 @@
 
 <section id="saydee-walkthrough" class="studio-products featured-build" aria-labelledby="saydee-walkthrough-heading">
     <header class="studio-products__intro">
-        <div><p class="studio-kicker">BUILT BY PROJECT 407</p><h2 id="saydee-walkthrough-heading">Inside a working<br>product: Saydee.</h2><span class="studio-product__status">Available</span></div>
+        <div><p class="studio-kicker">BUILT BY PROJECT 407</p><h2 id="saydee-walkthrough-heading">Inside a working<br>product: Saydee.</h2><span class="studio-product__status">Available on web</span></div>
         <p>I built Saydee to prepare customer requests for review and keep quotes and jobs connected. It is my own available product.@unless ($compact) This is one example workflow; those capabilities can also be used independently.@endunless</p>
     </header>
     <div @class(['featured-build__body', 'featured-build__body--text' => ! $showVisual])>
@@ -40,6 +40,6 @@
         <p class="featured-build__demo"><a href="https://getsaydee.com">Visit Saydee to try its sample demo ↗</a>. Demo AI, email, and accounting actions are simulated or disabled.</p>
     @endunless
     @if ($showOtherProducts)
-        <div class="featured-build__other"><p>More products I’m building</p><nav aria-label="More product builds"><a href="{{ route('products.daysie') }}">Daysie · In development ↗</a><a href="{{ route('products.maeve') }}">Maeve · Early access ↗</a><a href="{{ route('products.remi') }}">Remi · In development ↗</a><a href="{{ route('products.index') }}">All products ↗</a></nav></div>
+        <div class="featured-build__other"><p>More products I’m building</p><nav aria-label="More product builds"><a href="{{ route('products.daysie') }}">Daysie · In development ↗</a><a href="{{ route('products.maeve') }}">Maeve · Early access ↗</a><a href="{{ route('products.remi') }}">Remi · Waitlist open ↗</a><a href="{{ route('products.index') }}">All products ↗</a></nav></div>
     @endif
 </section>
