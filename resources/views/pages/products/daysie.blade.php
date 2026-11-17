@@ -1,6 +1,7 @@
 <x-product-story
     product="daysie"
     name="Daysie"
+    title="Daysie: Email & Calendar Coordination"
     status="In development"
     summary="A little less to think about. Daysie brings your Google and Outlook inboxes and calendars together and helps with the replies, meetings, and follow-ups that need you."
     problem="One person can work across business, consulting, and personal accounts. Checking availability, choosing the correct identity, and keeping each context private makes even a simple meeting request more involved."

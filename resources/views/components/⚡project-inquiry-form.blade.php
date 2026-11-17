@@ -342,7 +342,7 @@ new class extends Component
                                 03
                             </span>
 
-                            Existing software or AI prototype review
+                            Existing software or AI-built app help
                         </span>
                     </label>
 

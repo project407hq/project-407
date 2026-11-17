@@ -1,6 +1,7 @@
 <x-product-story
     product="saydee"
     name="Saydee"
+    title="Saydee: Customer Requests, Quotes & Jobs"
     status="Available on web"
     summary="Get customer requests out of your head and give each one a clear next step. Saydee keeps the details, quotes, and follow-through together, with you in control."
     problem="A request can arrive as a conversation, a pasted message, or a screenshot. The details still need checking, a quote needs preparing, and accepted work needs to carry forward into a job."

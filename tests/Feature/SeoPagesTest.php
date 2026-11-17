@@ -16,13 +16,14 @@ it('renders every indexable marketing page with canonical metadata', function (s
     ['services', 'Custom Software Development & Integrations | Services'],
     ['services.fractional-cto', 'Fractional CTO & Engineering Leadership'],
     ['services.custom-software', 'Custom Software & Web Application Development'],
+    ['services.ai-app-help', 'Help With AI-Built Apps & Vibe Coding'],
     ['services.automation-integrations', 'Business Automation & Software Integrations'],
     ['approach', 'AI & Human Engineering Judgment'],
     ['products.index', 'Products Built by Project 407'],
-    ['products.saydee', 'Saydee | Built by Project 407'],
-    ['products.daysie', 'Daysie | Built by Project 407'],
-    ['products.maeve', 'Maeve | Built by Project 407'],
-    ['products.remi', 'Remi | Built by Project 407'],
+    ['products.saydee', 'Saydee: Customer Requests, Quotes & Jobs'],
+    ['products.daysie', 'Daysie: Email & Calendar Coordination'],
+    ['products.maeve', 'Maeve: Invoice Reminders & Follow-Up'],
+    ['products.remi', 'Remi: Contact Cards, Notes & Introductions'],
     ['about', 'Kevin Whelan, Engineer & Technology Leader'],
     ['contact', 'Contact Kevin Whelan | Software Projects'],
 ]);
@@ -40,6 +41,7 @@ it('lists the service landing pages in the sitemap', function () {
         ->assertDontSee(route('work.407-haul-away'))
         ->assertDontSee(route('services.business-websites'))
         ->assertSee(route('services.custom-software'))
+        ->assertSee(route('services.ai-app-help'))
         ->assertSee(route('services.automation-integrations'));
 });
 
@@ -153,15 +155,15 @@ it('blocks crawling and indexing outside production', function () {
     $this->get(route('home'))->assertOk()->assertSee('noindex, nofollow');
 });
 
-it('allows production marketing pages to be indexed with a clean canonical URL', function () {
+it('allows production marketing pages to be indexed with a clean canonical URL', function (string $routeName) {
     $this->app->instance('env', 'production');
 
-    $this->get(route('services.fractional-cto').'?utm_source=linkedin')
+    $this->get(route($routeName).'?utm_source=linkedin')
         ->assertOk()
         ->assertSee('index, follow')
-        ->assertSee('href="'.route('services.fractional-cto').'"', false)
+        ->assertSee('href="'.route($routeName).'"', false)
         ->assertDontSee('utm_source');
-});
+})->with(['services.fractional-cto', 'services.ai-app-help']);
 
 it('describes service pages with connected service and breadcrumb structured data', function (string $routeName, string $serviceName) {
     $response = $this->get(route($routeName))->assertOk();
@@ -180,6 +182,24 @@ it('describes service pages with connected service and breadcrumb structured dat
         ->and($nodes['BreadcrumbList']['itemListElement'][2]['item'])->toBe(route($routeName));
 })->with([
     ['services.custom-software', 'Custom Software & Web Application Development'],
+    ['services.ai-app-help', 'Help With AI-Built Apps & Vibe Coding'],
     ['services.fractional-cto', 'Fractional CTO & Engineering Leadership'],
     ['services.automation-integrations', 'Business Automation & Software Integrations'],
+]);
+
+it('links to AI app help from relevant page content', function (string $routeName) {
+    $response = $this->get(route($routeName))->assertSuccessful();
+
+    preg_match('/<main\b[^>]*>(.*?)<\/main>/s', $response->getContent(), $matches);
+
+    expect($matches[1])->toContain('href="'.route('services.ai-app-help').'"');
+})->with([
+    'home',
+    'services',
+    'services.custom-software',
+    'approach',
+    'products.saydee',
+    'products.daysie',
+    'products.maeve',
+    'products.remi',
 ]);

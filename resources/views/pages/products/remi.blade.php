@@ -1,6 +1,7 @@
 <x-product-story
     product="remi"
     name="Remi"
+    title="Remi: Contact Cards, Notes & Introductions"
     status="Waitlist open"
     summary="Meet someone once. Find them when it matters. Remi connects current contact cards, private memories, useful recall, and introductions that both people approve. Its launch waitlist is open."
     problem="You remember a conversation, a skill, or where you met someone, but their name can be harder to place. A contact record alone can lose the context that made the connection useful."

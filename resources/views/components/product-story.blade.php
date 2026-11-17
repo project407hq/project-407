@@ -1,7 +1,7 @@
-@props(['product', 'name', 'status', 'summary', 'problem', 'solution', 'considerations', 'relevance', 'availability', 'productUrl' => null])
+@props(['product', 'name', 'title', 'status', 'summary', 'problem', 'solution', 'considerations', 'relevance', 'availability', 'productUrl' => null])
 
 <x-layout
-    :title="$name.' | Built by Project 407'"
+    :title="$title.' | Project 407'"
     :description="$summary"
     :breadcrumbs="[
         ['name' => 'Home', 'url' => route('home')],
@@ -46,6 +46,7 @@
                 <div class="studio-product-story__context">
                     <p class="studio-lead">{{ $relevance }}</p>
                     <p>For your own business, I can help <a href="{{ route('services.custom-software') }}">build an application</a>, <a href="{{ route('services.automation-integrations') }}">connect the tools your team uses</a>, or <a href="{{ route('services.fractional-cto') }}">plan your next move</a>.</p>
+                    <p>If you’ve already started building with AI, I can <a href="{{ route('services.ai-app-help') }}">help you finish and launch your AI-built app</a> while you keep working on it yourself.</p>
                     <div class="studio-product-story__availability">
                         <span class="studio-product__status">{{ $status }}</span><p>{{ $availability }}</p>
                         @if ($productUrl)

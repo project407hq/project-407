@@ -16,6 +16,9 @@ Route::view('/services/fractional-cto', 'pages.services.fractional-cto')
 Route::view('/services/custom-software', 'pages.services.custom-software')
     ->name('services.custom-software');
 
+Route::view('/services/ai-app-help', 'pages.services.ai-app-help')
+    ->name('services.ai-app-help');
+
 Route::view('/services/automation-integrations', 'pages.services.automation-integrations')
     ->name('services.automation-integrations');
 
@@ -49,6 +52,7 @@ Route::get('/sitemap.xml', function () {
         route('home'),
         route('services'),
         route('services.custom-software'),
+        route('services.ai-app-help'),
         route('services.automation-integrations'),
         route('services.fractional-cto'),
         route('approach'),

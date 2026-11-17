@@ -8,6 +8,13 @@
 
         <x-project-starting-points />
 
+        <section class="studio-section studio-section--muted" aria-labelledby="ai-app-heading">
+            <div class="studio-split">
+                <div><p class="studio-kicker">ALREADY BUILDING WITH AI?</p><h2 id="ai-app-heading" class="studio-heading">Keep building.<br>Get help where you need it.</h2></div>
+                <div><p class="studio-lead">Bring the app you’ve started and the problem you’re working through. I can help with a technical decision, a specific fix, code review, or getting ready to launch. A focused session or a small piece of work can be the whole engagement.</p><a class="studio-advisory__link" href="{{ route('services.ai-app-help') }}">GET HELP WITH YOUR AI-BUILT APP <span aria-hidden="true">↗</span></a></div>
+            </div>
+        </section>
+
         <x-project-start />
 
         <section id="technical-leadership" class="studio-section studio-advisory">

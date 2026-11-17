@@ -21,6 +21,13 @@
 
         <x-project-starting-points />
 
+        <section class="studio-section studio-advisory" aria-labelledby="ai-app-heading">
+            <div class="studio-split">
+                <div><p class="studio-kicker">HELP WITH YOUR AI-BUILT APP</p><h2 id="ai-app-heading" class="studio-heading">Started an app<br>with AI?</h2></div>
+                <div><p class="studio-lead">If you’re stuck on a technical problem, unsure what to work on next, or ready to get your app into users’ hands, I can help. Keep building it yourself and bring me in for guidance, a specific piece of development, or launch support.</p><a class="studio-advisory__link" href="{{ route('services.ai-app-help') }}">GET HELP WITH YOUR AI-BUILT APP <span aria-hidden="true">↗</span></a></div>
+            </div>
+        </section>
+
         <figure class="project-recommendation">
             <div><p class="studio-kicker">CORPORATE ENGINEERING EXPERIENCE</p><blockquote>“He contributed to platform initiatives that helped drive roughly a 20% reduction in OpEx, working across teams to improve how our services were built, deployed, and maintained.”</blockquote></div>
             <figcaption>MICHAEL MEYER III<span>Former Engineering Manager,<br>Trader Interactive</span></figcaption>

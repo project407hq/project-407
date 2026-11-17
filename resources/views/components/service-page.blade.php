@@ -1,4 +1,4 @@
-@props(['title', 'description', 'eyebrow', 'headline', 'accent', 'intro', 'problems', 'deliverables', 'outcomes', 'engagements' => [], 'stages' => [], 'relatedLinks' => [], 'faqs' => []])
+@props(['title', 'description', 'eyebrow', 'headline', 'accent', 'intro', 'problems', 'deliverables', 'outcomes', 'engagements' => [], 'stages' => [], 'relatedLinks' => [], 'faqs' => [], 'fitHeading' => 'A good fit when the current experience is holding the business back.'])
 
 <x-layout
     :title="$title"
@@ -10,12 +10,21 @@
         <section class="studio-intro">
             <div class="studio-intro__line"><span>{{ $eyebrow }}</span><span>PROJECT 407 · MA · NH · REMOTE</span></div>
             <h1>{{ $headline }} <em>{{ $accent }}</em></h1>
-            <div class="studio-intro__foot"><a href="#details">EXPLORE THE SERVICE ↓</a><p>{{ $intro }}</p></div>
+            <div class="studio-intro__foot">
+                @isset($introAction)
+                    {{ $introAction }}
+                @else
+                    <a href="#details">EXPLORE THE SERVICE ↓</a>
+                @endisset
+                <p>{{ $intro }}</p>
+            </div>
         </section>
+
+        {{ $slot }}
 
         <section id="details" class="studio-section">
             <div class="studio-split">
-                <div><p class="studio-kicker">WHEN THIS HELPS</p><h2 class="studio-heading">A good fit when the current experience is holding the business back.</h2></div>
+                <div><p class="studio-kicker">WHEN THIS HELPS</p><h2 class="studio-heading">{{ $fitHeading }}</h2></div>
                 <ol class="studio-list">@foreach($problems as $index => $problem)<li><span>0{{ $index + 1 }}</span><strong>{{ $problem[0] }}</strong><p>{{ $problem[1] }}</p></li>@endforeach</ol>
             </div>
         </section>

@@ -1,6 +1,7 @@
 <x-product-story
     product="maeve"
     name="Maeve"
+    title="Maeve: Invoice Reminders & Follow-Up"
     status="Early access"
     summary="Less ‘I should chase that.’ Maeve gets the invoice reminder ready and keeps replies, promised payment dates, and payment updates together. You keep the customer relationship."
     problem="After an invoice is sent, someone still has to decide when to follow up, what to say, and whether a reply or payment changes the next step. That work also involves a customer relationship."

@@ -7,6 +7,7 @@ test('public pages return successful responses', function (string $routeName) {
     'services',
     'approach',
     'services.custom-software',
+    'services.ai-app-help',
     'services.fractional-cto',
     'services.automation-integrations',
     'about',

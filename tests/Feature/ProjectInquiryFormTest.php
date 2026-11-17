@@ -119,7 +119,7 @@ test('the contact form offers the current software and leadership inquiry paths'
         ->assertSuccessful()
         ->assertSee('Custom software or application')
         ->assertSee('Fractional CTO or engineering leadership')
-        ->assertSee('Existing software or AI prototype review')
+        ->assertSee('Existing software or AI-built app help')
         ->assertSee('Help figuring out the next step');
 });
 

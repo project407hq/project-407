@@ -1362,7 +1362,7 @@ body:has(.ember-home) { background: #1b1b1a; }
 .project-start__options > .studio-product__link { margin-top: 2rem; color: #1b1b1a; }
 .studio-advisory__link { margin-top: 2rem; }
 .ember-home .studio-advisory .studio-lead { color: rgba(243,241,236,.7); }
-#build-an-application, #improve-existing-software, #saydee-walkthrough { scroll-margin-top: 7.5rem; }
+#build-an-application, #improve-existing-software, #ai-app-support, #saydee-walkthrough { scroll-margin-top: 7.5rem; }
 
 .studio-product-story__intro { min-height: 72svh; }
 .studio-product-story__context { display: grid; align-content: start; gap: 2.5rem; }
