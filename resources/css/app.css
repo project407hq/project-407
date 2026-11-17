@@ -78,14 +78,15 @@
 .ember-founder blockquote { max-width:42rem; margin:3.5rem 0 0; padding-top:2rem; border-top:1px solid rgba(27,27,26,.25); font-family:var(--font-display); font-size:clamp(1.4rem,2.3vw,2.2rem); letter-spacing:-.015em; line-height:1.25; }
 .ember-founder cite { margin-top:1rem; color:#5c5b57; font-size:.75rem; font-style:normal; letter-spacing:.1em; line-height:1.5; }
 .ember-founder__story > a { display:flex; width:13rem; justify-content:space-between; margin-top:2.5rem; padding-bottom:.6rem; border-bottom:1px solid; color:inherit; font-size:.75rem; font-weight:700; letter-spacing:.12em; text-decoration:none; }
-.studio-founder-proof { display:grid; grid-template-columns:.62fr 1.38fr; gap:clamp(3rem,8vw,9rem); align-items:center; background:#ff3f46; }
+.studio-founder-proof { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(2.5rem,6vw,6rem); align-items:center; background:#e5e2dc; color:#1b1b1a; }
+.studio-section.studio-founder-proof { padding-block:clamp(4rem,7vw,7rem); }
 .studio-founder-proof__photo { aspect-ratio:4 / 5; overflow:hidden; border:1px solid rgba(27,27,26,.22); background:#e5e2dc; }
 .studio-founder-proof__photo img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
-.studio-founder-proof .studio-kicker { color:#1b1b1a; }
-.studio-founder-proof blockquote { margin-top:2rem; font-family:var(--font-display); font-size:clamp(2rem,4vw,4.25rem); letter-spacing:-.025em; line-height:1.07; }
-.studio-founder-proof figcaption { margin-top:2rem; font-size:.78rem; font-weight:700; letter-spacing:.11em; line-height:1.5; }
-.studio-founder-proof figcaption span { opacity:.65; }
-.studio-founder-proof a { display:inline-block; margin-top:3rem; padding-bottom:.5rem; border-bottom:1px solid; color:inherit; font-size:.75rem; font-weight:700; letter-spacing:.11em; text-decoration:none; }
+.studio-founder-proof .studio-kicker { color:#b9232a; }
+.studio-founder-proof blockquote { max-width:28ch; margin-top:1.5rem; font-family:var(--font-display); font-size:clamp(1.6rem,2.6vw,2.5rem); letter-spacing:-.02em; line-height:1.25; }
+.studio-founder-proof figcaption { margin-top:1.75rem; font-size:.78rem; font-weight:700; letter-spacing:.08em; line-height:1.65; }
+.studio-founder-proof figcaption span { color:#605f5a; font-weight:400; letter-spacing:.02em; }
+.studio-founder-proof a { display:inline-block; margin-top:2rem; padding-bottom:.5rem; border-bottom:1px solid; color:inherit; font-size:.75rem; font-weight:700; letter-spacing:.08em; text-decoration:none; }
 @media (max-width:800px) {
     .ember-founder,.studio-founder-proof { grid-template-columns:1fr; }
     .ember-founder__signal { min-height:32rem; padding:1.25rem; }
