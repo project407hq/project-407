@@ -79,8 +79,8 @@
 .ember-founder cite { margin-top:1rem; color:#5c5b57; font-size:.75rem; font-style:normal; letter-spacing:.1em; line-height:1.5; }
 .ember-founder__story > a { display:flex; width:13rem; justify-content:space-between; margin-top:2.5rem; padding-bottom:.6rem; border-bottom:1px solid; color:inherit; font-size:.75rem; font-weight:700; letter-spacing:.12em; text-decoration:none; }
 .studio-founder-proof { display:grid; grid-template-columns:.62fr 1.38fr; gap:clamp(3rem,8vw,9rem); align-items:center; background:#ff3f46; }
-.studio-founder-proof__photo { display:grid; height:44rem; place-items:end center; overflow:hidden; border:1px solid rgba(27,27,26,.22); background:#d8d3c9; }
-.studio-founder-proof__photo img { display:block; width:auto; max-width:100%; height:100%; object-fit:contain; object-position:bottom center; filter:contrast(.92) opacity(.94); }
+.studio-founder-proof__photo { aspect-ratio:4 / 5; overflow:hidden; border:1px solid rgba(27,27,26,.22); background:#e5e2dc; }
+.studio-founder-proof__photo img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
 .studio-founder-proof .studio-kicker { color:#1b1b1a; }
 .studio-founder-proof blockquote { margin-top:2rem; font-family:var(--font-display); font-size:clamp(2rem,4vw,4.25rem); letter-spacing:-.025em; line-height:1.07; }
 .studio-founder-proof figcaption { margin-top:2rem; font-size:.78rem; font-weight:700; letter-spacing:.11em; line-height:1.5; }
@@ -91,7 +91,7 @@
     .ember-founder__signal { min-height:32rem; padding:1.25rem; }
     .ember-founder__initials { font-size:clamp(7.5rem,38vw,12rem); }
     .ember-founder__story { padding:5rem 1.25rem; }
-    .studio-founder-proof__photo { width:min(100%,22rem); height:32rem; margin-inline:auto; }
+    .studio-founder-proof__photo { width:min(100%,22rem); margin-inline:auto; }
 }
 
 /* Purposeful visual systems */
