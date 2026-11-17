@@ -2,6 +2,8 @@
 
 use App\Models\ProjectInquiry;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Exceptions;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Livewire;
 
@@ -136,3 +138,73 @@ test('a repeated submit does not store or track another inquiry', function () {
 
     expect(ProjectInquiry::count())->toBe(1);
 });
+
+test('failed inquiry saves preserve the message and give a direct contact fallback', function () {
+    Exceptions::fake();
+
+    ProjectInquiry::creating(function (): never {
+        throw new RuntimeException('Private storage failure details.');
+    });
+
+    try {
+        Livewire::test('project-inquiry-form')
+            ->set('name', 'Morgan Lee')
+            ->set('email', 'morgan@example.com')
+            ->set('service', 'software')
+            ->set('message', 'Please help us improve our existing application.')
+            ->call('submit')
+            ->assertHasErrors('form')
+            ->assertSet('submitted', false)
+            ->assertSet('name', 'Morgan Lee')
+            ->assertSet('email', 'morgan@example.com')
+            ->assertSet('message', 'Please help us improve our existing application.')
+            ->assertSee('We could not confirm that your message was saved.')
+            ->assertSee('kevin@project-407.com')
+            ->assertDontSee('Private storage failure details.')
+            ->assertNotDispatched('project-inquiry-submitted');
+
+        expect(ProjectInquiry::count())->toBe(0);
+        Exceptions::assertReported(RuntimeException::class);
+    } finally {
+        Event::forget('eloquent.creating: '.ProjectInquiry::class);
+    }
+});
+
+test('rate limiter failures give a recoverable error without losing the message', function () {
+    Exceptions::fake();
+    RateLimiter::shouldReceive('increment')->once()->andThrow(new RuntimeException('Private cache failure.'));
+
+    Livewire::test('project-inquiry-form')
+        ->set('name', 'Morgan Lee')
+        ->set('email', 'morgan@example.com')
+        ->set('service', 'software')
+        ->set('message', 'Please help us improve our existing application.')
+        ->call('submit')
+        ->assertHasErrors('form')
+        ->assertSet('submitted', false)
+        ->assertSet('message', 'Please help us improve our existing application.')
+        ->assertDontSee('Private cache failure.')
+        ->assertNotDispatched('project-inquiry-submitted');
+
+    expect(ProjectInquiry::count())->toBe(0);
+    Exceptions::assertReported(RuntimeException::class);
+});
+
+test('inquiry validation errors explain how to correct each field', function (string $field, string $value, string $message) {
+    Livewire::test('project-inquiry-form')
+        ->set('name', 'Morgan Lee')
+        ->set('email', 'morgan@example.com')
+        ->set('service', 'software')
+        ->set('message', 'Please help us improve our existing application.')
+        ->set($field, $value)
+        ->call('submit')
+        ->assertHasErrors($field)
+        ->assertSee($message)
+        ->assertSee('Please check the details below.')
+        ->assertNotDispatched('project-inquiry-submitted');
+})->with([
+    ['name', '', 'Please enter your name so Kevin knows who to reply to.'],
+    ['email', 'invalid', 'Please enter a valid email address, such as name@example.com.'],
+    ['service', 'invalid', 'Please choose one of the available inquiry options.'],
+    ['message', '', 'Please add a few sentences about what you would like help with.'],
+]);

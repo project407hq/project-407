@@ -43,9 +43,19 @@ new class extends Component
     protected function messages(): array
     {
         return [
+            'name.required' => 'Please enter your name so Kevin knows who to reply to.',
+            'name.max' => 'Please keep your name to 100 characters or fewer.',
+            'email.required' => 'Please enter an email address where Kevin can reach you.',
+            'email.email' => 'Please enter a valid email address, such as name@example.com.',
+            'email.max' => 'Please use an email address with 255 characters or fewer.',
+            'phone.max' => 'Please keep your phone number to 30 characters or fewer.',
+            'businessName.max' => 'Please keep the business or organization name to 150 characters or fewer.',
             'service.required' => 'Please select what best describes your message.',
+            'service.in' => 'Please choose one of the available inquiry options.',
+            'message.required' => 'Please add a few sentences about what you would like help with.',
             'message.min' => 'Please share a little more so Kevin can respond helpfully.',
-            'website.max' => 'Unable to submit this form.',
+            'message.max' => 'Please keep your message to 3,000 characters or fewer. You can share more when Kevin replies.',
+            'website.max' => 'We could not submit this form. Please email Kevin directly instead.',
         ];
     }
 
@@ -61,27 +71,40 @@ new class extends Component
         $this->businessName = trim($this->businessName);
         $this->message = trim($this->message);
 
+        $this->resetErrorBag('form');
+
         $validated = $this->validate();
 
-        $rateLimitKey = 'project-inquiry:'.request()->ip();
+        try {
+            $rateLimitKey = 'project-inquiry:'.request()->ip();
 
-        if (RateLimiter::increment($rateLimitKey, decaySeconds: 3600) > 5) {
+            if (RateLimiter::increment($rateLimitKey, decaySeconds: 3600) > 5) {
+                $this->addError(
+                    'form',
+                    'Too many messages have been sent from this connection. Please wait before trying again, or email Kevin directly.',
+                );
+
+                return;
+            }
+
+            $inquiry = ProjectInquiry::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'phone' => $validated['phone'] ?: null,
+                'business_name' => $validated['businessName'] ?: null,
+                'service' => $validated['service'],
+                'message' => $validated['message'],
+            ]);
+        } catch (Throwable $exception) {
+            report($exception);
+
             $this->addError(
                 'form',
-                'Too many inquiries have been submitted. Please wait before trying again.',
+                'We could not confirm that your message was saved. Your details are still here. Please email or call Kevin directly instead.',
             );
 
             return;
         }
-
-        $inquiry = ProjectInquiry::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'phone' => $validated['phone'] ?: null,
-            'business_name' => $validated['businessName'] ?: null,
-            'service' => $validated['service'],
-            'message' => $validated['message'],
-        ]);
 
         defer(fn () => app(ProjectInquiryNotifier::class)->sendToDiscord($inquiry));
 
@@ -117,7 +140,7 @@ new class extends Component
 };
 ?>
 
-<div>
+<div data-inquiry-form>
     @if ($submitted)
         <div
             class="rounded-panel border border-orange/20 bg-orange/10 p-7 sm:p-9"
@@ -159,6 +182,26 @@ new class extends Component
         </div>
     @else
         <form wire:submit="submit" novalidate>
+            <div wire:ignore data-request-error hidden class="mb-6 rounded-xl border border-orange/30 bg-orange/10 p-5" role="alert" tabindex="-1">
+                <p data-request-error-message class="font-semibold text-ink"></p>
+                <p class="mt-3 text-sm leading-6">Contact Kevin at <a class="underline" href="mailto:kevin@project-407.com">kevin@project-407.com</a> or <a class="underline" href="tel:+19788779784">(978) 877-9784</a>.</p>
+                <a data-request-refresh hidden class="mt-3 inline-block text-sm font-bold underline" href="{{ route('contact') }}#inquiry">Copy your message, then reload the form</a>
+            </div>
+
+            @if ($errors->any())
+                <div class="mb-6 rounded-xl border border-orange/30 bg-orange/10 p-5" role="alert" tabindex="-1" data-validation-summary>
+                    <p class="font-bold text-ink">{{ $errors->has('form') ? 'Your message needs another way through.' : 'Please check the details below.' }}</p>
+                    <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-ink">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    @if ($errors->has('form') || $errors->has('website'))
+                        <p class="mt-3 text-sm leading-6">You can reach Kevin at <a class="underline" href="mailto:kevin@project-407.com">kevin@project-407.com</a> or <a class="underline" href="tel:+19788779784">(978) 877-9784</a>.</p>
+                    @endif
+                </div>
+            @endif
+
             {{-- Honeypot --}}
             <div
                 aria-hidden="true"
@@ -408,12 +451,6 @@ new class extends Component
                 </div>
             </div>
 
-            @error('form')
-                <p class="form-error mt-6" role="alert">
-                    {{ $message }}
-                </p>
-            @enderror
-
             <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <button
                     type="submit"
@@ -454,3 +491,68 @@ new class extends Component
         </form>
     @endif
 </div>
+
+@script
+<script>
+    $wire.interceptRequest(({ request, onError, onFailure, onSuccess }) => {
+        const showError = (message, needsRefresh = false) => {
+            const alert = $wire.$el.querySelector('[data-request-error]');
+
+            if (! alert) {
+                return;
+            }
+
+            alert.querySelector('[data-request-error-message]').textContent = message;
+            alert.querySelector('[data-request-refresh]').hidden = ! needsRefresh;
+            alert.hidden = false;
+
+            const isSubmission = [...request.messages].some(
+                (message) => [...message.actions].some((action) => action.name === 'submit'),
+            );
+
+            if (isSubmission) {
+                alert.focus({ preventScroll: true });
+                alert.scrollIntoView({ behavior: 'instant', block: 'center' });
+            }
+        };
+
+        onError(({ response, preventDefault }) => {
+            preventDefault();
+
+            const messages = {
+                419: 'This form has expired. Copy your message before reloading the form, or email Kevin directly.',
+                429: 'Too many requests have come from this connection. Please wait before trying again, or contact Kevin directly.',
+                503: 'The site is temporarily unavailable. Your details are still here. Please contact Kevin directly.',
+            };
+
+            showError(
+                messages[response.status] ?? 'We could not confirm that your changes or message reached the site. Your details are still here. Please contact Kevin directly.',
+                response.status === 419,
+            );
+        });
+
+        onFailure(() => showError('The connection was interrupted. We could not confirm that your changes or message reached the site. Your details are still here. Check your connection, or contact Kevin directly.'));
+
+        onSuccess(() => {
+            const alert = $wire.$el.querySelector('[data-request-error]');
+
+            if (alert) {
+                alert.hidden = true;
+            }
+        });
+    });
+
+    $wire.interceptMessage('submit', ({ onSuccess }) => {
+        onSuccess(({ onRender }) => {
+            onRender(() => {
+                const summary = $wire.$el.querySelector('[data-validation-summary]');
+
+                if (summary) {
+                    summary.focus({ preventScroll: true });
+                    summary.scrollIntoView({ behavior: 'instant', block: 'center' });
+                }
+            });
+        });
+    });
+</script>
+@endscript

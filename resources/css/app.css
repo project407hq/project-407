@@ -531,43 +531,6 @@
         font-size: 0.8125rem;
         font-weight: 600;
     }
-
-    /*
-     * Progressive entrance motion
-     */
-    .reveal-ready [data-reveal] {
-        opacity: 0;
-        transform: translateY(1.125rem);
-        transition:
-            opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
-            transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
-        will-change: opacity, transform;
-    }
-
-    .reveal-ready [data-reveal='intro'] {
-        transform: translateY(0.75rem);
-        transition-duration: 800ms;
-    }
-
-    .reveal-ready [data-reveal].is-visible {
-        opacity: 1;
-        transform: translateY(0);
-        will-change: auto;
-    }
-
-    .reveal-ready [data-reveal-item] {
-        opacity: 0;
-        transform: translateY(0.75rem) scale(0.992);
-        transition:
-            opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
-            transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
-        transition-delay: var(--reveal-delay, 0ms);
-    }
-
-    .reveal-ready [data-reveal].is-visible [data-reveal-item] {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
 }
 
 @media (max-width: 767px) {
@@ -585,15 +548,11 @@
     *::before,
     *::after {
         animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
         scroll-behavior: auto !important;
-    }
-
-    [data-reveal],
-    [data-reveal-item] {
-        opacity: 1 !important;
-        transform: none !important;
     }
 }
 
@@ -1417,6 +1376,126 @@ body:has(.ember-home) { background: #1b1b1a; }
 .ember-cta > p { color: #1b1b1a; }
 .ember-cta h2 { max-width: 12em; font-size: clamp(4rem, 9vw, 9rem); }
 .ember-cta a { display: flex; justify-content: space-between; margin-top: 6rem; padding: 1rem 0; border-top: 1px solid currentColor; font-size: .82rem; font-weight: 700; letter-spacing: .11em; text-decoration: none; }
+
+/* Shared motion follows the studio's quiet, direct visual style. */
+.ember-nav__actions button[aria-expanded='true'] span:first-child {
+    transform: translateY(.18125rem) rotate(45deg);
+}
+
+.ember-nav__actions button[aria-expanded='true'] span:last-child {
+    transform: translateY(-.18125rem) rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .ember-nav__actions button,
+    .ember-nav__actions button span {
+        transition:
+            transform 250ms cubic-bezier(.22, 1, .36, 1),
+            background-color 200ms ease;
+    }
+
+    main a > span[aria-hidden='true'],
+    .studio-footer__start > span,
+    .ember-cta a > span {
+        display: inline-block;
+        transition: translate 250ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .ember-hero__summary a,
+    .ember-capabilities > a {
+        transition:
+            translate 250ms cubic-bezier(.22, 1, .36, 1),
+            background-color 200ms ease;
+    }
+
+    .studio-product-visual__desktop,
+    .studio-product-visual__mobile {
+        transition: translate 450ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .studio-footer nav a,
+    .ember-nav__menu nav a {
+        transition:
+            color 200ms ease,
+            translate 250ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .ember-nav:has(button[aria-expanded='true']) .ember-nav__menu nav a {
+        animation: studio-menu-enter 420ms cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+    .ember-nav__menu nav a:nth-child(2) { animation-delay: 40ms; }
+    .ember-nav__menu nav a:nth-child(3) { animation-delay: 80ms; }
+    .ember-nav__menu nav a:nth-child(4) { animation-delay: 120ms; }
+    .ember-nav__menu nav a:nth-child(5) { animation-delay: 160ms; }
+
+    .ember-hero__orbit,
+    .studio-intro::after {
+        animation: studio-orbit-enter 1600ms cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+    .ember-hero__scroll span {
+        transform-origin: top;
+        animation: studio-scroll-cue 1800ms ease-in-out 2;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    main a:is(:hover, :focus-visible) > span[aria-hidden='true'],
+    .studio-footer__start:is(:hover, :focus-visible) > span,
+    .ember-cta a:is(:hover, :focus-visible) > span {
+        translate: 3px -3px;
+    }
+
+    .ember-hero__summary a:is(:hover, :focus-visible) {
+        translate: 0 -2px;
+        background-color: rgba(243, 241, 236, .17);
+    }
+
+    .ember-capabilities > a:is(:hover, :focus-visible) {
+        translate: 0 -2px;
+        background-color: #292927;
+    }
+
+    .ember-hero__summary a:active,
+    .ember-capabilities > a:active {
+        translate: 0 0;
+    }
+
+    .studio-product__visual-link:is(:hover, :focus-visible) .studio-product-visual__desktop {
+        translate: 0 -3px;
+    }
+
+    .studio-product__visual-link:is(:hover, :focus-visible) .studio-product-visual__mobile {
+        translate: 0 -6px;
+    }
+
+    .studio-footer nav a:is(:hover, :focus-visible),
+    .ember-nav__menu nav a:is(:hover, :focus-visible) {
+        translate: 4px 0;
+        color: #ff3f46;
+    }
+
+    .ember-nav__actions button:hover {
+        background-color: #e5e2dc;
+        transform: scale(1.04);
+    }
+}
+
+@keyframes studio-menu-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes studio-orbit-enter {
+    from { opacity: 0; transform: translate(12px, -12px) scale(.98); }
+    to { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+
+@keyframes studio-scroll-cue {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(.7); opacity: .45; }
+}
 
 @media (max-width: 800px) {
     .ember-nav { height:5.75rem; }

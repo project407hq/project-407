@@ -3,6 +3,8 @@
 use App\Models\ProjectInquiry;
 use App\ProjectInquiryNotifier;
 use Illuminate\Http\Client\Request;
+use Illuminate\Http\Client\RequestException;
+use Illuminate\Support\Facades\Exceptions;
 use Illuminate\Support\Facades\Http;
 
 test('project inquiry details are sent to Discord', function () {
@@ -61,3 +63,18 @@ test('professional opportunity notifications have readable labels', function (st
     ['employment', 'Employment or leadership opportunity'],
     ['collaboration', 'Business collaboration'],
 ]);
+
+test('failed notification delivery is reported without failing the saved inquiry', function () {
+    Exceptions::fake();
+    config()->set('services.discord.project_inquiries_webhook', 'https://discord.example.com/webhook');
+    Http::fake(fn () => Http::response('Unavailable', 503));
+
+    app(ProjectInquiryNotifier::class)->sendToDiscord(new ProjectInquiry([
+        'name' => 'Morgan Lee',
+        'email' => 'morgan@example.com',
+        'service' => 'software',
+        'message' => 'Please help us improve our existing application.',
+    ]));
+
+    Exceptions::assertReported(RequestException::class);
+});
