@@ -1,4 +1,5 @@
 <x-service-page
+    inquiry-service="support"
     title="Help With AI-Built Apps & Vibe Coding | Project 407"
     description="Get help with an app you built with AI. Kevin Whelan offers technical guidance, code review, focused fixes, and launch support while you keep building."
     eyebrow="AI-BUILT APP SUPPORT"
@@ -41,6 +42,6 @@
     ]"
 >
     <x-slot:introAction>
-        <a href="{{ route('contact') }}#inquiry">TELL ME WHERE YOU’RE STUCK <span aria-hidden="true">↗</span></a>
+        <a href="{{ route('contact', ['service' => 'support']) }}#inquiry">TELL ME WHERE YOU’RE STUCK <span aria-hidden="true">↗</span></a>
     </x-slot:introAction>
 </x-service-page>

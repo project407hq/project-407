@@ -1,4 +1,5 @@
 <x-service-page
+    inquiry-service="support"
     title="Business Automation & Software Integrations | Project 407"
     description="Business process automation and API integrations with Kevin Whelan. Connect existing tools, reduce re-entry, and handle failed handoffs in MA, NH, and remotely."
     eyebrow="AUTOMATION + SOFTWARE INTEGRATIONS"

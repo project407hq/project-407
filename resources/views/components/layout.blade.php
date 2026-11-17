@@ -3,6 +3,7 @@
     'description' => 'Custom software development, application improvements, and API integrations. Work directly with Kevin Whelan.',
     'index' => true,
     'serviceName' => null,
+    'inquiryService' => null,
     'breadcrumbs' => [],
 ])
 
@@ -152,13 +153,13 @@
     </head>
 
     <body>
-        <x-navigation />
+        <x-navigation :inquiry-service="$inquiryService" />
 
         <main>
             {{ $slot }}
         </main>
 
-        <x-footer />
+        <x-footer :inquiry-service="$inquiryService" />
 
         @livewireScripts
     </body>

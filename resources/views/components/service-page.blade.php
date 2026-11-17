@@ -1,8 +1,9 @@
-@props(['title', 'description', 'eyebrow', 'headline', 'accent', 'intro', 'problems', 'deliverables', 'outcomes', 'engagements' => [], 'stages' => [], 'relatedLinks' => [], 'faqs' => [], 'fitHeading' => 'A good fit when the current experience is holding the business back.'])
+@props(['title', 'description', 'eyebrow', 'headline', 'accent', 'intro', 'problems', 'deliverables', 'outcomes', 'engagements' => [], 'stages' => [], 'relatedLinks' => [], 'faqs' => [], 'inquiryService' => 'software', 'fitHeading' => 'A good fit when the current experience is holding the business back.'])
 
 <x-layout
     :title="$title"
     :description="$description"
+    :inquiry-service="$inquiryService"
     :service-name="str($title)->before(' |')->toString()"
     :breadcrumbs="[['name' => 'Home', 'url' => route('home')], ['name' => 'Services', 'url' => route('services')], ['name' => str($title)->before(' |')->toString(), 'url' => url()->current()]]"
 >
@@ -91,6 +92,6 @@
             </div></section>
         @endif
 
-        <section class="ember-cta"><p>TALK THROUGH YOUR NEXT STEP</p><h2>You don’t need a brief<br>to start a conversation.</h2><a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT <span>↗</span></a></section>
+        <section class="ember-cta"><p>TALK THROUGH YOUR NEXT STEP</p><h2>You don’t need a brief<br>to start a conversation.</h2><a href="{{ route('contact', ['service' => $inquiryService]) }}#inquiry">DISCUSS YOUR PROJECT <span>↗</span></a></section>
     </div>
 </x-layout>

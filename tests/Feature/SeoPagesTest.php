@@ -203,3 +203,41 @@ it('links to AI app help from relevant page content', function (string $routeNam
     'products.maeve',
     'products.remi',
 ]);
+
+it('keeps service-specific inquiry links and a clean contact canonical', function (string $routeName, string $service) {
+    $serviceResponse = $this->get(route($routeName))
+        ->assertOk()
+        ->assertSee(route('contact', ['service' => $service]).'#inquiry', false);
+
+    preg_match_all('/href="'.preg_quote(route('contact'), '/').'([^"]*)"/', $serviceResponse->getContent(), $contactLinks);
+
+    foreach ($contactLinks[1] as $suffix) {
+        expect($suffix)->toContain('service='.$service);
+    }
+
+    $response = $this->get(route('contact', ['service' => $service]));
+    preg_match('/<link\s+rel="canonical"\s+href="([^"]+)"/s', $response->getContent(), $matches);
+
+    expect($matches[1])->toBe(route('contact'));
+})->with([
+    ['services.custom-software', 'software'],
+    ['services.ai-app-help', 'support'],
+    ['services.automation-integrations', 'support'],
+    ['services.fractional-cto', 'advisory'],
+]);
+
+it('keeps the homepage sales proof and service discovery links', function () {
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('Custom Software Development &amp; Integrations', false)
+        ->assertSeeText('MICHAEL MEYER III')
+        ->assertSeeText('roughly a 20% reduction in OpEx')
+        ->assertSeeText('BUILT BY PROJECT 407')
+        ->assertSeeText('Software should perform the work')
+        ->assertSee(route('services.custom-software'))
+        ->assertSee(route('services.automation-integrations'))
+        ->assertSee(route('services.ai-app-help'))
+        ->assertSee(route('services.fractional-cto'))
+        ->assertSee(route('approach'))
+        ->assertSee(route('about'));
+});

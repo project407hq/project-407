@@ -21,21 +21,29 @@
 
         <x-project-starting-points />
 
-        <section class="studio-section studio-advisory" aria-labelledby="ai-app-heading">
-            <div class="studio-split">
-                <div><p class="studio-kicker">HELP WITH YOUR AI-BUILT APP</p><h2 id="ai-app-heading" class="studio-heading">Started an app<br>with AI?</h2></div>
-                <div><p class="studio-lead">If you’re stuck on a technical problem, unsure what to work on next, or ready to get your app into users’ hands, I can help. Keep building it yourself and bring me in for guidance, a specific piece of development, or launch support.</p><a class="studio-advisory__link" href="{{ route('services.ai-app-help') }}">GET HELP WITH YOUR AI-BUILT APP <span aria-hidden="true">↗</span></a></div>
-            </div>
-        </section>
+        <x-saydee-walkthrough :compact="true" :show-other-products="true" />
 
         <figure class="project-recommendation">
             <div><p class="studio-kicker">CORPORATE ENGINEERING EXPERIENCE</p><blockquote>“He contributed to platform initiatives that helped drive roughly a 20% reduction in OpEx, working across teams to improve how our services were built, deployed, and maintained.”</blockquote></div>
             <figcaption>MICHAEL MEYER III<span>Former Engineering Manager,<br>Trader Interactive</span></figcaption>
         </figure>
 
-        <x-saydee-walkthrough :compact="true" :show-other-products="true" />
+        <section class="studio-section studio-advisory home-support" aria-label="Focused technical help and leadership">
+            <article>
+                <p class="studio-kicker">HELP WITH YOUR AI-BUILT APP</p>
+                <h2 id="ai-app-heading" class="studio-heading">Started an app with AI?</h2>
+                <p class="studio-lead">Keep building it yourself and bring me in for guidance, a code review, a focused fix, or launch support. A session or a small piece of development can be the whole engagement.</p>
+                <a class="studio-advisory__link" href="{{ route('services.ai-app-help') }}">GET HELP WITH YOUR AI-BUILT APP <span aria-hidden="true">↗</span></a>
+            </article>
+            <article>
+                <p class="studio-kicker">ALSO AVAILABLE / FRACTIONAL CTO</p>
+                <h2 class="studio-heading">A clearer direction for your team.</h2>
+                <p class="studio-lead">Evaluate a vendor, review an application, or turn competing priorities into a plan your team can deliver. Start with one decision or bring me in for ongoing fractional CTO support.</p>
+                <a class="studio-advisory__link" href="{{ route('services.fractional-cto') }}">EXPLORE FRACTIONAL CTO SUPPORT <span aria-hidden="true">↗</span></a>
+            </article>
+        </section>
 
-        <section class="ember-founder">
+        <section class="ember-founder ember-founder--compact">
             <div class="ember-founder__signal" aria-label="A direct working relationship between your business and Kevin Whelan">
                 <header><span>DIRECT LINE / 01</span><span>NO HANDOFFS</span></header>
                 <div class="ember-founder__initials" aria-hidden="true"><span>K</span><span>W</span></div>
@@ -46,44 +54,13 @@
                 <p>CORPORATE EXPERIENCE · DIRECT COLLABORATION</p>
                 <h2>A hands-on builder.<br>A technology partner.</h2>
                 <p class="ember-founder__lead">You work with the person writing the code and making the technical decisions. My background includes production software, integrations, and cross-team platform work. I bring that experience to building your application and keeping it running after launch.</p>
+                <p class="ember-founder__note">Software should perform the work, not create another place for humans to work. I automate routine steps around the systems you already use, with people in control of approvals and exceptions. I use AI to move the build forward, then review permissions, integrations, failure paths, and release checks. <a href="{{ route('approach') }}">See how I work.</a></p>
                 <div class="ember-founder__facts"><span>LARAVEL · PHP · APIS</span><span>VUE · REACT · TYPESCRIPT</span><span>AWS · DEPLOYMENT · INTEGRATIONS</span></div>
                 <a href="{{ route('about') }}">MEET KEVIN <span aria-hidden="true">↗</span></a>
             </div>
         </section>
 
-        <section class="studio-section">
-            <div class="studio-split">
-                <div><p class="studio-kicker">START WITH THE VALUE</p><h2 class="studio-heading">What should get better for your business?</h2></div>
-                <div><p class="studio-lead">Give customers a way to use your service online. Stop copying the same information between tools. Get an existing application ready for its next release. Start with the change you need in your business.</p><p class="studio-lead mt-8">Software should perform the work, not create another place for humans to work. Wherever practical, I build around the systems you already use, automate routine steps, and leave people in control of approvals and exceptions.</p></div>
-            </div>
-            <div class="studio-proof">
-                <article><span>01 / CAPACITY</span><h3>Less routine work.</h3><p>Reduce re-entry, manual checks, and handoffs so your team has time for work that needs them.</p></article>
-                <article><span>02 / PRODUCT</span><h3>An idea made useful.</h3><p>Give customers a focused first version that solves a real problem and creates something you can learn from.</p></article>
-                <article><span>03 / DIRECTION</span><h3>A clearer next move.</h3><p>Understand the tradeoffs, choose priorities, and invest in technology with a plan your team can deliver.</p></article>
-            </div>
-        </section>
-
         <x-project-start />
-
-        <section class="studio-section studio-advisory">
-            <div class="studio-split">
-                <div><p class="studio-kicker">ALSO AVAILABLE / FRACTIONAL CTO</p><h2 class="studio-heading">Know what to build next.<br>Give your team a clear direction.</h2></div>
-                <div><p class="studio-lead">If technology decisions keep landing on you, I can help evaluate a vendor, review an application, or turn competing priorities into a plan your team can deliver. Start with one decision or bring me in for ongoing fractional CTO support.</p><a class="studio-advisory__link" href="{{ route('services.fractional-cto') }}">EXPLORE FRACTIONAL CTO SUPPORT <span aria-hidden="true">↗</span></a></div>
-            </div>
-        </section>
-
-        <section class="studio-trust" aria-labelledby="trust-title">
-            <header>
-                <p>A HUMAN IN AN AI WORLD</p>
-                <h2 id="trust-title">AI moves the work forward. An engineer owns the outcome.</h2>
-            </header>
-            <div class="studio-trust__grid">
-                <article><span>01 / EMBRACE THE TOOLS</span><h3>Bring what you have.</h3><p>An idea, existing code, or an AI-built prototype can be a starting point. I use AI to help explore and build, then review the work against what your application needs to do.</p></article>
-                <article><span>02 / APPLY EXPERIENCE</span><h3>Look beyond the demo.</h3><p>I check who can access the data, what happens when a connection fails, and how changes reach your users. Testing and a plan for running the software are part of the build.</p></article>
-                <article><span>03 / STAY ACCOUNTABLE</span><h3>Know where the project stands.</h3><p>You see working progress and get a clear account of what has been tested and what needs attention. I stay your direct contact through the work.</p></article>
-            </div>
-            <a href="{{ route('approach') }}">WHY AN EXPERIENCED ENGINEER STILL MATTERS <span aria-hidden="true">↗</span></a>
-        </section>
 
         <section class="ember-cta">
             <p>HAVE SOFTWARE THAT NEEDS TO GET BUILT OR IMPROVED?</p>

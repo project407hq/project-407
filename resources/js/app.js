@@ -17,6 +17,7 @@ if ('IntersectionObserver' in window && 'animate' in Element.prototype) {
         '.studio-products__grid > *',
         '.studio-product-story__overview > .studio-product-visual',
         '.studio-proof > *',
+        '.home-support > article',
         '.studio-trust > header > *',
         '.studio-trust__grid > *',
         '.studio-trust > a',

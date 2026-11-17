@@ -1,4 +1,5 @@
 <x-service-page
+    inquiry-service="advisory"
     title="Fractional CTO & Engineering Leadership | Project 407"
     description="Fractional CTO services with Kevin Whelan: technology roadmaps, architecture reviews, build-versus-buy decisions, and engineering guidance in MA, NH, and remotely."
     eyebrow="FRACTIONAL CTO + ENGINEERING LEADERSHIP"

@@ -63,9 +63,53 @@ test('required inquiry fields are validated', function (string $field) {
 })->with([
     'name',
     'email',
-    'service',
     'message',
 ]);
+
+test('an inquiry needs only a name email and message', function () {
+    Livewire::test('project-inquiry-form')
+        ->set('name', 'Morgan Lee')
+        ->set('email', 'morgan@example.com')
+        ->set('message', 'Please help us improve our existing application.')
+        ->call('submit')
+        ->assertHasNoErrors()
+        ->assertSet('submitted', true)
+        ->assertDispatched('project-inquiry-submitted', service: 'not-sure');
+
+    expect(ProjectInquiry::sole())
+        ->service->toBe('not-sure')
+        ->phone->toBeNull()
+        ->business_name->toBeNull();
+});
+
+test('service page context is carried into the inquiry', function (string $service) {
+    Livewire::withQueryParams(['service' => $service])->test('project-inquiry-form')
+        ->assertSet('service', $service)
+        ->assertSet('showOptionalDetails', false)
+        ->set('name', 'Morgan Lee')
+        ->set('email', 'morgan@example.com')
+        ->set('message', 'Please help us with this project.')
+        ->call('submit')
+        ->assertHasNoErrors()
+        ->assertDispatched('project-inquiry-submitted', service: $service);
+
+    expect(ProjectInquiry::sole()->service)->toBe($service);
+})->with(['software', 'support', 'advisory']);
+
+test('unrecognized service context is ignored safely', function (mixed $service) {
+    Livewire::withQueryParams(['service' => $service])->test('project-inquiry-form')
+        ->assertSet('service', 'not-sure');
+})->with([
+    'unknown string' => ['unexpected-value'],
+    'array context' => [['support']],
+]);
+
+test('validation failures are tracked without counting a saved lead', function () {
+    Livewire::test('project-inquiry-form')
+        ->call('submit')
+        ->assertDispatched('project-inquiry-failed', reason: 'validation')
+        ->assertNotDispatched('project-inquiry-submitted');
+});
 
 test('the honeypot rejects automated submissions', function () {
     Livewire::test('project-inquiry-form')
@@ -95,6 +139,7 @@ test('project inquiries are rate limited', function () {
         ->set('message', 'We need a website that generates better local leads.')
         ->call('submit')
         ->assertHasErrors('form')
+        ->assertDispatched('project-inquiry-failed', reason: 'rate_limited')
         ->assertSet('submitted', false)
         ->assertNotDispatched('project-inquiry-submitted');
 
@@ -154,6 +199,7 @@ test('failed inquiry saves preserve the message and give a direct contact fallba
             ->set('message', 'Please help us improve our existing application.')
             ->call('submit')
             ->assertHasErrors('form')
+            ->assertDispatched('project-inquiry-failed', reason: 'server')
             ->assertSet('submitted', false)
             ->assertSet('name', 'Morgan Lee')
             ->assertSet('email', 'morgan@example.com')

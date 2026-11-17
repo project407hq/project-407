@@ -3,6 +3,7 @@
 use App\Models\ProjectInquiry;
 use App\ProjectInquiryNotifier;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use function Illuminate\Support\defer;
 
@@ -16,13 +17,24 @@ new class extends Component
 
     public string $businessName = '';
 
-    public string $service = '';
+    public string $service = 'not-sure';
+
+    public bool $showOptionalDetails = false;
 
     public string $message = '';
 
     public string $website = '';
 
     public bool $submitted = false;
+
+    public function mount(): void
+    {
+        $service = request()->query('service');
+
+        if (is_string($service) && in_array($service, ['website', 'software', 'support', 'advisory', 'employment', 'collaboration', 'question', 'not-sure'], true)) {
+            $this->service = $service;
+        }
+    }
 
     protected function rules(): array
     {
@@ -73,7 +85,15 @@ new class extends Component
 
         $this->resetErrorBag('form');
 
-        $validated = $this->validate();
+        $this->service = $this->service ?: 'not-sure';
+
+        try {
+            $validated = $this->validate();
+        } catch (ValidationException $exception) {
+            $this->dispatch('project-inquiry-failed', reason: 'validation');
+
+            throw $exception;
+        }
 
         try {
             $rateLimitKey = 'project-inquiry:'.request()->ip();
@@ -83,6 +103,7 @@ new class extends Component
                     'form',
                     'Too many messages have been sent from this connection. Please wait before trying again, or email Kevin directly.',
                 );
+                $this->dispatch('project-inquiry-failed', reason: 'rate_limited');
 
                 return;
             }
@@ -102,6 +123,7 @@ new class extends Component
                 'form',
                 'We could not confirm that your message was saved. Your details are still here. Please email or call Kevin directly instead.',
             );
+            $this->dispatch('project-inquiry-failed', reason: 'server');
 
             return;
         }
@@ -116,6 +138,7 @@ new class extends Component
             'service',
             'message',
             'website',
+            'showOptionalDetails',
         ]);
 
         $this->submitted = true;
@@ -133,6 +156,7 @@ new class extends Component
             'service',
             'message',
             'website',
+            'showOptionalDetails',
         ]);
 
         $this->submitted = false;
@@ -181,7 +205,7 @@ new class extends Component
             </button>
         </div>
     @else
-        <form wire:submit="submit" novalidate>
+        <form name="project_inquiry" wire:submit="submit" novalidate>
             <div wire:ignore data-request-error hidden class="mb-6 rounded-xl border border-orange/30 bg-orange/10 p-5" role="alert" tabindex="-1">
                 <p data-request-error-message class="font-semibold text-ink"></p>
                 <p class="mt-3 text-sm leading-6">Contact Kevin at <a class="underline" href="mailto:kevin@project-407.com">kevin@project-407.com</a> or <a class="underline" href="tel:+19788779784">(978) 877-9784</a>.</p>
@@ -221,235 +245,67 @@ new class extends Component
             </div>
 
             <div class="grid gap-6 sm:grid-cols-2">
-                {{-- Name --}}
                 <div>
-                    <label for="name" class="form-label">
-                        Your name
-                        <span class="text-orange-dark">*</span>
-                    </label>
-
-                    <input
-                        id="name"
-                        type="text"
-                        wire:model.blur="name"
-                        class="form-control"
-                        @error('name') aria-invalid="true" aria-describedby="name-error" @enderror
-                        autocomplete="name"
-                        placeholder="John Doe"
-                    >
-
-                    @error('name')
-                        <p id="name-error" class="form-error">
-                            {{ $message }}
-                        </p>
-                    @enderror
+                    <label for="name" class="form-label">Your name <span class="text-orange-dark">*</span></label>
+                    <input id="name" type="text" wire:model="name" class="form-control" required maxlength="100" autocomplete="name" placeholder="Your name"
+                        @error('name') aria-invalid="true" aria-describedby="name-error" @enderror>
+                    @error('name') <p id="name-error" class="form-error">{{ $message }}</p> @enderror
                 </div>
-
-                {{-- Email --}}
                 <div>
-                    <label for="email" class="form-label">
-                        Email address
-                        <span class="text-orange-dark">*</span>
-                    </label>
-
-                    <input
-                        id="email"
-                        type="email"
-                        wire:model.blur="email"
-                        class="form-control"
-                        @error('email') aria-invalid="true" aria-describedby="email-error" @enderror
-                        autocomplete="email"
-                        placeholder="you@business.com"
-                    >
-
-                    @error('email')
-                        <p id="email-error" class="form-error">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
-
-                {{-- Phone --}}
-                <div>
-                    <label for="phone" class="form-label">
-                        Phone number
-                        <span class="font-normal text-slate">(optional)</span>
-                    </label>
-
-                    <input
-                        id="phone"
-                        type="tel"
-                        wire:model.blur="phone"
-                        class="form-control"
-                        @error('phone') aria-invalid="true" aria-describedby="phone-error" @enderror
-                        autocomplete="tel"
-                        placeholder="(978) 555-0123"
-                    >
-
-                    @error('phone')
-                        <p id="phone-error" class="form-error">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
-
-                {{-- Business --}}
-                <div>
-                    <label for="businessName" class="form-label">
-                        Business or organization
-                        <span class="font-normal text-slate">(optional)</span>
-                    </label>
-
-                    <input
-                        id="businessName"
-                        type="text"
-                        wire:model.blur="businessName"
-                        class="form-control"
-                        @error('businessName') aria-invalid="true" aria-describedby="business-name-error" @enderror
-                        autocomplete="organization"
-                        placeholder="Your Business LLC"
-                    >
-
-                    @error('businessName')
-                        <p id="business-name-error" class="form-error">
-                            {{ $message }}
-                        </p>
-                    @enderror
+                    <label for="email" class="form-label">Email address <span class="text-orange-dark">*</span></label>
+                    <input id="email" type="email" wire:model="email" class="form-control" required maxlength="255" autocomplete="email" placeholder="you@business.com"
+                        @error('email') aria-invalid="true" aria-describedby="email-error" @enderror>
+                    @error('email') <p id="email-error" class="form-error">{{ $message }}</p> @enderror
                 </div>
             </div>
 
-            {{-- Service --}}
-            <fieldset class="mt-6">
-                <legend class="form-label">
-                    What brings you here?
-                    <span class="text-orange-dark">*</span>
-                </legend>
-
-                <div class="mt-3 grid gap-3 sm:grid-cols-2">
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
-                            value="software"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'software',
-                                'bg-orange/15 text-orange-dark' => $service !== 'software',
-                            ])>
-                                01
-                            </span>
-
-                            Custom software or application
-                        </span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
-                            value="advisory"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'advisory',
-                                'bg-orange/15 text-orange-dark' => $service !== 'advisory',
-                            ])>
-                                02
-                            </span>
-
-                            Fractional CTO or engineering leadership
-                        </span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
-                            value="support"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'support',
-                                'bg-orange/15 text-orange-dark' => $service !== 'support',
-                            ])>
-                                03
-                            </span>
-
-                            Existing software or AI-built app help
-                        </span>
-                    </label>
-
-                    <label class="cursor-pointer">
-                        <input
-                            type="radio"
-                            wire:model="service"
-                            value="not-sure"
-                            class="peer sr-only"
-                        >
-
-                        <span class="flex h-full items-center gap-3 rounded-2xl border border-navy/15 bg-white p-4 font-bold text-ink transition hover:border-orange/50 peer-checked:border-orange peer-checked:bg-orange/10 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-orange">
-                            <span @class([
-                                'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors',
-                                'bg-navy text-white' => $service === 'not-sure',
-                                'bg-orange/15 text-orange-dark' => $service !== 'not-sure',
-                            ])>
-                                04
-                            </span>
-
-                            Help figuring out the next step
-                        </span>
-                    </label>
-                </div>
-
-                @error('service')
-                    <p id="service-error" class="form-error">
-                        {{ $message }}
-                    </p>
-                @enderror
-            </fieldset>
-
-            {{-- Message --}}
             <div class="mt-6">
-                <label for="message" class="form-label">
-                    Your message
-                    <span class="text-orange-dark">*</span>
-                </label>
-
-                <textarea
-                    id="message"
-                    wire:model.live.debounce="message"
-                    maxlength="3000"
-                    class="form-control min-h-40 resize-y"
-                    @error('message') aria-invalid="true" aria-describedby="message-error" @enderror
-                    placeholder="What would you like your software or team to achieve? Share your idea, current challenges, relevant links, and timing."
-                ></textarea>
-
+                <label for="message" class="form-label">Your message <span class="text-orange-dark">*</span></label>
+                <textarea id="message" wire:model="message" required maxlength="3000" class="form-control min-h-40 resize-y" placeholder="What would you like to build or improve? A few sentences, a relevant link, and any timing are enough."
+                    @error('message') aria-invalid="true" aria-describedby="message-error" @enderror></textarea>
                 <div class="mt-2 flex items-start justify-between gap-4">
                     @error('message')
-                        <p id="message-error" class="text-sm font-semibold text-red-700">
-                            {{ $message }}
-                        </p>
+                        <p id="message-error" class="text-sm font-semibold text-red-700">{{ $message }}</p>
                     @else
-                        <p class="text-sm text-slate">
-                            A few sentences are plenty to get started.
-                        </p>
+                        <p class="text-sm text-slate">You don’t need a finished project brief.</p>
                     @enderror
-
-                    <span class="text-xs text-slate">
-                        {{ strlen($this->message) }}/3000
-                    </span>
+                    <span class="text-xs text-slate" x-text="$wire.message.length + '/3000'">{{ mb_strlen($this->message) }}/3000</span>
                 </div>
             </div>
+
+            <details class="inquiry-details" @toggle="$wire.showOptionalDetails = $el.open"
+                @if ($showOptionalDetails || $errors->hasAny(['phone', 'businessName', 'service'])) open @endif>
+                <summary>Add project details <span>(optional)</span></summary>
+                <div class="grid gap-6 pt-5 sm:grid-cols-2">
+                    <div>
+                        <label for="phone" class="form-label">Phone number <span class="font-normal text-slate">(optional)</span></label>
+                        <input id="phone" type="tel" wire:model="phone" class="form-control" maxlength="30" autocomplete="tel" placeholder="(978) 555-0123"
+                            @error('phone') aria-invalid="true" aria-describedby="phone-error" @enderror>
+                        @error('phone') <p id="phone-error" class="form-error">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
+                        <label for="businessName" class="form-label">Business or organization <span class="font-normal text-slate">(optional)</span></label>
+                        <input id="businessName" type="text" wire:model="businessName" class="form-control" maxlength="150" autocomplete="organization" placeholder="Your business"
+                            @error('businessName') aria-invalid="true" aria-describedby="business-name-error" @enderror>
+                        @error('businessName') <p id="business-name-error" class="form-error">{{ $message }}</p> @enderror
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="service" class="form-label">What brings you here? <span class="font-normal text-slate">(optional)</span></label>
+                        <select id="service" wire:model="service" class="form-control"
+                            @error('service') aria-invalid="true" aria-describedby="service-error" @enderror>
+                            <option value="not-sure">Help figuring out the next step</option>
+                            <option value="software">Custom software or application</option>
+                            <option value="support">Existing software or AI-built app help</option>
+                            <option value="advisory">Fractional CTO or engineering leadership</option>
+                            <option value="website">Website project</option>
+                            <option value="question">General question</option>
+                            <option value="collaboration">Business collaboration</option>
+                            <option value="employment">Employment or leadership opportunity</option>
+                        </select>
+                        @error('service') <p id="service-error" class="form-error">{{ $message }}</p> @enderror
+                    </div>
+                </div>
+            </details>
 
             <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                 <button
@@ -494,7 +350,25 @@ new class extends Component
 
 @script
 <script>
-    $wire.interceptRequest(({ request, onError, onFailure, onSuccess }) => {
+    $wire.interceptRequest(({ request, onSend, onError, onFailure, onSuccess }) => {
+        const isSubmission = [...request.messages].some(
+            (message) => [...message.actions].some((action) => action.name === 'submit'),
+        );
+        const trackFailure = (reason) => {
+            if (isSubmission) {
+                $wire.$el.dispatchEvent(new CustomEvent('project-inquiry-failed', {
+                    bubbles: true,
+                    detail: { reason },
+                }));
+            }
+        };
+
+        onSend(() => {
+            if (isSubmission && ! $wire.submitted) {
+                $wire.$el.dispatchEvent(new CustomEvent('project-inquiry-attempted', { bubbles: true }));
+            }
+        });
+
         const showError = (message, needsRefresh = false) => {
             const alert = $wire.$el.querySelector('[data-request-error]');
 
@@ -506,10 +380,6 @@ new class extends Component
             alert.querySelector('[data-request-refresh]').hidden = ! needsRefresh;
             alert.hidden = false;
 
-            const isSubmission = [...request.messages].some(
-                (message) => [...message.actions].some((action) => action.name === 'submit'),
-            );
-
             if (isSubmission) {
                 alert.focus({ preventScroll: true });
                 alert.scrollIntoView({ behavior: 'instant', block: 'center' });
@@ -518,6 +388,9 @@ new class extends Component
 
         onError(({ response, preventDefault }) => {
             preventDefault();
+            trackFailure(response.status === 419 ? 'session_expired'
+                : response.status === 429 ? 'rate_limited'
+                    : response.status >= 500 ? 'server' : 'request');
 
             const messages = {
                 419: 'This form has expired. Copy your message before reloading the form, or email Kevin directly.',
@@ -531,7 +404,10 @@ new class extends Component
             );
         });
 
-        onFailure(() => showError('The connection was interrupted. We could not confirm that your changes or message reached the site. Your details are still here. Check your connection, or contact Kevin directly.'));
+        onFailure(() => {
+            trackFailure('network');
+            showError('The connection was interrupted. We could not confirm that your changes or message reached the site. Your details are still here. Check your connection, or contact Kevin directly.');
+        });
 
         onSuccess(() => {
             const alert = $wire.$el.querySelector('[data-request-error]');

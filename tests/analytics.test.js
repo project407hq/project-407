@@ -36,6 +36,42 @@ test('invalid categories and ordinary form submissions do not count as leads', (
     assert.deepEqual(recorded, []);
 });
 
+test('submission attempts contain no inquiry values and do not count as leads', () => {
+    const { target, recorded } = trackingHarness();
+
+    target.dispatchEvent(new CustomEvent('project-inquiry-attempted', {
+        detail: { email: 'private@example.com', message: 'Private content', service: 'software' },
+    }));
+
+    assert.deepEqual(recorded, [{
+        name: 'inquiry_submit_attempt', parameters: { form_name: 'project_inquiry' },
+    }]);
+});
+
+for (const reason of ['validation', 'rate_limited', 'server', 'session_expired', 'network', 'request']) {
+    test(`${reason} failures send only a recognized reason`, () => {
+        const { target, recorded } = trackingHarness();
+
+        target.dispatchEvent(new CustomEvent('project-inquiry-failed', {
+            detail: { reason, email: 'private@example.com', message: 'Private content', exception: 'SQL details' },
+        }));
+
+        assert.deepEqual(recorded, [{
+            name: 'inquiry_submit_failed',
+            parameters: { form_name: 'project_inquiry', failure_reason: reason },
+        }]);
+    });
+}
+
+test('unrecognized failure values are never sent to analytics', () => {
+    const { target, recorded } = trackingHarness();
+
+    target.dispatchEvent(new CustomEvent('project-inquiry-failed', { detail: { reason: 'private inquiry content' } }));
+    target.dispatchEvent(new CustomEvent('project-inquiry-failed', { detail: {} }));
+
+    assert.deepEqual(recorded, []);
+});
+
 for (const [href, method] of [['tel:+15555550123', 'phone'], ['mailto:test@example.com', 'email']]) {
     test(`${method} clicks are recorded separately without the destination`, () => {
         const recorded = [];

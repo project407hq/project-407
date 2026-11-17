@@ -1,4 +1,21 @@
 export function registerAnalyticsTracking(eventTarget, trackEvent) {
+    eventTarget.addEventListener('project-inquiry-attempted', () => {
+        trackEvent('inquiry_submit_attempt', { form_name: 'project_inquiry' });
+    });
+
+    eventTarget.addEventListener('project-inquiry-failed', (event) => {
+        const reasons = new Set([
+            'validation', 'rate_limited', 'server', 'session_expired', 'network', 'request',
+        ]);
+
+        if (reasons.has(event.detail?.reason)) {
+            trackEvent('inquiry_submit_failed', {
+                form_name: 'project_inquiry',
+                failure_reason: event.detail.reason,
+            });
+        }
+    });
+
     eventTarget.addEventListener('project-inquiry-submitted', (event) => {
         const services = new Set([
             'website', 'software', 'support', 'advisory',

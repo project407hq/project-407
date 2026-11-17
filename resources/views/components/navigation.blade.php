@@ -1,9 +1,15 @@
+@props(['inquiryService' => null])
+
 <header
     x-data="{ open: false, scrolled: window.scrollY > 16 }"
-    x-effect="document.documentElement.classList.toggle('overflow-hidden', open)"
+    x-init="$watch('open', value => $nextTick(() => (value ? $refs.firstMenuLink : $refs.menuTrigger).focus()))"
+    x-trap.inert.noscroll.noautofocus.noreturn="open"
     @scroll.window="scrolled = window.scrollY > 16"
     @keydown.escape.window="open = false"
     :class="{ 'is-scrolled': scrolled && ! open }"
+    :role="open ? 'dialog' : null"
+    :aria-modal="open ? 'true' : null"
+    aria-label="Site navigation"
     class="ember-nav"
 >
     <a href="{{ route('home') }}" class="ember-nav__logo" aria-label="Project 407 home">
@@ -12,8 +18,8 @@
     </a>
 
     <div class="ember-nav__actions">
-        <a href="{{ route('contact') }}#inquiry">DISCUSS YOUR PROJECT</a>
-        <button type="button" @click="open = ! open" :aria-expanded="open.toString()" aria-controls="main-menu" aria-label="Toggle navigation">
+        <a href="{{ route('contact', $inquiryService ? ['service' => $inquiryService] : []) }}#inquiry">DISCUSS YOUR PROJECT</a>
+        <button x-ref="menuTrigger" type="button" @click="open = ! open" :aria-expanded="open.toString()" aria-controls="main-menu" aria-label="Toggle navigation">
             <span></span><span></span>
         </button>
     </div>
@@ -31,11 +37,11 @@
         x-transition:leave-end="opacity-0"
     >
         <nav aria-label="Main navigation">
-            <a href="{{ route('approach') }}" @click="open = false"><span>01</span>Approach</a>
+            <a x-ref="firstMenuLink" href="{{ route('approach') }}" @click="open = false"><span>01</span>Approach</a>
             <a href="{{ route('services') }}" @click="open = false"><span>02</span>Services</a>
             <a href="{{ route('products.index') }}" @click="open = false"><span>03</span>Products</a>
             <a href="{{ route('about') }}" @click="open = false"><span>04</span>About</a>
-            <a href="{{ route('contact') }}" @click="open = false"><span>05</span>Contact</a>
+            <a href="{{ route('contact', $inquiryService ? ['service' => $inquiryService] : []) }}" @click="open = false"><span>05</span>Contact</a>
         </nav>
         <p>Have a software idea or need technical leadership? Reach Kevin directly.</p>
     </div>

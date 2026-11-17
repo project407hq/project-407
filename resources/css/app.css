@@ -844,6 +844,26 @@ body:has(.p407-home) > header .button-primary {
 .studio-image--website { width:min(100%,72rem); margin-inline:auto; border:1px solid rgba(27,27,26,.18); box-shadow:0 2rem 5rem rgba(27,27,26,.1); }
 .studio-form { display:grid; grid-template-columns:.7fr 1.3fr; gap:clamp(3rem,8vw,8rem); }
 .studio-form__panel { padding:2rem; border:1px solid rgba(27,27,26,.25); background:#fff; }
+.studio-form__panel .studio-heading { max-width:18ch; font-size:clamp(2rem,3.5vw,3.25rem); line-height:1.08; }
+.inquiry-details { margin-top:1.5rem; padding-block:1rem; border-block:1px solid rgba(27,27,26,.18); }
+.inquiry-details summary { min-height:2.75rem; align-content:center; cursor:pointer; font-weight:700; }
+.inquiry-details summary span { color:#605f5a; font-weight:400; }
+.inquiry-details summary::marker { color:#b9232a; }
+.home-support { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(3rem,7vw,7rem); }
+.home-support > article { display:flex; flex-direction:column; align-items:flex-start; }
+.home-support .studio-heading { max-width:17ch; font-size:clamp(2.25rem,3.5vw,3.5rem); }
+.home-support .studio-lead { margin-block:1.5rem; font-size:1.15rem; }
+.home-support .studio-advisory__link { margin-top:auto; }
+.ember-founder--compact { min-height:0; }
+.ember-founder--compact .ember-founder__signal { min-height:32rem; }
+.ember-founder--compact .ember-founder__story { padding:4rem clamp(2rem,5vw,5rem); }
+.ember-founder--compact .ember-founder__story h2 { font-size:clamp(2.5rem,4vw,4.5rem); }
+.ember-founder__note { margin-top:1.5rem; color:#605f5a; line-height:1.75; }
+.ember-founder__note a { color:inherit; text-underline-offset:.2em; }
+@media (max-width:800px) {
+    .home-support { grid-template-columns:1fr; }
+    .ember-founder--compact .ember-founder__story { padding:4rem 1.25rem; }
+}
 .studio-contact-lines { margin-top:3rem; }
 .studio-contact-lines a,.studio-contact-lines > div { display:flex; justify-content:space-between; gap:2rem; padding:1rem 0; border-bottom:1px solid; color:inherit; text-decoration:none; }
 .studio-legal { max-width:54rem; margin:auto; }
